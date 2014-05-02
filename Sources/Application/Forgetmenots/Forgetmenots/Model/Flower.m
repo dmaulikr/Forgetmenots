@@ -21,19 +21,76 @@ static NSArray* theFlowers;
     return self;
 }
 
++(Flower*)forgetmenot
+{
+    return [[Flower alloc] initWithName:@"Forgetmenot"];
+}
+    
++(Flower*)rose
+{
+    return [[Flower alloc] initWithName:@"Rose"];
+}
+
++(Flower*)tulip
+{
+    return [[Flower alloc] initWithName:@"Tulip"];
+}
+
++(Flower*)mum
+{
+    return [[Flower alloc] initWithName:@"Mum"];
+}
+
++(Flower*)sunflower
+{
+    return [[Flower alloc] initWithName:@"Sunflower"];
+}
+
++(Flower*)amaryllis
+{
+    return [[Flower alloc] initWithName:@"Amaryllis"];
+}
+
++(Flower*)gerbera
+{
+    return [[Flower alloc] initWithName:@"Gerbera"];
+}
+
++(Flower*)alstroemeria
+{
+    return [[Flower alloc] initWithName:@"Alstroemeria"];
+}
+
++(Flower*)lilium
+{
+    return [[Flower alloc] initWithName:@"Lilium"];
+}
+
 
 +(void)initialize
 {
     if (self == [Flower class])
     {
-        theFlowers = @[[[Flower alloc] initWithName:@"Rose"],
-                       [[Flower alloc] initWithName:@"Tulip"]];
+        theFlowers = @[[Flower forgetmenot],
+                       [Flower rose],
+                       [Flower tulip],
+                       [Flower mum],
+                       [Flower sunflower],
+                       [Flower amaryllis],
+                       [Flower gerbera],
+                       [Flower alstroemeria],
+                       [Flower lilium]];
     }
 }
 
 +(NSArray*) flowers
 {
     return theFlowers;
+}
+
+- (NSString *)description
+{
+    return self.name;
 }
 
 @end

@@ -64,10 +64,10 @@
             </objects>
             <point key="canvasLocation" x="1315" y="-491"/>
         </scene>
-        <!--View Controller - Timeline-->
+        <!--Timeline View Controller - Timeline-->
         <scene sceneID="gbs-dz-wgb">
             <objects>
-                <viewController id="jda-zD-YZo" sceneMemberID="viewController">
+                <viewController id="jda-zD-YZo" customClass="TimelineViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ixm-Cg-pQu"/>
                         <viewControllerLayoutGuide type="bottom" id="T8y-NK-M15"/>
@@ -81,11 +81,26 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFz-Jz-RmD">
+                                <rect key="frame" x="40" y="420" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="7ta-38-te8"/>
+                                </constraints>
+                                <string key="text">Birthday Kim
+October 29th Gerbera</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="G4w-30-7yT" firstAttribute="centerX" secondItem="zdJ-MO-tXz" secondAttribute="centerX" id="IBY-ts-2l2"/>
-                            <constraint firstItem="G4w-30-7yT" firstAttribute="centerY" secondItem="zdJ-MO-tXz" secondAttribute="centerY" id="Z9Y-25-Ooo"/>
+                            <constraint firstItem="gFz-Jz-RmD" firstAttribute="top" secondItem="G4w-30-7yT" secondAttribute="bottom" constant="11" id="8aH-Sh-naT"/>
+                            <constraint firstItem="gFz-Jz-RmD" firstAttribute="centerX" secondItem="G4w-30-7yT" secondAttribute="centerX" id="S7Q-pg-seO"/>
+                            <constraint firstItem="gFz-Jz-RmD" firstAttribute="centerX" secondItem="zdJ-MO-tXz" secondAttribute="centerX" id="f5C-Eh-LxT"/>
+                            <constraint firstAttribute="bottom" secondItem="gFz-Jz-RmD" secondAttribute="bottom" constant="20" symbolic="YES" id="jre-v8-kCZ"/>
+                            <constraint firstItem="gFz-Jz-RmD" firstAttribute="leading" secondItem="zdJ-MO-tXz" secondAttribute="leading" constant="40" id="zX2-4N-Tjl"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Timeline" id="jBl-3D-4XP">
@@ -103,6 +118,9 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="upcomingEventInfo" destination="gFz-Jz-RmD" id="2vm-Df-LSL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="elq-pO-FO6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

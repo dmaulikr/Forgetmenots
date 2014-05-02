@@ -27,6 +27,7 @@
 		094D8F3619118D12002C96B2 /* menu-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 094D8F3419118D12002C96B2 /* menu-icon@2x.png */; };
 		094D8F391911BF21002C96B2 /* Flower.m in Sources */ = {isa = PBXBuildFile; fileRef = 094D8F381911BF21002C96B2 /* Flower.m */; };
 		094D8F3C1911BFDD002C96B2 /* ForgetmenotsEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 094D8F3B1911BFDD002C96B2 /* ForgetmenotsEvent.m */; };
+		094D8F40191456AD002C96B2 /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 094D8F3F191456AC002C96B2 /* TimelineViewController.m */; };
 		09504BD7190F08E200BC74A7 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09504BD6190F08E200BC74A7 /* IntroViewController.m */; };
 		ECD0482DE9D347D887C641F8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7F1FA74C04B41EEA4D7FC9A /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -71,6 +72,8 @@
 		094D8F381911BF21002C96B2 /* Flower.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Flower.m; path = Model/Flower.m; sourceTree = "<group>"; };
 		094D8F3A1911BFDD002C96B2 /* ForgetmenotsEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ForgetmenotsEvent.h; path = Model/ForgetmenotsEvent.h; sourceTree = "<group>"; };
 		094D8F3B1911BFDD002C96B2 /* ForgetmenotsEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ForgetmenotsEvent.m; path = Model/ForgetmenotsEvent.m; sourceTree = "<group>"; };
+		094D8F3E191456AC002C96B2 /* TimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelineViewController.h; sourceTree = "<group>"; };
+		094D8F3F191456AC002C96B2 /* TimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimelineViewController.m; sourceTree = "<group>"; };
 		09504BD5190F08E200BC74A7 /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
 		09504BD6190F08E200BC74A7 /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
 		4B2D204AA0E04A1288212666 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -149,6 +152,8 @@
 				09504BD5190F08E200BC74A7 /* IntroViewController.h */,
 				094D8F2E19105AF4002C96B2 /* MenuViewController.h */,
 				094D8F2F19105AF4002C96B2 /* MenuViewController.m */,
+				094D8F3E191456AC002C96B2 /* TimelineViewController.h */,
+				094D8F3F191456AC002C96B2 /* TimelineViewController.m */,
 			);
 			path = Forgetmenots;
 			sourceTree = "<group>";
@@ -350,6 +355,7 @@
 			files = (
 				09127D0718F89067003EBA61 /* main.m in Sources */,
 				094D8F3019105AF4002C96B2 /* MenuViewController.m in Sources */,
+				094D8F40191456AD002C96B2 /* TimelineViewController.m in Sources */,
 				094D8F391911BF21002C96B2 /* Flower.m in Sources */,
 				09127D3518F891DA003EBA61 /* FlowerView.m in Sources */,
 				09127D0B18F89067003EBA61 /* ForgetmenotsAppDelegate.m in Sources */,

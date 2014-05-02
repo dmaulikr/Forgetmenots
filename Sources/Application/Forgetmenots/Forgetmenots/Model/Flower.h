@@ -12,6 +12,16 @@
 
 +(NSArray*)flowers;
 
++(Flower*)forgetmenot;
++(Flower*)rose;
++(Flower*)tulip;
++(Flower*)mum;
++(Flower*)sunflower;
++(Flower*)amaryllis;
++(Flower*)gerbera;
++(Flower*)alstroemeria;
++(Flower*)lilium;
+
 @property (strong, nonatomic) NSString *name;
 
 -(Flower*)initWithName:(NSString *)name;

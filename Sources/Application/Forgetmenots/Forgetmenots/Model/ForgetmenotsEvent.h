@@ -20,7 +20,7 @@ typedef NS_ENUM(NSUInteger, TimeUnit)
 
 @interface ForgetmenotsEvent : NSObject
 
-@property  (strong, nonatomic) Flower *flower;
+@property  (strong, nonatomic) NSSet *flowers;
 @property (strong, nonatomic) NSString *name;
 
 //whether this event should be treated as a random or not
@@ -30,8 +30,22 @@ typedef NS_ENUM(NSUInteger, TimeUnit)
 @property (strong, nonatomic) NSDate *date;
 
 //random events data
-@property (nonatomic) NSInteger howManyTimes;
-@property (nonatomic) NSInteger inHowManyTimeUnits;
+@property (nonatomic) NSUInteger nTimes;
+@property (nonatomic) NSUInteger inTimeUnits;
 @property (nonatomic) TimeUnit timeUnit;
+
+-(ForgetmenotsEvent *)initWithFlowers:(NSSet *)flowers
+                                name:(NSString *)name
+                                date:(NSDate *)date;
+
+-(ForgetmenotsEvent *)initWithFlowers:(NSSet *)flowers
+                                name:(NSString * )name
+                              nTimes:(NSUInteger)nTimes
+                         inTimeUnits:(NSUInteger)timeUnits
+                            timeUnit:(TimeUnit)timeUnit;
+
++(ForgetmenotsEvent*)upcoming;
+
++(NSArray*) allEvents;
 
 @end
