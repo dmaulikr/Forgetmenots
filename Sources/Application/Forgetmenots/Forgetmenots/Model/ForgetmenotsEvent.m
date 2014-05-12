@@ -8,7 +8,22 @@
 
 #import "ForgetmenotsEvent.h"
 
+static NSMutableArray* theAllEvents;
+
 @implementation ForgetmenotsEvent
+
+// So that you'll be able to modify it temporarily
++(NSMutableArray *)allEvents
+{
+    if (theAllEvents)
+    {
+        return theAllEvents;
+    }
+    else
+    {
+        return [[self sampleEvents] mutableCopy];
+    }
+}
 
 -(ForgetmenotsEvent *) initWithFlowers:(NSSet *)flowers name:(NSString *)name date:(NSDate *)date
 {
@@ -17,11 +32,12 @@
     self.flowers = flowers;
     self.date = date;
     self.name = name;
+    self.random = NO;
     
     return self;
 }
 
--(ForgetmenotsEvent *) initWithFlowers:(NSSet *)flowers name:(NSString *)name nTimes:(NSUInteger)nTimes inTimeUnits:(NSUInteger)timeUnits timeUnit:(TimeUnit)timeUnit
+-(ForgetmenotsEvent *) initWithFlowers:(NSSet *)flowers name:(NSString *)name nTimes:(NSUInteger)nTimes inTimeUnits:(NSUInteger)timeUnits timeUnit:(TimeUnit)timeUnit withStart:(NSDate *)start
 {
     self = [super init];
     
@@ -31,6 +47,8 @@
     self.nTimes = nTimes;
     self.inTimeUnits = timeUnits;
     self.timeUnit = timeUnit;
+    self.start = start;
+    self.random = YES;
     
     return self;
 }
@@ -41,7 +59,7 @@
     return [[ForgetmenotsEvent allEvents] firstObject];
 }
 
-+(NSArray *) allEvents
++(NSArray *) sampleEvents
 {
     return @[
              [[ForgetmenotsEvent alloc] initWithFlowers:[NSSet setWithObjects:[Flower rose], nil]
@@ -60,13 +78,15 @@
                                                    name:@"Anual monthly flowers for Ally :-)"
                                                  nTimes:2
                                             inTimeUnits:1
-                                               timeUnit:MONTH],
+                                               timeUnit:MONTH
+                                              withStart:[NSDate date]],
              
              [[ForgetmenotsEvent alloc] initWithFlowers:[NSSet setWithObjects:[Flower lilium], [Flower amaryllis], nil]
                                                    name:@"Karma flowers"
                                                  nTimes:1
                                             inTimeUnits:3
-                                               timeUnit:WEEK]
+                                               timeUnit:WEEK
+                                              withStart:[NSDate date]]
              
              ];
 }

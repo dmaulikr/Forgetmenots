@@ -12,13 +12,15 @@
 
 typedef NS_ENUM(NSUInteger, TimeUnit)
 {
-    DAY,
-    WEEK,
-    MONTH,
-    YEAR
+    DAY = 86400,
+    WEEK = 604800,
+    MONTH = 2629740,
+    YEAR = 31556900
 };
 
 @interface ForgetmenotsEvent : NSObject
+
++(NSMutableArray*)allEvents;
 
 @property  (strong, nonatomic) NSSet *flowers;
 @property (strong, nonatomic) NSString *name;
@@ -33,19 +35,21 @@ typedef NS_ENUM(NSUInteger, TimeUnit)
 @property (nonatomic) NSUInteger nTimes;
 @property (nonatomic) NSUInteger inTimeUnits;
 @property (nonatomic) TimeUnit timeUnit;
+@property (nonatomic, strong) NSDate* start;
 
 -(ForgetmenotsEvent *)initWithFlowers:(NSSet *)flowers
                                 name:(NSString *)name
                                 date:(NSDate *)date;
 
 -(ForgetmenotsEvent *)initWithFlowers:(NSSet *)flowers
-                                name:(NSString * )name
+                                name:(NSString *)name
                               nTimes:(NSUInteger)nTimes
                          inTimeUnits:(NSUInteger)timeUnits
-                            timeUnit:(TimeUnit)timeUnit;
+                             timeUnit:(TimeUnit)timeUnit
+                            withStart:(NSDate *)start;
 
 +(ForgetmenotsEvent*)upcoming;
 
-+(NSArray*) allEvents;
++(NSArray*) sampleEvents;
 
 @end

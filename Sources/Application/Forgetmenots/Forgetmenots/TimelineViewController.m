@@ -8,11 +8,15 @@
 
 #import "TimelineViewController.h"
 
+#import "Model/PlannedEvent.h"
 #import "Model/ForgetmenotsEvent.h"
 
 @interface TimelineViewController ()
 
+@property (weak, nonatomic) IBOutlet UINavigationItem *nav;
 @property (weak, nonatomic) IBOutlet UITextView *upcomingEventInfo;
+
+@property (strong, nonatomic) NSArray *plannedEvents;
 
 @end
 
@@ -27,11 +31,32 @@
     return self;
 }
 
+-(NSArray *)plannedEvents
+{
+    if (_plannedEvents){
+        return _plannedEvents;
+    }else{
+        _plannedEvents = [PlannedEvent planEventsWithForgetmenotsEventArray:[ForgetmenotsEvent allEvents]];
+    }
+    return _plannedEvents;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    _upcomingEventInfo.text = [[ForgetmenotsEvent upcoming] description];
+    // Transparent navigation bar
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.translucent = YES;
+    
+    // Background
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.jpg"]];
+    
+    PlannedEvent* upcoming = [self.plannedEvents firstObject];
+    
+    _upcomingEventInfo.text = [upcoming description];
 }
 
 - (void)didReceiveMemoryWarning

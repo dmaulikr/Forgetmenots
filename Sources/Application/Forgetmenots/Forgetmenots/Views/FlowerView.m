@@ -11,6 +11,8 @@
 
 @implementation FlowerView
 
+@synthesize name = _name;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -20,9 +22,27 @@
     return self;
 }
 
+-(NSString *)name
+{
+    if (_name)
+    {
+        return _name;
+    }
+    else
+    {
+        return @"Forgotmenot";
+    }
+}
+
 - (void)setName:(NSString *)name
 {
     _name = name;
+    [self setNeedsDisplay];
+}
+
+-(void)setSelected:(BOOL)selected
+{
+    _selected = selected;
     [self setNeedsDisplay];
 }
 
@@ -77,7 +97,33 @@
     CGContextRestoreGState(context);
     
     [self drawName];
+    [self drawSelected];
     
+}
+
+- (void)drawSelected
+{
+    if (self.selected)
+    {
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        paragraphStyle.alignment = NSTextAlignmentCenter;
+        
+        UIFont *titleFont = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+        //    titleFont = [titleFont fontWithSize:titleFont.pointSize * [self cornerScaleFactor]];
+        
+        NSAttributedString *titleText = [[NSAttributedString alloc]
+                                         initWithString : @"selected"
+                                         attributes : @{NSFontAttributeName : titleFont,
+                                                        NSParagraphStyleAttributeName : paragraphStyle,
+                                                        NSForegroundColorAttributeName: [UIColor redColor]}];
+        
+        CGRect textBounds;
+        CGFloat titleHeight = self.bounds.size.height / IMAGE_TO_NAME_RATIO;
+        textBounds.origin = CGPointMake(self.bounds.origin.x, self.bounds.origin.y);
+        textBounds.size = CGSizeMake(self.bounds.size.width, titleHeight);
+        [[UIColor grayColor] setStroke];
+        [titleText drawInRect:textBounds];
+    }
 }
 
 - (void)drawName
@@ -85,13 +131,13 @@
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.alignment = NSTextAlignmentCenter;
     
-    UIFont *titleFont = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
-//    titleFont = [titleFont fontWithSize:titleFont.pointSize * [self cornerScaleFactor]];
+    UIFont *titleFont = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+    //    titleFont = [titleFont fontWithSize:titleFont.pointSize * [self cornerScaleFactor]];
     
     NSAttributedString *titleText = [[NSAttributedString alloc]
-                                     initWithString : @"Forgetmenots"
+                                     initWithString : self.name
                                      attributes : @{NSFontAttributeName : titleFont,
-                                                  NSParagraphStyleAttributeName : paragraphStyle,
+                                                    NSParagraphStyleAttributeName : paragraphStyle,
                                                     NSForegroundColorAttributeName: [UIColor grayColor]}];
     
     CGRect textBounds;
