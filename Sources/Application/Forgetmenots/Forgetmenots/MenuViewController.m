@@ -27,7 +27,7 @@
             identifier = @"timelineSegue";
             break;
         case 2:
-            identifier = @"settingsSegue";
+            identifier = @"myEventsSegue";
             break;
             
         case 3:

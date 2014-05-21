@@ -15,14 +15,14 @@
 
 @implementation ForgetmenotsEventsTVC
 
--(NSArray *)plannedEvents
+-(NSArray *)forgetmenotsEvents
 {
-    if (_plannedEvents){
-        return _plannedEvents;
+    if (_forgetmenotsEvents){
+        return _forgetmenotsEvents;
     }else{
-        _plannedEvents = [PlannedEvent planEventsWithForgetmenotsEventArray:[ForgetmenotsEvent allEvents]];
+        _forgetmenotsEvents = [ForgetmenotsEvent allEvents];
     }
-    return _plannedEvents;
+    return _forgetmenotsEvents;
 }
 
 //-(void)setPlannedEvents:(NSArray *)plannedEvents
@@ -66,7 +66,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.plannedEvents count];
+    return [self.forgetmenotsEvents count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -81,13 +81,14 @@
 //        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
 //    }
     
-    PlannedEvent* pe = self.plannedEvents[indexPath.row];
+    ForgetmenotsEvent* e = self.forgetmenotsEvents[indexPath.row];
     
-    cell.textLabel.text = pe.name;
+    cell.textLabel.text = e.name;
 
-    NSDateFormatter *df = [NSDateFormatter new];
-    [df setDateFormat:@"dd MMMM yyyy"];
-    cell.detailTextLabel.text = [df stringFromDate:pe.date];
+//    NSDateFormatter *df = [NSDateFormatter new];
+//    [df setDateFormat:@"dd MMMM yyyy"];
+//    cell.detailTextLabel.text = [df stringFromDate:e.date];
+    cell.detailTextLabel.text = [e timeData];
     
     return cell;
 }

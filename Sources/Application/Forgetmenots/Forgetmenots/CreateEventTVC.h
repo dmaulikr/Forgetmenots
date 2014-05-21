@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "ForgetmenotsEvent.h"
 #import "PickFlowersViewController.h"
+#import "ForgetmenotsPickDateTVC.h"
 
-@interface CreateEventTVC : UITableViewController <UITextFieldDelegate, PickFlowersDelegate>
+@interface CreateEventTVC : UITableViewController <UITextFieldDelegate, PickFlowersDelegate, PickDateDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextView *chosenFlowers;
+@property (weak, nonatomic) IBOutlet UILabel *selectedDate;
 
 @property  (strong, nonatomic) NSArray *flowers;
 @property (strong, nonatomic) NSString *name;

@@ -51,12 +51,37 @@
 -(void)setFlowers:(NSArray *)Nflowers
 {
     _flowers = Nflowers;
-    //XXX update flowers view    
-//    self.chooseFlowersLabel.text = self.flowers.description;
-    NSString* ololo = [Nflowers description];
-    NSLog(@"%@", ololo);
-    self.chosenFlowers.text = ololo;
+    self.chosenFlowers.text = [Nflowers description];;
 }
+
+-(void)updateDateLabel
+{
+    self.selectedDate.text = [ForgetmenotsEvent timeData:self.date
+                                                  nTimes:self.nTimes
+                                                 inExact:self.inTimeUnits
+                                               timeUnits:self.timeUnit];
+}
+
+-(void)setFixedDate:(ForgetmenotsPickDateTVC *)controller selectedDate:(NSDate *)date
+{
+    self.random = NO;
+    self.date = date;
+    [self updateDateLabel];
+}
+
+- (void)setForgetmenotsDate:(ForgetmenotsPickDateTVC *)controller
+                     nTimes:(NSUInteger)nTimes
+                inTimeUnits:(NSUInteger)inTimeUnits
+               withTimeUnit:(TimeUnit)timeUnit
+{
+    self.random = YES;
+    self.nTimes = nTimes;
+    self.inTimeUnits = inTimeUnits;
+    self.timeUnit = timeUnit;
+    self.start = [NSDate date];
+    [self updateDateLabel];
+}
+
 
 - (void)setName:(NSString *)name
 {
@@ -65,16 +90,8 @@
 //    self.titleCell.textLabel.text  = name;
 }
 
-- (void)viewDidLoad
+- (void)setupTitleCell
 {
-    [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
     UITableViewCell *cell = self.titleCell;
     
     cell.detailTextLabel.hidden = YES;
@@ -97,6 +114,12 @@
     ((ForgetmenotsUITableView *)self.view).titleTextField = titleTextField;
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self setupTitleCell];    
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
@@ -114,101 +137,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-//#pragma mark - Table view data source
-//
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//    return 1;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//    return 3;
-//}
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    switch (indexPath.row)
-//    {
-//        case 0:
-//            break;
-//        case 1:
-//            return [self getTitleCell:tableView cellForRowAtIndexPath:indexPath];
-//            break;
-//        case 2:
-//            break;
-//    }
-//    
-//    return nil;
-//}
-//
-//- (UITableViewCell *)getChooseFlowers:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Title" forIndexPath:indexPath];
-//    
-//    return cell;
-//}
-//
-//- (UITableViewCell *)getTitleCell:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Title" forIndexPath:indexPath];
-//
-//    cell.detailTextLabel.hidden = YES;
-//    
-//    [[cell viewWithTag:3] removeFromSuperview];
-//    
-//    UITextField* textField = [[UITextField alloc] init];
-//    textField.tag = 3;
-//    textField.translatesAutoresizingMaskIntoConstraints = NO;
-//    [cell.contentView addSubview:textField];
-//    [cell addConstraint:[NSLayoutConstraint constraintWithItem:textField attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:cell.textLabel attribute:NSLayoutAttributeTrailing multiplier:1 constant:8]];
-//    [cell addConstraint:[NSLayoutConstraint constraintWithItem:textField attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:cell.contentView attribute:NSLayoutAttributeTop multiplier:1 constant:8]];
-//    [cell addConstraint:[NSLayoutConstraint constraintWithItem:textField attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:cell.contentView attribute:NSLayoutAttributeBottom multiplier:1 constant:-8]];
-//    [cell addConstraint:[NSLayoutConstraint constraintWithItem:textField attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:cell.detailTextLabel attribute:NSLayoutAttributeTrailing multiplier:1 constant:0]];
-//    textField.textAlignment = NSTextAlignmentRight;
-//    textField.delegate = self;
-//    
-//    return cell;
-//}
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -223,7 +151,18 @@
             [pickFlowersVC.selectedFlowers addObject:flower];
         }
     }
+    else if([segue.identifier isEqualToString:@"Choose date"])
+    {
+        ForgetmenotsPickDateTVC *tvc = (ForgetmenotsPickDateTVC *)segue.destinationViewController;
+        
+        tvc.date = self.date;
+        tvc.nTimes = self.nTimes;
+        tvc.inTimeUnits = self.inTimeUnits;
+        tvc.timeUnit = self.timeUnit;
+        tvc.start = self.start;
+        
+        tvc.delegate = self;
+    }
 }
-
 
 @end

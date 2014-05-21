@@ -75,7 +75,7 @@ static NSMutableArray* theAllEvents;
                                                    date:[NSDate dateWithTimeIntervalSince1970:1401663043]], // 1 june 2014
              
              [[ForgetmenotsEvent alloc] initWithFlowers:[NSSet setWithObjects:[Flower lilium], [Flower amaryllis], nil]
-                                                   name:@"Anual monthly flowers for Ally :-)"
+                                                   name:@"Ally Monthly"
                                                  nTimes:2
                                             inTimeUnits:1
                                                timeUnit:MONTH
@@ -93,13 +93,52 @@ static NSMutableArray* theAllEvents;
 
 - (NSString *)description
 {
-    if (self.date)
-    {
-        return [NSString stringWithFormat: @"%@\n%@\n%@", self.name, self.flowers, self.date];
-    }else {
-        //xxx should be proper date calculation here. different object?
-        return [NSString stringWithFormat: @"%@\n%@\n%lu in %lu", self.name, self.flowers, (unsigned long)self.nTimes, (unsigned long)self.inTimeUnits];
+    return [NSString stringWithFormat:@"%@, flowers: %@, %@", self.name, self.flowers, [self timeData]];
+}
+
++(NSString *)timeUnitName:(TimeUnit)timeUnit
+{
+    switch (timeUnit) {
+        case DAY:
+            return @"day";
+            break;
+        
+        case WEEK:
+            return @"week";
+            break;
+            
+        case MONTH:
+            return @"month";
+            break;
+            
+        case YEAR:
+            return @"year";
+            break;
+            
+        default:
+            return @"undefined";
+            break;
     }
+}
+
++(NSString *)timeData:(NSDate *)date nTimes:(NSUInteger)nTimes inExact:(NSUInteger)inTimeUnits timeUnits:(TimeUnit)timeUnit
+{
+    if (date)
+    {
+        NSDateFormatter *df = [NSDateFormatter new];
+        [df setDateFormat:@"dd MMMM yyyy"];
+        return [df stringFromDate:date];
+    }
+    else
+    {
+        return [NSString stringWithFormat:@"%lu times in %lu %@s", (unsigned long)nTimes + 1, (unsigned long)inTimeUnits + 1, [ForgetmenotsEvent timeUnitName:timeUnit]];
+    }
+}
+
+
+-(NSString *)timeData
+{
+    return [ForgetmenotsEvent timeData:self.date nTimes:self.nTimes inExact:self.inTimeUnits timeUnits:self.timeUnit];
 }
 
 @end

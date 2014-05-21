@@ -48,6 +48,10 @@ typedef NS_ENUM(NSUInteger, TimeUnit)
                              timeUnit:(TimeUnit)timeUnit
                             withStart:(NSDate *)start;
 
+-(NSString *)timeData;
+
++(NSString *)timeData:(NSDate *)date nTimes:(NSUInteger)nTimes inExact:(NSUInteger)inTimeUnits timeUnits:(TimeUnit)timeUnit;
+
 +(ForgetmenotsEvent*)upcoming;
 
 +(NSArray*) sampleEvents;

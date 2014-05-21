@@ -10,6 +10,6 @@
 
 @interface ForgetmenotsEventsTVC : UITableViewController
 
-@property (strong, nonatomic) NSArray *plannedEvents;
+@property (strong, nonatomic) NSArray *forgetmenotsEvents;
 
 @end
