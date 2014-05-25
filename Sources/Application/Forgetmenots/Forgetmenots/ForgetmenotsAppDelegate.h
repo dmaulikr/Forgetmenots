@@ -12,4 +12,9 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+// Properties for the Core Data stack.
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic, strong) NSString *persistentStorePath;
+
 @end

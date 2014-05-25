@@ -188,7 +188,11 @@ October 29th Gerbera</string>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="New Event" id="SpQ-Km-deX">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="0uS-Bz-KmH"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="0uS-Bz-KmH">
+                            <connections>
+                                <action selector="saveButtonClicked:" destination="Ukz-77-wJ2" id="3uy-Oo-GuH"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="chosenFlowers" destination="OEZ-gW-jwJ" id="W7z-me-3yh"/>

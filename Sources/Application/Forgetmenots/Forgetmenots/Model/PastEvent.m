@@ -1,16 +1,15 @@
 //
-//  Flower.m
+//  PastEvent.m
 //  Forgetmenots
 //
 //  Created by Ilya Pimenov on 21.05.14.
 //  Copyright (c) 2014 Ilya Pimenov. All rights reserved.
 //
 
-#import "Flower.h"
+#import "PastEvent.h"
 
 
-@implementation Flower
+@implementation PastEvent
 
-@dynamic name;
 
 @end

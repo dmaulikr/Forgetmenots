@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13C1021" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Flowers" syncable="YES">
+    <entity name="Flower" representedClassName="Flower" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="ForgetmenotsEvent" syncable="YES">
+    <entity name="ForgetmenotsEvent" representedClassName="ForgetmenotsEvent" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="inTimeUnits" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -11,12 +11,12 @@
         <attribute name="random" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="start" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="timeUnit" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <relationship name="flowers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Flowers" syncable="YES"/>
+        <relationship name="flowers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Flower" syncable="YES"/>
     </entity>
-    <entity name="PastEvent" syncable="YES"/>
+    <entity name="PastEvent" representedClassName="PastEvent" syncable="YES"/>
     <elements>
         <element name="ForgetmenotsEvent" positionX="-315" positionY="-18" width="128" height="163"/>
-        <element name="PastEvent" positionX="-38" positionY="-18" width="128" height="45"/>
-        <element name="Flowers" positionX="-189" positionY="216" width="128" height="60"/>
+        <element name="PastEvent" positionX="-38" positionY="-18" width="128" height="43"/>
+        <element name="Flower" positionX="-189" positionY="216" width="128" height="58"/>
     </elements>
 </model>

@@ -18,6 +18,19 @@
 
 @implementation CreateEventTVC
 
+-(ForgetmenotsAppDelegate *)appDelegate
+{
+    if (_appDelegate)
+    {
+        return _appDelegate;
+    }
+    else
+    {
+        _appDelegate = (ForgetmenotsAppDelegate*)[[UIApplication sharedApplication] delegate];
+    }
+    return _appDelegate;
+}
+
 @synthesize flowers = _flowers;
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -75,11 +88,92 @@
                withTimeUnit:(TimeUnit)timeUnit
 {
     self.random = YES;
-    self.nTimes = nTimes;
-    self.inTimeUnits = inTimeUnits;
+    self.nTimes = nTimes + 1;
+    self.inTimeUnits = inTimeUnits + 1;
     self.timeUnit = timeUnit;
     self.start = [NSDate date];
     [self updateDateLabel];
+}
+
+- (IBAction)saveButtonClicked:(id)sender {
+    
+    self.name = self.titleTextField.text;
+    
+    UIAlertView *alertView = nil;
+    if (!self.name || [self.name length] == 0)
+    {
+        alertView = [[UIAlertView alloc]initWithTitle:@"Name is not set"
+                                              message:@"Please provide event's name"
+                                             delegate:self
+                                    cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+    }
+    if (!self.flowers || [self.flowers count] == 0)
+    {
+        alertView = [[UIAlertView alloc]initWithTitle:@"Flowers are not selected"
+                                              message:@"Please select flowers"
+                                             delegate:self
+                                    cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+    }
+    if (alertView)
+    {
+        [alertView show];
+    }
+    else
+    {
+        if (self.random)
+        {
+            if (!self.nTimes || self.nTimes == 0)
+            {
+                alertView = [[UIAlertView alloc]initWithTitle:@"Dates are not set"
+                                                      message:@"Please select dates"
+                                                     delegate:self
+                                            cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+                [alertView show];
+            }
+            else
+            {
+                [self saveEvent];
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }
+        else
+        {
+            if (!self.date)
+            {
+                alertView = [[UIAlertView alloc]initWithTitle:@"Date is not set"
+                                                      message:@"Please select date"
+                                                     delegate:self
+                                            cancelButtonTitle:nil otherButtonTitles:@"Ok", nil];
+                [alertView show];
+            }
+            else
+            {
+                [self saveEvent];
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }
+    }
+}
+
+-(void)saveEvent
+{
+    if (self.random) {
+        [ForgetmenotsEvent initWithFlowers:[NSSet setWithArray:self.flowers]
+                                      name:self.name
+                                    nTimes:self.nTimes
+                               inTimeUnits:self.inTimeUnits
+                                  timeUnit:self.timeUnit
+                                 withStart:self.start
+                          inManagedContext:self.appDelegate.managedObjectContext];
+
+    }
+    else
+    {
+        [ForgetmenotsEvent initWithFlowers:[NSSet setWithArray:self.flowers]
+                                      name:self.name
+                                      date:self.date
+                          inManagedContext:self.appDelegate.managedObjectContext];
+    }
 }
 
 
@@ -156,8 +250,12 @@
         ForgetmenotsPickDateTVC *tvc = (ForgetmenotsPickDateTVC *)segue.destinationViewController;
         
         tvc.date = self.date;
-        tvc.nTimes = self.nTimes;
-        tvc.inTimeUnits = self.inTimeUnits;
+        if (self.nTimes > 0){
+            tvc.nTimes = self.nTimes - 1;
+        }
+        if (self.inTimeUnits > 0){
+            tvc.inTimeUnits = self.inTimeUnits - 1;
+        }
         tvc.timeUnit = self.timeUnit;
         tvc.start = self.start;
         

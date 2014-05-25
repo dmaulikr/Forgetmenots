@@ -8,7 +8,7 @@
 
 #import "PickFlowersViewController.h"
 #import "FlowerCollectionViewCell.h"
-#import "Flower.h"
+#import "Flower+Defaults.h"
 #import "CreateEventTVC.h"
 
 @interface PickFlowersViewController ()
@@ -18,6 +18,19 @@
 @end
 
 @implementation PickFlowersViewController
+
+-(ForgetmenotsAppDelegate *)appDelegate
+{
+    if (_appDelegate)
+    {
+        return _appDelegate;
+    }
+    else
+    {
+        _appDelegate = (ForgetmenotsAppDelegate*)[[UIApplication sharedApplication] delegate];
+    }
+    return _appDelegate;
+}
 
 -(NSMutableArray *)selectedFlowers
 {
@@ -39,7 +52,7 @@
     }
     else
     {
-        _flowers = [Flower flowers];
+        _flowers = [Flower flowersInManagedContext:self.appDelegate.managedObjectContext];
     }
     return _flowers;
 }

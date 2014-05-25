@@ -7,7 +7,6 @@
 //
 
 #import "PlannedEvent.h"
-#import "ForgetmenotsEvent.h"
 
 @implementation PlannedEvent
 
@@ -31,13 +30,13 @@
     
     for (ForgetmenotsEvent* e in forgetmenotsEvents)
     {
-        if (e.isRandom)
+        if (e.random)
         {
             NSTimeInterval startFromEpoch = [e.start timeIntervalSince1970];
-            for (int i = 0; i < SECONDS_IN_A_YEAR / e.timeUnit; i++)
+            for (int i = 0; i < SECONDS_IN_A_YEAR / [e.timeUnit intValue]; i++)
             {
                 //xxx add actual randomness here, like +- 2 days
-                NSDate* randomDate = [[NSDate alloc] initWithTimeIntervalSince1970:startFromEpoch + i * e.timeUnit];
+                NSDate* randomDate = [[NSDate alloc] initWithTimeIntervalSince1970:startFromEpoch + i * [e.timeUnit intValue]];
                 [result addObject:[[PlannedEvent alloc]initWithFlowers:e.flowers
                                                                   name:e.name
                                                                   date:randomDate]];
@@ -54,7 +53,13 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat: @"%@\n%@\n%@", self.name, self.flowers, self.date];
+    NSMutableArray *chosenFlowers = [[NSMutableArray alloc] init];
+    for (Flower *f in self.flowers)
+    {
+        [chosenFlowers addObject:f.name];
+    }
+    NSString * flowersString = [chosenFlowers componentsJoinedByString:@", "];
+    return [NSString stringWithFormat: @"%@\n%@\n%@", self.name, flowersString, self.date];
 }
 
 - (NSComparisonResult)compare:(PlannedEvent *)anotherEvent

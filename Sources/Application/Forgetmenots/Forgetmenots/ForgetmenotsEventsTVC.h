@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CoreDataTableViewController.h"
+#import "ForgetmenotsAppDelegate.h"
 
-@interface ForgetmenotsEventsTVC : UITableViewController
+@interface ForgetmenotsEventsTVC : CoreDataTableViewController
 
-@property (strong, nonatomic) NSArray *forgetmenotsEvents;
+@property (nonatomic, weak) ForgetmenotsAppDelegate *appDelegate;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 @end

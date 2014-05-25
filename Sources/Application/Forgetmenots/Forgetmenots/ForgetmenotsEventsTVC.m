@@ -7,7 +7,9 @@
 //
 
 #import "ForgetmenotsEventsTVC.h"
-#import "PlannedEvent.h"
+#import "ForgetmenotsEvent+Boilerplate.h"
+#import "DatabaseAvailability.h"
+#import <objc/runtime.h>
 
 @interface ForgetmenotsEventsTVC ()
 
@@ -15,15 +17,116 @@
 
 @implementation ForgetmenotsEventsTVC
 
--(NSArray *)forgetmenotsEvents
+//- (void)awakeFromNib
+//{
+//    [[NSNotificationCenter defaultCenter] addObserverForName:FmnDatabaseAvailabilityNotification
+//                                                      object:nil
+//                                                       queue:nil
+//                                                  usingBlock:^(NSNotification *note) {
+//                                                      self.managedObjectContext = note.userInfo[FmnDatabaseAvailabilityContext];
+//                                                  }];
+//}
+
+-(ForgetmenotsAppDelegate *)appDelegate
 {
-    if (_forgetmenotsEvents){
-        return _forgetmenotsEvents;
-    }else{
-        _forgetmenotsEvents = [ForgetmenotsEvent allEvents];
+    if (_appDelegate)
+    {
+        return _appDelegate;
     }
-    return _forgetmenotsEvents;
+    else
+    {
+        _appDelegate = (ForgetmenotsAppDelegate*)[[UIApplication sharedApplication] delegate];
+    }
+    return _appDelegate;
 }
+
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    _managedObjectContext = managedObjectContext;
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ForgetmenotsEvent"];
+    request.predicate = nil;
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"name"
+                                                              ascending:YES
+                                                               selector:@selector(localizedStandardCompare:)]];
+    
+    
+    
+    self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request
+                                                                        managedObjectContext:managedObjectContext
+                                                                          sectionNameKeyPath:nil
+                                                                                   cacheName:nil];
+}
+
+#pragma mark - Delete Functionality
+
+// Override to support conditional editing of the table view.
+// This only needs to be implemented if you are going to be returning NO
+// for some items. By default, all items are editable.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return YES if you want the specified item to be editable.
+    return YES;
+}
+
+const char ALERT_FORGETMENOT_EVENT;
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        ForgetmenotsEvent* event = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Delete"
+                                              message:[NSString stringWithFormat:@"Delete %@ event?", event.name]
+                                             delegate:self
+                                    cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+        alertView.tag = 7;
+        objc_setAssociatedObject(alertView, &ALERT_FORGETMENOT_EVENT, event, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        [alertView show];
+    }
+}
+
+-(void)alertView: (UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if ([alertView tag] == 7) // this is delete confirmation
+    {
+        if (buttonIndex == 1) { // they clicked Ok
+            ForgetmenotsEvent *event = objc_getAssociatedObject(alertView, &ALERT_FORGETMENOT_EVENT);
+
+            [self.appDelegate.managedObjectContext deleteObject:event];
+            [self.appDelegate.managedObjectContext save:nil];
+        }
+        else
+        {
+            self.tableView.editing = false;
+        }
+    }
+}
+
+#pragma mark - UITableViewDataSource
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Forgetmenots Event Cell"];
+    
+    ForgetmenotsEvent* e = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    cell.textLabel.text = e.name;
+    
+    cell.detailTextLabel.text = [e timeData];
+    
+    return cell;
+}
+
+//-(NSArray *)forgetmenotsEvents
+//{
+//    if (_forgetmenotsEvents){
+//        return _forgetmenotsEvents;
+//    }else{
+//        _forgetmenotsEvents = [ForgetmenotsEvent allEvents];
+//    }
+//    return _forgetmenotsEvents;
+//}
 
 //-(void)setPlannedEvents:(NSArray *)plannedEvents
 //{
@@ -44,6 +147,10 @@
 {
     [super viewDidLoad];
     
+    self.tableView.allowsMultipleSelectionDuringEditing = NO;
+    
+    self.managedObjectContext = self.appDelegate.managedObjectContext;
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -59,87 +166,35 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+//{
+//    return 1;
+//}
+//
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//{
+//    return [self.forgetmenotsEvents count];
+//}
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [self.forgetmenotsEvents count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Forgetmenots Event Cell" forIndexPath:indexPath];
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+////    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Forgetmenots Event Cell" forIndexPath:indexPath];
+////    
+//    static NSString *CellIdentifier = @"Forgetmenots Event Cell";
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 //    
-    static NSString *CellIdentifier = @"Forgetmenots Event Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-//    if(!cell)
-//    {
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-//    }
-    
-    ForgetmenotsEvent* e = self.forgetmenotsEvents[indexPath.row];
-    
-    cell.textLabel.text = e.name;
-
-//    NSDateFormatter *df = [NSDateFormatter new];
-//    [df setDateFormat:@"dd MMMM yyyy"];
-//    cell.detailTextLabel.text = [df stringFromDate:e.date];
-    cell.detailTextLabel.text = [e timeData];
-    
-    return cell;
-}
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+////    if(!cell)
+////    {
+////        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+////    }
+//    
+//    ForgetmenotsEvent* e = self.forgetmenotsEvents[indexPath.row];
+//    
+//    cell.textLabel.text = e.name;
+//
+//    cell.detailTextLabel.text = [e timeData];
+//    
+//    return cell;
+//}
 
 @end

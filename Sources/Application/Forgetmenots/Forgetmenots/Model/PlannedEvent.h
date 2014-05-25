@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ForgetmenotsEvent.h"
+#import "Flower+Defaults.h"
+#import "ForgetmenotsEvent+Boilerplate.h"
 
 @interface PlannedEvent : NSObject
 

@@ -9,7 +9,7 @@
 #import "TimelineViewController.h"
 
 #import "Model/PlannedEvent.h"
-#import "Model/ForgetmenotsEvent.h"
+#import "Model/ForgetmenotsEvent+Boilerplate.h"
 
 @interface TimelineViewController ()
 
@@ -21,6 +21,20 @@
 @end
 
 @implementation TimelineViewController
+
+-(ForgetmenotsAppDelegate *)appDelegate
+{
+    if (_appDelegate)
+    {
+        return _appDelegate;
+    }
+    else
+    {
+        _appDelegate = (ForgetmenotsAppDelegate*)[[UIApplication sharedApplication] delegate];
+    }
+    return _appDelegate;
+}
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,7 +50,8 @@
     if (_plannedEvents){
         return _plannedEvents;
     }else{
-        _plannedEvents = [PlannedEvent planEventsWithForgetmenotsEventArray:[ForgetmenotsEvent allEvents]];
+        NSArray *fmnEvents = [ForgetmenotsEvent upcomingInManagedContext:self.appDelegate.managedObjectContext];
+        _plannedEvents = [PlannedEvent planEventsWithForgetmenotsEventArray:fmnEvents];
     }
     return _plannedEvents;
 }

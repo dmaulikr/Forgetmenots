@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ForgetmenotsEvent.h"
+#import "ForgetmenotsEvent+Boilerplate.h"
 
 @class ForgetmenotsPickDateTVC;
 

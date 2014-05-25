@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ForgetmenotsAppDelegate.h"
 
 @class PickFlowersViewController;
 
@@ -19,6 +20,8 @@
 @interface PickFlowersViewController : UICollectionViewController <UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, weak) id <PickFlowersDelegate> delegate;
+
+@property (nonatomic, weak) ForgetmenotsAppDelegate *appDelegate;
 
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) NSMutableArray* selectedFlowers;
