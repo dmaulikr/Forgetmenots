@@ -10,6 +10,8 @@
 #import "Flower+Defaults.h"
 #import "ForgetmenotsEvent+Boilerplate.h"
 #import "DatabaseAvailability.h"
+#import "FmnSettings.h"
+#import "FmnMisc.h"
 
 @interface ForgetmenotsAppDelegate()
 
@@ -18,6 +20,78 @@
 static NSManagedObjectContext* theObjectContext;
 
 @implementation ForgetmenotsAppDelegate
+
+#define YES_STRING @"YES"
+
+-(void)loadInNecessaryDefaultFlowers
+{
+    NSString * loaded = [FmnSettings getSettingsStringWithKey:LOADED_DEFAULT_FLOWERS];
+    loaded = @"NO";
+    if (loaded && [loaded isEqualToString:YES_STRING])
+    {
+        // do nothing, flowers are loaded
+    }
+    else
+    {
+        [FmnSettings saveSettingsString:LOADED_DEFAULT_FLOWERS withKey:YES_STRING];
+        
+        UIColor * white26 = [UIColor colorWithWhite:1.0 alpha:0.26];
+        
+        [Flower initflowerWithName:@"Forgetmenot"
+                         andColors:@{@"first": @{@"top": UIColorFromRGB(0x6666FF), @"bottom": UIColorFromRGB(0x0066FF)},
+                                     @"second": @{@"top": white26, @"bottom": white26},
+                                     @"third": @{@"top": UIColorFromRGB(0xFFCC00), @"bottom": UIColorFromRGB(0xFF9900)}}
+                  inManagedContext:self.managedObjectContext];
+        
+        [Flower initflowerWithName:@"Rose"
+                         andColors:@{@"first": @{@"top": UIColorFromRGB(0xFF3366), @"bottom": UIColorFromRGB(0xFF3333)},
+                                     @"second": @{@"top": white26, @"bottom": white26},
+                                     @"third": @{@"top": UIColorFromRGB(0xFF3366), @"bottom": UIColorFromRGB(0xFF3333)}}
+                  inManagedContext:self.managedObjectContext];
+        
+        [Flower initflowerWithName:@"Tulip"
+                         andColors:@{@"first": @{@"top": UIColorFromRGB(0xFF3366), @"bottom": UIColorFromRGB(0xFF9900)},
+                                     @"second": @{@"top": [NSNull null], @"bottom": [NSNull null]},
+                                     @"third": @{@"top": [NSNull null], @"bottom": [NSNull null]}}
+                  inManagedContext:self.managedObjectContext];
+        
+        [Flower initflowerWithName:@"Mum"
+                         andColors:@{@"first": @{@"top": UIColorFromRGB(0xFF3366), @"bottom": UIColorFromRGB(0x6666FF)},
+                                     @"second": @{@"top": white26, @"bottom": white26},
+                                     @"third": @{@"top": UIColorFromRGB(0xFFCC00), @"bottom": UIColorFromRGB(0xFF9900)}}
+                  inManagedContext:self.managedObjectContext];
+        
+        [Flower initflowerWithName:@"Sunflower"
+                         andColors:@{@"first": @{@"top": UIColorFromRGB(0xFFCC00), @"bottom": UIColorFromRGB(0xFF9900)},
+                                     @"second": @{@"top": white26, @"bottom": white26},
+                                     @"third": @{@"top": UIColorFromRGB(0x333333), @"bottom": UIColorFromRGB(0x999999)}}
+                  inManagedContext:self.managedObjectContext];
+        
+        [Flower initflowerWithName:@"Amaryllis"
+                         andColors:@{@"first": @{@"top": UIColorFromRGB(0xFF3366), @"bottom": UIColorFromRGB(0xFF3333)},
+                                     @"second": @{@"top": white26, @"bottom": white26},
+                                     @"third": @{@"top": UIColorFromRGB(0xFFCC00), @"bottom": UIColorFromRGB(0xFF9900)}}
+                  inManagedContext:self.managedObjectContext];
+        
+        [Flower initflowerWithName:@"Gerbera"
+                         andColors:@{@"first": @{@"top": UIColorFromRGB(0xFF3366), @"bottom": UIColorFromRGB(0xFF9900)},
+                                     @"second": @{@"top": white26, @"bottom": white26},
+                                     @"third": @{@"top": UIColorFromRGB(0x333333), @"bottom": UIColorFromRGB(0x999999)}}
+                  inManagedContext:self.managedObjectContext];
+        
+        [Flower initflowerWithName:@"Alstroemeria"
+                         andColors:@{@"first": @{@"top": UIColorFromRGB(0xFF3366), @"bottom": UIColorFromRGB(0xFF9900)},
+                                     @"second": @{@"top": white26, @"bottom": white26},
+                                     @"third": @{@"top": UIColorFromRGB(0xFF3366), @"bottom": UIColorFromRGB(0xFF9900)}}
+                  inManagedContext:self.managedObjectContext];
+        
+        [Flower initflowerWithName:@"Lilium"
+                         andColors:@{@"first": @{@"top": UIColorFromRGB(0xFFFFFF), @"bottom": UIColorFromRGB(0xFFFFFF)},
+                                     @"second": @{@"top": [UIColor colorWithWhite:0.5 alpha:0.26], @"bottom": [UIColor colorWithWhite:0.5 alpha:0.26]},
+                                     @"third": @{@"top": UIColorFromRGB(0xFFCC00), @"bottom": UIColorFromRGB(0xFF9900)}}
+                  inManagedContext:self.managedObjectContext];
+    }
+}
 
 -(void)loadDefaultEvents
 {
@@ -35,6 +109,15 @@ static NSManagedObjectContext* theObjectContext;
                              withStart:[NSDate date] inManagedContext:self.managedObjectContext];
 }
 
+-(void) setUIAppearanceStyles
+{
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlackTranslucent];
+    [[UINavigationBar appearance] setShadowImage:[UIImage new]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0]}];
+}
+
 -(void)notifyWithManagedContext
 {
     // let everyone who might be interested know this context is available
@@ -47,14 +130,12 @@ static NSManagedObjectContext* theObjectContext;
                                                       userInfo:userInfo];
 }
 
-//-(void)applicationDidFinishLaunching:(UIApplication *)application
-//{
-//}
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self notifyWithManagedContext];
+    [self loadInNecessaryDefaultFlowers];
     [self loadDefaultEvents];
+    [self setUIAppearanceStyles];
     
     // Override point for customization after application launch.
     return YES;
@@ -68,8 +149,6 @@ static NSManagedObjectContext* theObjectContext;
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

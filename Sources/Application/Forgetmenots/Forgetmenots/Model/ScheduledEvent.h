@@ -1,5 +1,5 @@
 //
-//  ForgetmenotsEvent.h
+//  ScheduledEvent.h
 //  Forgetmenots
 //
 //  Created by Ilya Pimenov on 26.05.14.
@@ -11,19 +11,14 @@
 
 @class Flower;
 
-@interface ForgetmenotsEvent : NSManagedObject
+@interface ScheduledEvent : NSManagedObject
 
-@property (nonatomic, retain) NSDate * date;
-@property (nonatomic, retain) NSNumber * inTimeUnits;
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSNumber * nTimes;
-@property (nonatomic, retain) NSNumber * random;
-@property (nonatomic, retain) NSDate * start;
-@property (nonatomic, retain) NSNumber * timeUnit;
+@property (nonatomic, retain) NSDate * date;
 @property (nonatomic, retain) NSSet *flowers;
 @end
 
-@interface ForgetmenotsEvent (CoreDataGeneratedAccessors)
+@interface ScheduledEvent (CoreDataGeneratedAccessors)
 
 - (void)addFlowersObject:(Flower *)value;
 - (void)removeFlowersObject:(Flower *)value;

@@ -10,7 +10,7 @@
 #import "CoreDataTableViewController.h"
 #import "ForgetmenotsAppDelegate.h"
 
-@interface ForgetmenotsEventsTVC : CoreDataTableViewController
+@interface FmnEventsTVC : CoreDataTableViewController
 
 @property (nonatomic, weak) ForgetmenotsAppDelegate *appDelegate;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;

@@ -6,26 +6,17 @@
 //  Copyright (c) 2014 Ilya Pimenov. All rights reserved.
 //
 
-#import "ForgetmenotsEventsTVC.h"
+#import "FmnEventsTVC.h"
 #import "ForgetmenotsEvent+Boilerplate.h"
 #import "DatabaseAvailability.h"
 #import <objc/runtime.h>
 
-@interface ForgetmenotsEventsTVC ()
+@interface FmnEventsTVC ()
 
 @end
 
-@implementation ForgetmenotsEventsTVC
+@implementation FmnEventsTVC
 
-//- (void)awakeFromNib
-//{
-//    [[NSNotificationCenter defaultCenter] addObserverForName:FmnDatabaseAvailabilityNotification
-//                                                      object:nil
-//                                                       queue:nil
-//                                                  usingBlock:^(NSNotification *note) {
-//                                                      self.managedObjectContext = note.userInfo[FmnDatabaseAvailabilityContext];
-//                                                  }];
-//}
 
 -(ForgetmenotsAppDelegate *)appDelegate
 {
@@ -104,6 +95,11 @@ const char ALERT_FORGETMENOT_EVENT;
 
 #pragma mark - UITableViewDataSource
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 66.0f;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -117,22 +113,6 @@ const char ALERT_FORGETMENOT_EVENT;
     
     return cell;
 }
-
-//-(NSArray *)forgetmenotsEvents
-//{
-//    if (_forgetmenotsEvents){
-//        return _forgetmenotsEvents;
-//    }else{
-//        _forgetmenotsEvents = [ForgetmenotsEvent allEvents];
-//    }
-//    return _forgetmenotsEvents;
-//}
-
-//-(void)setPlannedEvents:(NSArray *)plannedEvents
-//{
-//    _plannedEvents = plannedEvents;
-//    [self.tableView reloadData];
-//}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -150,12 +130,11 @@ const char ALERT_FORGETMENOT_EVENT;
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
     
     self.managedObjectContext = self.appDelegate.managedObjectContext;
+
+    // Background - common for all
+    self.navigationController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.tableView.backgroundColor = [UIColor clearColor];
 }
 
 - (void)didReceiveMemoryWarning
@@ -163,38 +142,5 @@ const char ALERT_FORGETMENOT_EVENT;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-#pragma mark - Table view data source
-
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//    return 1;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//    return [self.forgetmenotsEvents count];
-//}
-
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-////    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Forgetmenots Event Cell" forIndexPath:indexPath];
-////    
-//    static NSString *CellIdentifier = @"Forgetmenots Event Cell";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    
-////    if(!cell)
-////    {
-////        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-////    }
-//    
-//    ForgetmenotsEvent* e = self.forgetmenotsEvents[indexPath.row];
-//    
-//    cell.textLabel.text = e.name;
-//
-//    cell.detailTextLabel.text = [e timeData];
-//    
-//    return cell;
-//}
 
 @end

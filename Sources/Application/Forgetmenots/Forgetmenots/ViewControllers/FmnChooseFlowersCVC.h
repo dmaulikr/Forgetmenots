@@ -9,15 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "ForgetmenotsAppDelegate.h"
 
-@class PickFlowersViewController;
+@class FmnChooseFlowersCVC;
 
 @protocol PickFlowersDelegate <NSObject>
 
-- (void)setSelectedFlowers:(PickFlowersViewController *)controller selectedFlowers:(NSArray *)flowers;
+- (void)setSelectedFlowers:(FmnChooseFlowersCVC *)controller selectedFlowers:(NSArray *)flowers;
 
 @end
 
-@interface PickFlowersViewController : UICollectionViewController <UICollectionViewDelegateFlowLayout>
+@interface FmnChooseFlowersCVC : UICollectionViewController <UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, weak) id <PickFlowersDelegate> delegate;
 

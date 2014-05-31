@@ -1,23 +1,23 @@
 //
-//  PickFlowersViewController.m
+//  FmnChooseFlowersCVC.m
 //  Forgetmenots
 //
 //  Created by Ilya Pimenov on 11.05.14.
 //  Copyright (c) 2014 Ilya Pimenov. All rights reserved.
 //
 
-#import "PickFlowersViewController.h"
-#import "FlowerCollectionViewCell.h"
+#import "FmnChooseFlowersCVC.h"
+#import "FmnFlowerCVCell.h"
 #import "Flower+Defaults.h"
-#import "CreateEventTVC.h"
+#import "FmnCreateEventTVC.h"
 
-@interface PickFlowersViewController ()
+@interface FmnChooseFlowersCVC ()
 
 @property (nonatomic, strong) NSArray* flowers;
 
 @end
 
-@implementation PickFlowersViewController
+@implementation FmnChooseFlowersCVC
 
 -(ForgetmenotsAppDelegate *)appDelegate
 {
@@ -69,15 +69,19 @@
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    FlowerCollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Flower Cell" forIndexPath:indexPath];
+    FmnFlowerCVCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Flower Cell" forIndexPath:indexPath];
     
     Flower *flower = [self.flowers objectAtIndex:indexPath.row];
-    cell.flowerView.name = flower.name;
+    cell.flowerView.flower = flower;
     if ([self.selectedFlowers containsObject:flower])
     {
         cell.selected = YES;
         [self.collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:NO];
         cell.flowerView.selected = YES;
+    }
+    else
+    {
+        cell.flowerView.selected = NO;
     }
     
     return cell;
@@ -97,7 +101,7 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    FlowerCollectionViewCell* cell = (FlowerCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    FmnFlowerCVCell* cell = (FmnFlowerCVCell *)[collectionView cellForItemAtIndexPath:indexPath];
     cell.flowerView.selected = cell.selected;
     
     Flower *flower = [self.flowers objectAtIndex:indexPath.row];
@@ -106,7 +110,7 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    FlowerCollectionViewCell* cell = (FlowerCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    FmnFlowerCVCell* cell = (FmnFlowerCVCell *)[collectionView cellForItemAtIndexPath:indexPath];
     cell.flowerView.selected = cell.selected;
     
     Flower *flower = [self.flowers objectAtIndex:indexPath.row];
@@ -126,6 +130,8 @@
 {
     [super viewDidLoad];
     self.collectionView.allowsMultipleSelection = YES;
+    
+    self.collectionView.backgroundColor = [UIColor clearColor];
 }
 
 -(void)viewWillDisappear:(BOOL)animated

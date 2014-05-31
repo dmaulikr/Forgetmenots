@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Ilya Pimenov. All rights reserved.
 //
 
-#import "FlowerCollectionViewCell.h"
+#import "FmnFlowerCVCell.h"
 
-@implementation FlowerCollectionViewCell
+@implementation FmnFlowerCVCell
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -18,14 +18,5 @@
     }
     return self;
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

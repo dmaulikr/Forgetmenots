@@ -6,17 +6,17 @@
 //  Copyright (c) 2014 Ilya Pimenov. All rights reserved.
 //
 
-#import "CreateEventTVC.h"
+#import "FmnCreateEventTVC.h"
 #import "supl/ForgetmenotsUITableView.h"
 
-@interface CreateEventTVC ()
+@interface FmnCreateEventTVC ()
 
 @property (weak, nonatomic) IBOutlet UITableViewCell *titleCell;
 @property (strong, nonatomic) UITextField *titleTextField;
 
 @end
 
-@implementation CreateEventTVC
+@implementation FmnCreateEventTVC
 
 -(ForgetmenotsAppDelegate *)appDelegate
 {
@@ -55,16 +55,15 @@
     return _flowers;
 }
 
--(void)setSelectedFlowers:(PickFlowersViewController *)controller selectedFlowers:(NSArray *)selectedFlowers
+-(void)setSelectedFlowers:(FmnChooseFlowersCVC *)controller selectedFlowers:(NSArray *)selectedFlowers
 {
-    NSLog(@"%@", selectedFlowers);
     self.flowers = selectedFlowers;
 }
 
 -(void)setFlowers:(NSArray *)Nflowers
 {
     _flowers = Nflowers;
-    self.chosenFlowers.text = [Nflowers description];;
+    self.chosenFlowers.flowers = Nflowers;
 }
 
 -(void)updateDateLabel
@@ -75,14 +74,14 @@
                                                timeUnits:self.timeUnit];
 }
 
--(void)setFixedDate:(ForgetmenotsPickDateTVC *)controller selectedDate:(NSDate *)date
+-(void)setFixedDate:(FmnChooseDateTVC *)controller selectedDate:(NSDate *)date
 {
     self.random = NO;
     self.date = date;
     [self updateDateLabel];
 }
 
-- (void)setForgetmenotsDate:(ForgetmenotsPickDateTVC *)controller
+- (void)setForgetmenotsDate:(FmnChooseDateTVC *)controller
                      nTimes:(NSUInteger)nTimes
                 inTimeUnits:(NSUInteger)inTimeUnits
                withTimeUnit:(TimeUnit)timeUnit
@@ -194,6 +193,8 @@
     
     UITextField* titleTextField = [[UITextField alloc] init];
     titleTextField.tag = 3;
+    titleTextField.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
+    titleTextField.textColor = [UIColor whiteColor];
     titleTextField.translatesAutoresizingMaskIntoConstraints = NO;
     [cell.contentView addSubview:titleTextField];
     [cell addConstraint:[NSLayoutConstraint constraintWithItem:titleTextField attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:cell.textLabel attribute:NSLayoutAttributeTrailing multiplier:1 constant:8]];
@@ -211,7 +212,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setupTitleCell];    
+    [self setupTitleCell];
+    
+    self.tableView.backgroundColor = [UIColor clearColor];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -238,7 +241,7 @@
 {
     if([segue.identifier isEqualToString:@"Choose flowers"])
     {
-        PickFlowersViewController *pickFlowersVC = (PickFlowersViewController *)segue.destinationViewController;
+        FmnChooseFlowersCVC *pickFlowersVC = (FmnChooseFlowersCVC *)segue.destinationViewController;
         pickFlowersVC.delegate = self;
         for (Flower* flower in self.flowers)
         {
@@ -247,7 +250,7 @@
     }
     else if([segue.identifier isEqualToString:@"Choose date"])
     {
-        ForgetmenotsPickDateTVC *tvc = (ForgetmenotsPickDateTVC *)segue.destinationViewController;
+        FmnChooseDateTVC *tvc = (FmnChooseDateTVC *)segue.destinationViewController;
         
         tvc.date = self.date;
         if (self.nTimes > 0){

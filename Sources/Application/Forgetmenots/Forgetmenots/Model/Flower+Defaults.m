@@ -28,28 +28,49 @@
     {
         flower = [matches firstObject];
     }
-    else
-    {
+    
+    return flower;
+}
+
++(Flower*)initflowerWithName:(NSString *)name
+              andColors:(NSDictionary *)colors
+        inManagedContext:(NSManagedObjectContext *)context
+{
+    Flower *flower = [Flower flowerWithName:name inManagedContext:context];
+    
+    if (!flower){
         flower = [NSEntityDescription insertNewObjectForEntityForName:@"Flower" inManagedObjectContext:context];
-        
-        flower.name = name;
     }
     
+    flower.name = name;
+    flower.colors = colors;
     
     return flower;
 }
 
 +(NSArray*) flowersInManagedContext:(NSManagedObjectContext *)context
 {
-    return @[[Flower flowerWithName:@"Forgetmenot" inManagedContext:context],
-             [Flower flowerWithName:@"Rose" inManagedContext:context],
-             [Flower flowerWithName:@"Tulip" inManagedContext:context],
-             [Flower flowerWithName:@"Mum" inManagedContext:context],
-             [Flower flowerWithName:@"Sunflower" inManagedContext:context],
-             [Flower flowerWithName:@"Amaryllis" inManagedContext:context],
-             [Flower flowerWithName:@"Gerbera" inManagedContext:context],
-             [Flower flowerWithName:@"Alstroemeria" inManagedContext:context],
-             [Flower flowerWithName:@"Lilium" inManagedContext:context]];
+    NSArray *result = nil;
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Flower"];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"name != nil"]];
+    
+    NSError *error;
+    NSArray *matches = [context executeFetchRequest:request error:&error];
+    
+    if (!matches || error){
+        // handle error
+    }
+    else if ([matches count])
+    {
+        result = matches;
+    }
+    else
+    {
+        //nothing here
+    }
+    
+    return result;
 }
 
 - (NSString *)description

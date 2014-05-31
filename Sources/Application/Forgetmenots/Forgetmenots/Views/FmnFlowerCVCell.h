@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FlowerView.h"
+#import "FmnFlowerV.h"
 
-@interface FlowerCollectionViewCell : UICollectionViewCell
+@interface FmnFlowerCVCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet FlowerView *flowerView;
+@property (weak, nonatomic) IBOutlet FmnFlowerV *flowerView;
 
 @end

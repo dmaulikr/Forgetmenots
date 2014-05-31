@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ForgetmenotsAppDelegate.h"
 
-@interface TimelineViewController : UIViewController
+@interface FmnTimelineVC : UIViewController
 
 @property (nonatomic, weak) ForgetmenotsAppDelegate *appDelegate;
 

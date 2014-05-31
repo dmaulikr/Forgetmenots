@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Ilya Pimenov. All rights reserved.
 //
 
-#import "ForgetmenotsPickDateTVC.h"
+#import "FmnChooseDateTVC.h"
 
-@interface ForgetmenotsPickDateTVC ()
+@interface FmnChooseDateTVC ()
 
 @end
 
-@implementation ForgetmenotsPickDateTVC
+@implementation FmnChooseDateTVC
 
 UIDatePicker *datePickerView;
 UIPickerView *forgetmenotsPickerView;
@@ -31,7 +31,7 @@ UIPickerView *forgetmenotsPickerView;
         [forgetmenotsPickerView selectRow:self.inTimeUnits
                               inComponent:2
                                  animated:animated];
-        [forgetmenotsPickerView selectRow:[ForgetmenotsPickDateTVC findTimeUnitIndex:self.timeUnit]
+        [forgetmenotsPickerView selectRow:[FmnChooseDateTVC findTimeUnitIndex:self.timeUnit]
                               inComponent:3
                                  animated:animated];
     }
@@ -144,7 +144,7 @@ NSInteger TIME_UNIT_MAP[4] = {DAY, WEEK, MONTH, YEAR};
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow: (NSInteger)row inComponent:(NSInteger)component
 {
-    TimeUnit timeUnit = [ForgetmenotsPickDateTVC timeUnitMap:[pickerView selectedRowInComponent:3]];
+    TimeUnit timeUnit = [FmnChooseDateTVC timeUnitMap:[pickerView selectedRowInComponent:3]];
     
     [self.delegate setFixedDate:self selectedDate:nil];
     
@@ -157,24 +157,24 @@ NSInteger TIME_UNIT_MAP[4] = {DAY, WEEK, MONTH, YEAR};
 // tell the picker how many rows are available for a given component
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return [[ForgetmenotsPickDateTVC forgetmenotsDates][component] count];
+    return [[FmnChooseDateTVC forgetmenotsDates][component] count];
 }
 
 // tell the picker how many components it will have
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
-    return [[ForgetmenotsPickDateTVC forgetmenotsDates] count];
+    return [[FmnChooseDateTVC forgetmenotsDates] count];
 }
 
 // tell the picker the title for a given component
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-        return [ForgetmenotsPickDateTVC forgetmenotsDates][component][row];
+        return [FmnChooseDateTVC forgetmenotsDates][component][row];
 }
 
 // tell the picker the width of each row for a given component
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
-    return [[ForgetmenotsPickDateTVC pickerWidths][component] floatValue];
+    return [[FmnChooseDateTVC pickerWidths][component] floatValue];
 }
 
 #pragma mark - Main View Controller Routine
@@ -182,6 +182,8 @@ NSInteger TIME_UNIT_MAP[4] = {DAY, WEEK, MONTH, YEAR};
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.tableView.backgroundColor = [UIColor clearColor];
     
     if (self.date)
     {

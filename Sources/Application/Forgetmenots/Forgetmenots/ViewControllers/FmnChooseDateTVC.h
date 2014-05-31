@@ -9,20 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "ForgetmenotsEvent+Boilerplate.h"
 
-@class ForgetmenotsPickDateTVC;
+@class FmnChooseDateTVC;
 
 @protocol PickDateDelegate <NSObject>
 
-- (void)setFixedDate:(ForgetmenotsPickDateTVC *)controller selectedDate:(NSDate *)date;
+- (void)setFixedDate:(FmnChooseDateTVC *)controller selectedDate:(NSDate *)date;
 
-- (void)setForgetmenotsDate:(ForgetmenotsPickDateTVC *)controller
+- (void)setForgetmenotsDate:(FmnChooseDateTVC *)controller
                      nTimes:(NSUInteger)nTimes
                 inTimeUnits:(NSUInteger)inTimeUnits
                withTimeUnit:(TimeUnit)timeUnit;
 
 @end
 
-@interface ForgetmenotsPickDateTVC : UITableViewController <UIPickerViewDelegate>
+@interface FmnChooseDateTVC : UITableViewController <UIPickerViewDelegate>
 
 @property (nonatomic, weak) id <PickDateDelegate> delegate;
 

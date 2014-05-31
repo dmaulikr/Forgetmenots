@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Flower+Defaults.h"
 
-@interface FlowerView : UIView
+@interface FmnFlowerV : UIView
 
-@property (strong, nonatomic) NSString *name;
-
+@property (strong, nonatomic) Flower * flower;
 @property (nonatomic) BOOL selected;
 
 @end

@@ -6,21 +6,23 @@
 //  Copyright (c) 2014 Ilya Pimenov. All rights reserved.
 //
 
-#import "TimelineViewController.h"
+#import "FmnTimelineVC.h"
 
 #import "Model/PlannedEvent.h"
 #import "Model/ForgetmenotsEvent+Boilerplate.h"
+#import "FmnFlowerV.h"
 
-@interface TimelineViewController ()
+@interface FmnTimelineVC ()
 
 @property (weak, nonatomic) IBOutlet UINavigationItem *nav;
 @property (weak, nonatomic) IBOutlet UITextView *upcomingEventInfo;
+@property (weak, nonatomic) IBOutlet FmnFlowerV *flowerView;
 
 @property (strong, nonatomic) NSArray *plannedEvents;
 
 @end
 
-@implementation TimelineViewController
+@implementation FmnTimelineVC
 
 -(ForgetmenotsAppDelegate *)appDelegate
 {
@@ -59,19 +61,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Transparent navigation bar
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
-                                                  forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.shadowImage = [UIImage new];
-    self.navigationController.navigationBar.translucent = YES;
-    
+        
     // Background
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.jpg"]];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
     
     PlannedEvent* upcoming = [self.plannedEvents firstObject];
     
-    _upcomingEventInfo.text = [upcoming description];
+    self.flowerView.flower = [Flower flowerWithName:@"Forgetmenot" inManagedContext:self.appDelegate.managedObjectContext];
+    
+    self.upcomingEventInfo.text = [upcoming description];
 }
 
 - (void)didReceiveMemoryWarning

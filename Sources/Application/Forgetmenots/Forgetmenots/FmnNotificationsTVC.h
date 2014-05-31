@@ -1,15 +1,13 @@
 //
-//  PastEvent.m
+//  ScheduledNotificationTVC.h
 //  Forgetmenots
 //
 //  Created by Ilya Pimenov on 26.05.14.
 //  Copyright (c) 2014 Ilya Pimenov. All rights reserved.
 //
 
-#import "PastEvent.h"
+#import <UIKit/UIKit.h>
 
-
-@implementation PastEvent
-
+@interface FmnNotificationsTVC : UITableViewController
 
 @end

@@ -1,18 +1,18 @@
 //
-//  IntroViewController.m
+//  FmnMenuLeftTVC.m
 //  Forgetmenots
 //
-//  Created by Ilya Pimenov on 29.04.14.
+//  Created by Ilya Pimenov on 27.05.14.
 //  Copyright (c) 2014 Ilya Pimenov. All rights reserved.
 //
 
-#import "IntroViewController.h"
+#import "FmnMenuLeftTVC.h"
 
-@interface IntroViewController ()
+@interface FmnMenuLeftTVC ()
 
 @end
 
-@implementation IntroViewController
+@implementation FmnMenuLeftTVC
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,7 +26,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    // left and top margin
+    UIEdgeInsets inset = UIEdgeInsetsMake(20, 20, 0, 0);
+    self.tableView.contentInset = inset;
 }
 
 - (void)didReceiveMemoryWarning

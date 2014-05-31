@@ -13,6 +13,10 @@
 +(Flower*)flowerWithName:(NSString *)name
         inManagedContext:(NSManagedObjectContext *)context;
 
++(Flower*)initflowerWithName:(NSString *)name
+                   andColors:(NSDictionary *)colors
+            inManagedContext:(NSManagedObjectContext *)context;
+
 +(NSArray*) flowersInManagedContext:(NSManagedObjectContext *)context;
 
 - (NSString *)description;

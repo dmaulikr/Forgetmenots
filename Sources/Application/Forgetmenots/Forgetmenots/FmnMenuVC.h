@@ -8,6 +8,6 @@
 
 #import "AMSlideMenuMainViewController.h"
 
-@interface MenuViewController : AMSlideMenuMainViewController
+@interface FmnMenuVC : AMSlideMenuMainViewController
 
 @end

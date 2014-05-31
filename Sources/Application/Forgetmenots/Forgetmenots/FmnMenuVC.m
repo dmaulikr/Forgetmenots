@@ -6,38 +6,35 @@
 //  Copyright (c) 2014 Ilya Pimenov. All rights reserved.
 //
 
-#import "MenuViewController.h"
+#import "FmnMenuVC.h"
 
-@interface MenuViewController ()
+@interface FmnMenuVC ()
 
 @end
 
-@implementation MenuViewController
+@implementation FmnMenuVC
 
 - (NSIndexPath *)initialIndexPathForLeftMenu
 {
-    return [NSIndexPath indexPathForRow:1 inSection:0];
+    return [NSIndexPath indexPathForRow:0 inSection:0];
 }
 
 -(NSString *)segueIdentifierForIndexPathInLeftMenu:(NSIndexPath *)indexPath
 {
     NSString *identifier;
     switch (indexPath.row) {
-        case 1:
+        case 0:
             identifier = @"timelineSegue";
             break;
-        case 2:
+        case 1:
             identifier = @"myEventsSegue";
             break;
-            
-        case 3:
-            identifier = @"aboutUsSegue";
+        case 2:
+            identifier = @"notificationsSegue";
             break;
-            
-        case 4:
+        case 3:
             identifier = @"feedbackSegue";
             break;
-            
         default:
             break;
     }

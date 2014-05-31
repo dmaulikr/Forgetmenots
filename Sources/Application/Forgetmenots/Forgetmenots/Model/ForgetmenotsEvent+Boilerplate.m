@@ -7,10 +7,16 @@
 //
 
 #import "ForgetmenotsEvent+Boilerplate.h"
+#import "ScheduledEvent+Boilerplate.h"
 
 static NSMutableArray* theAllEvents;
 
 @implementation ForgetmenotsEvent (Boilerplate)
+
+-(void)prepareForDeletion
+{
+    [ScheduledEvent deleteAllWithName:self.name inManagedContext:self.managedObjectContext];
+}
 
 +(ForgetmenotsEvent*)existsWithName:(NSString *)name
         inManagedContext:(NSManagedObjectContext *)context
@@ -37,10 +43,22 @@ static NSMutableArray* theAllEvents;
         event.name = name;
         
         //init will come later
-    }
-    
+    }    
     
     return event;
+}
+
++(void)saveAndTrigger:(ForgetmenotsEvent *)fmnEvent
+{
+    NSError *error = nil;
+    if (![fmnEvent.managedObjectContext save:&error]) {
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        // Take some action!
+    }
+    else
+    {
+        [ScheduledEvent planEventsWithForgetmenotsEvent:fmnEvent];
+    }
 }
 
 +(ForgetmenotsEvent *) initWithFlowers:(NSSet *)flowers name:(NSString *)name date:(NSDate *)date inManagedContext:(NSManagedObjectContext *)context
@@ -51,6 +69,8 @@ static NSMutableArray* theAllEvents;
     event.date = date;
     event.name = name;
     event.random = NO;
+    
+    [ForgetmenotsEvent saveAndTrigger:event];
     
     return event;
 }
@@ -68,7 +88,7 @@ static NSMutableArray* theAllEvents;
     event.start = start;
     event.random = [NSNumber numberWithBool:YES];
     
-    [event.managedObjectContext save:nil];
+    [ForgetmenotsEvent saveAndTrigger:event];
     
     return event;
 }
