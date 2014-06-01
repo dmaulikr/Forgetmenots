@@ -10,6 +10,7 @@
 #import "ForgetmenotsEvent+Boilerplate.h"
 #import "DatabaseAvailability.h"
 #import <objc/runtime.h>
+#import "FmnCreateEventTVC.h"
 
 @interface FmnEventsTVC ()
 
@@ -107,9 +108,14 @@ const char ALERT_FORGETMENOT_EVENT;
     
     ForgetmenotsEvent* e = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
+//    NSString *name = e.name;
+//    NSSet * flowers = e.flowers;
+    
     cell.textLabel.text = e.name;
+    cell.textLabel.textColor = [UIColor whiteColor];
     
     cell.detailTextLabel.text = [e timeData];
+    cell.detailTextLabel.textColor = [UIColor whiteColor];
     
     return cell;
 }
@@ -141,6 +147,35 @@ const char ALERT_FORGETMENOT_EVENT;
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if  ([segue.identifier isEqualToString:@"newEventSegue"])
+    {
+        FmnCreateEventTVC *createEventTvc = [segue destinationViewController];
+        
+//        createEventTvc.new = YES;
+        NSLog(@"new event");
+    }
+    else if ([segue.identifier isEqualToString:@"editEventSegue"])
+    {
+        FmnCreateEventTVC *createEventTvc = [segue destinationViewController];
+        
+        ForgetmenotsEvent* e = [self.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForSelectedRow]];
+        
+        createEventTvc.flowers = [e.flowers allObjects];
+        
+        createEventTvc.name = e.name;
+        
+        createEventTvc.random = [e.random boolValue];
+        
+        createEventTvc.date = e.date;
+        createEventTvc.nTimes = [e.nTimes intValue];
+        createEventTvc.inTimeUnits = [e.inTimeUnits intValue];
+        createEventTvc.timeUnit = [e.timeUnit intValue];
+        createEventTvc.start = e.start;
+    }
 }
 
 @end

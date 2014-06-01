@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ForgetmenotsEvent+Boilerplate.h"
+#import "UILabel+WhiteUIDatePickerLabels.h"
 
 @class FmnChooseDateTVC;
 
@@ -23,6 +24,10 @@
 @end
 
 @interface FmnChooseDateTVC : UITableViewController <UIPickerViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UILabel *switchLabel;
+@property (weak, nonatomic) IBOutlet UITableViewCell *switchCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *pickerCell;
 
 @property (nonatomic, weak) id <PickDateDelegate> delegate;
 

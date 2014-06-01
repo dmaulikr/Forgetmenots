@@ -3,6 +3,8 @@
     <entity name="Flower" representedClassName="Flower" syncable="YES">
         <attribute name="colors" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="forgetmenotsEventsWithFlowers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ForgetmenotsEvent" inverseName="flowers" inverseEntity="ForgetmenotsEvent" syncable="YES"/>
+        <relationship name="scheduledEventsContaining" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ScheduledEvent" inverseName="flowers" inverseEntity="ScheduledEvent" syncable="YES"/>
     </entity>
     <entity name="ForgetmenotsEvent" representedClassName="ForgetmenotsEvent" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
@@ -12,18 +14,18 @@
         <attribute name="random" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="start" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="timeUnit" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <relationship name="flowers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Flower" syncable="YES"/>
+        <relationship name="flowers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Flower" inverseName="forgetmenotsEventsWithFlowers" inverseEntity="Flower" syncable="YES"/>
     </entity>
     <entity name="PastEvent" representedClassName="PastEvent" syncable="YES"/>
     <entity name="ScheduledEvent" representedClassName="ScheduledEvent" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="flowers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Flower" syncable="YES"/>
+        <relationship name="flowers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Flower" inverseName="scheduledEventsContaining" inverseEntity="Flower" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Flower" positionX="-189" positionY="216" width="128" height="73"/>
-        <element name="ForgetmenotsEvent" positionX="-315" positionY="-18" width="128" height="163"/>
-        <element name="PastEvent" positionX="-38" positionY="-18" width="128" height="43"/>
+        <element name="Flower" positionX="-135" positionY="288" width="128" height="103"/>
+        <element name="ForgetmenotsEvent" positionX="-389" positionY="189" width="128" height="163"/>
+        <element name="PastEvent" positionX="-38" positionY="-18" width="128" height="45"/>
         <element name="ScheduledEvent" positionX="-63" positionY="72" width="128" height="88"/>
     </elements>
 </model>

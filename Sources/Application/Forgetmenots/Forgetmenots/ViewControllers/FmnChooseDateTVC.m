@@ -167,9 +167,17 @@ NSInteger TIME_UNIT_MAP[4] = {DAY, WEEK, MONTH, YEAR};
 }
 
 // tell the picker the title for a given component
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+//- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+//{
+//        return [FmnChooseDateTVC forgetmenotsDates][component][row];
+//}
+
+-(NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-        return [FmnChooseDateTVC forgetmenotsDates][component][row];
+    NSString *title = [FmnChooseDateTVC forgetmenotsDates][component][row];
+    NSAttributedString *attString = [[NSAttributedString alloc] initWithString:title attributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    
+    return attString;
 }
 
 // tell the picker the width of each row for a given component
@@ -179,11 +187,24 @@ NSInteger TIME_UNIT_MAP[4] = {DAY, WEEK, MONTH, YEAR};
 
 #pragma mark - Main View Controller Routine
 
+-(void)setupStyles
+{
+    self.switchCell.backgroundColor = [UIColor clearColor];
+    
+    self.switchLabel.textColor = [UIColor whiteColor];
+
+    self.pickerCell.backgroundColor = [UIColor clearColor];
+    
+    [UILabel load];    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     self.tableView.backgroundColor = [UIColor clearColor];
+    
+    [self setupStyles];
     
     if (self.date)
     {

@@ -22,11 +22,12 @@ static NSManagedObjectContext* theObjectContext;
 @implementation ForgetmenotsAppDelegate
 
 #define YES_STRING @"YES"
+#define NO_STRING @"NO"
 
 -(void)loadInNecessaryDefaultFlowers
 {
     NSString * loaded = [FmnSettings getSettingsStringWithKey:LOADED_DEFAULT_FLOWERS];
-    loaded = @"NO";
+    loaded = NO_STRING;
     if (loaded && [loaded isEqualToString:YES_STRING])
     {
         // do nothing, flowers are loaded
@@ -90,13 +91,18 @@ static NSManagedObjectContext* theObjectContext;
                                      @"second": @{@"top": [UIColor colorWithWhite:0.5 alpha:0.26], @"bottom": [UIColor colorWithWhite:0.5 alpha:0.26]},
                                      @"third": @{@"top": UIColorFromRGB(0xFFCC00), @"bottom": UIColorFromRGB(0xFF9900)}}
                   inManagedContext:self.managedObjectContext];
+        NSError *error;
+        [self.managedObjectContext save:&error];
+        if (![self.managedObjectContext save:&error]){
+            [FmnSettings saveSettingsString:LOADED_DEFAULT_FLOWERS withKey:NO_STRING];
+        }
     }
 }
 
 -(void)loadDefaultEvents
 {
     //load some defaults;
-    [ForgetmenotsEvent initWithFlowers:[NSSet setWithObjects:[Flower flowerWithName:@"Forgetmenots" inManagedContext:self.managedObjectContext], [Flower flowerWithName:@"Tulip" inManagedContext:self.managedObjectContext], nil]
+    [ForgetmenotsEvent initWithFlowers:[NSSet setWithObjects:[Flower flowerWithName:@"Forgetmenot" inManagedContext:self.managedObjectContext], [Flower flowerWithName:@"Tulip" inManagedContext:self.managedObjectContext], nil]
                                   name:@"Ally's birhtday"
                                   date:[NSDate dateWithTimeIntervalSince1970:1400107843]
                       inManagedContext:self.managedObjectContext]; // 14 may 2014

@@ -13,11 +13,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="Forgetmenots Event Cell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Forgetmenots Event Cell" textLabel="0wJ-Wh-Emd" detailTextLabel="8jK-lU-8AF" style="IBUITableViewCellStyleSubtitle" id="H3f-vp-v2i">
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="Forgetmenots Event Cell" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Forgetmenots Event Cell" textLabel="0wJ-Wh-Emd" detailTextLabel="8jK-lU-8AF" style="IBUITableViewCellStyleSubtitle" id="H3f-vp-v2i">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H3f-vp-v2i" id="tm7-eE-B1a">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Sister's defense" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0wJ-Wh-Emd">
@@ -36,6 +36,9 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="Ukz-77-wJ2" kind="push" identifier="editEventSegue" id="4YF-BP-Bul"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -47,7 +50,7 @@
                     <navigationItem key="navigationItem" title="My Events" id="ALh-y5-94H">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="936-h6-26P">
                             <connections>
-                                <segue destination="Ukz-77-wJ2" kind="push" id="Zxd-or-A46"/>
+                                <segue destination="Ukz-77-wJ2" kind="push" identifier="newEventSegue" id="Zxd-or-A46"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -143,8 +146,8 @@ October 29th Gerbera</string>
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8tL-et-2YY">
-                                                    <rect key="frame" x="15" y="12" width="33" height="21"/>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8tL-et-2YY">
+                                                    <rect key="frame" x="15" y="12" width="37" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
@@ -167,7 +170,7 @@ October 29th Gerbera</string>
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ryU-HX-GG4">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Date:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ryU-HX-GG4">
                                                     <rect key="frame" x="15" y="0.0" width="270" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -256,11 +259,11 @@ October 29th Gerbera</string>
             </objects>
             <point key="canvasLocation" x="2605" y="-829"/>
         </scene>
-        <!--Fmn Choose DateTVC-->
+        <!--Fmn Choose DateTVC - Date-->
         <scene sceneID="r3w-Iy-JDK">
             <objects>
                 <tableViewController id="Rqh-Jy-HaR" customClass="FmnChooseDateTVC" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="lsp-YI-NZ4">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="lsp-YI-NZ4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -271,7 +274,7 @@ October 29th Gerbera</string>
                                         <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="06E-og-oCB" id="JA9-NF-ZJd">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vRF-w5-QAF">
@@ -290,11 +293,11 @@ October 29th Gerbera</string>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="320" id="HTp-Hd-Fe7">
-                                        <rect key="frame" x="0.0" y="108" width="320" height="320"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="280" id="HTp-Hd-Fe7">
+                                        <rect key="frame" x="0.0" y="108" width="320" height="280"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HTp-Hd-Fe7" id="UaI-Mt-V3Y">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="319"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -306,11 +309,14 @@ October 29th Gerbera</string>
                             <outlet property="delegate" destination="Rqh-Jy-HaR" id="KiY-nP-Map"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="SXP-VX-AE7"/>
+                    <navigationItem key="navigationItem" title="Date" id="SXP-VX-AE7"/>
                     <connections>
                         <outlet property="eventTypeLabel" destination="XBg-Kr-2X8" id="ZVN-pD-DZ0"/>
                         <outlet property="onOff" destination="vRF-w5-QAF" id="Gbl-iA-UQb"/>
+                        <outlet property="pickerCell" destination="HTp-Hd-Fe7" id="dqM-4e-Uea"/>
                         <outlet property="pickerViewCell" destination="HTp-Hd-Fe7" id="cIb-H4-lBw"/>
+                        <outlet property="switchCell" destination="06E-og-oCB" id="FdR-xH-ypq"/>
+                        <outlet property="switchLabel" destination="XBg-Kr-2X8" id="F7d-Za-8bS"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ua5-T6-Jts" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -668,4 +674,7 @@ October 29th Gerbera</string>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="4YF-BP-Bul"/>
+    </inferredMetricsTieBreakers>
 </document>

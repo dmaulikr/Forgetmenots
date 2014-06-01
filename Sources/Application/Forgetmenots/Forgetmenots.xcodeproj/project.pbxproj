@@ -23,6 +23,7 @@
 		09127D2618F89067003EBA61 /* ForgetmenotsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 09127D2518F89067003EBA61 /* ForgetmenotsTests.m */; };
 		09127D3518F891DA003EBA61 /* FmnFlowerV.m in Sources */ = {isa = PBXBuildFile; fileRef = 09127D3418F891DA003EBA61 /* FmnFlowerV.m */; };
 		0914B62A193A0D75005FE8ED /* FmnFlowersV.m in Sources */ = {isa = PBXBuildFile; fileRef = 0914B629193A0D75005FE8ED /* FmnFlowersV.m */; };
+		0914B62D193A74B8005FE8ED /* UILabel+WhiteUIDatePickerLabels.m in Sources */ = {isa = PBXBuildFile; fileRef = 0914B62C193A74B8005FE8ED /* UILabel+WhiteUIDatePickerLabels.m */; };
 		091C7E76192D4C64001BEC3C /* Forgetmenots.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 091C7E74192D4C64001BEC3C /* Forgetmenots.xcdatamodeld */; };
 		091C7E82192D50A2001BEC3C /* Flower+Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 091C7E81192D50A2001BEC3C /* Flower+Defaults.m */; };
 		091C7E85192D5B2C001BEC3C /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 091C7E84192D5B2C001BEC3C /* CoreDataTableViewController.m */; };
@@ -89,6 +90,8 @@
 		09127D3418F891DA003EBA61 /* FmnFlowerV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FmnFlowerV.m; path = Views/FmnFlowerV.m; sourceTree = "<group>"; };
 		0914B628193A0D75005FE8ED /* FmnFlowersV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FmnFlowersV.h; path = Views/FmnFlowersV.h; sourceTree = "<group>"; };
 		0914B629193A0D75005FE8ED /* FmnFlowersV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FmnFlowersV.m; path = Views/FmnFlowersV.m; sourceTree = "<group>"; };
+		0914B62B193A74B8005FE8ED /* UILabel+WhiteUIDatePickerLabels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+WhiteUIDatePickerLabels.h"; path = "Views/UILabel+WhiteUIDatePickerLabels.h"; sourceTree = "<group>"; };
+		0914B62C193A74B8005FE8ED /* UILabel+WhiteUIDatePickerLabels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+WhiteUIDatePickerLabels.m"; path = "Views/UILabel+WhiteUIDatePickerLabels.m"; sourceTree = "<group>"; };
 		091C7E75192D4C64001BEC3C /* Forgetmenots.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Forgetmenots.xcdatamodel; sourceTree = "<group>"; };
 		091C7E80192D50A2001BEC3C /* Flower+Defaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Flower+Defaults.h"; path = "Model/Flower+Defaults.h"; sourceTree = "<group>"; };
 		091C7E81192D50A2001BEC3C /* Flower+Defaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Flower+Defaults.m"; path = "Model/Flower+Defaults.m"; sourceTree = "<group>"; };
@@ -301,6 +304,8 @@
 				09AFCC911935448200C105E2 /* FmnFlowers.m */,
 				0914B628193A0D75005FE8ED /* FmnFlowersV.h */,
 				0914B629193A0D75005FE8ED /* FmnFlowersV.m */,
+				0914B62B193A74B8005FE8ED /* UILabel+WhiteUIDatePickerLabels.h */,
+				0914B62C193A74B8005FE8ED /* UILabel+WhiteUIDatePickerLabels.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -502,6 +507,7 @@
 				099A98E419329F6B0030C3BC /* ScheduledEvent.m in Sources */,
 				094D8F53191D57B0002C96B2 /* ForgetmenotsTableViewCell.m in Sources */,
 				09BABD7E192130ED003AE68D /* FmnChooseDateTVC.m in Sources */,
+				0914B62D193A74B8005FE8ED /* UILabel+WhiteUIDatePickerLabels.m in Sources */,
 				09BABD78191EF975003AE68D /* FmnFlowerCVCell.m in Sources */,
 				09760FFC1933BBD00023E761 /* FmnNotificationsTVC.m in Sources */,
 				09AFCC951935DFA900C105E2 /* FmnSettings.m in Sources */,

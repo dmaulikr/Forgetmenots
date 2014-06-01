@@ -21,7 +21,6 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    NSLog(@"lala");
     UITouch *touch = [[event allTouches] anyObject];
     if ([self.titleTextField isFirstResponder] && [touch view] != self.titleTextField) {
         [self.titleTextField resignFirstResponder];

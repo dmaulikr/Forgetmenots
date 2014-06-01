@@ -68,10 +68,10 @@
 
 -(void)updateDateLabel
 {
-    self.selectedDate.text = [ForgetmenotsEvent timeData:self.date
-                                                  nTimes:self.nTimes
-                                                 inExact:self.inTimeUnits
-                                               timeUnits:self.timeUnit];
+    self.selectedDate.text = [NSString stringWithFormat:@"Date: %@", [ForgetmenotsEvent timeData:self.date
+                                                                                          nTimes:self.nTimes
+                                                                                         inExact:self.inTimeUnits
+                                                                                       timeUnits:self.timeUnit]];
 }
 
 -(void)setFixedDate:(FmnChooseDateTVC *)controller selectedDate:(NSDate *)date
@@ -179,8 +179,7 @@
 - (void)setName:(NSString *)name
 {
     _name = name;
-    
-//    self.titleCell.textLabel.text  = name;
+    [self.titleTextField setText:name];
 }
 
 - (void)setupTitleCell
@@ -191,16 +190,42 @@
     
     [[cell viewWithTag:3] removeFromSuperview];
     
+    cell.textLabel.textColor = [UIColor whiteColor];
+    
     UITextField* titleTextField = [[UITextField alloc] init];
     titleTextField.tag = 3;
-    titleTextField.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5f];
+    titleTextField.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.16f];
     titleTextField.textColor = [UIColor whiteColor];
     titleTextField.translatesAutoresizingMaskIntoConstraints = NO;
     [cell.contentView addSubview:titleTextField];
-    [cell addConstraint:[NSLayoutConstraint constraintWithItem:titleTextField attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:cell.textLabel attribute:NSLayoutAttributeTrailing multiplier:1 constant:8]];
-    [cell addConstraint:[NSLayoutConstraint constraintWithItem:titleTextField attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:cell.contentView attribute:NSLayoutAttributeTop multiplier:1 constant:8]];
-    [cell addConstraint:[NSLayoutConstraint constraintWithItem:titleTextField attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:cell.contentView attribute:NSLayoutAttributeBottom multiplier:1 constant:-8]];
-    [cell addConstraint:[NSLayoutConstraint constraintWithItem:titleTextField attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:cell.detailTextLabel attribute:NSLayoutAttributeTrailing multiplier:1 constant:0]];
+    [cell addConstraint:[NSLayoutConstraint constraintWithItem:titleTextField
+                                                     attribute:NSLayoutAttributeLeading
+                                                     relatedBy:NSLayoutRelationEqual
+                                                        toItem:cell.textLabel
+                                                     attribute:NSLayoutAttributeTrailing
+                                                    multiplier:1
+                                                      constant:8]];
+    [cell addConstraint:[NSLayoutConstraint constraintWithItem:titleTextField
+                                                     attribute:NSLayoutAttributeTop
+                                                     relatedBy:NSLayoutRelationEqual
+                                                        toItem:cell.contentView
+                                                     attribute:NSLayoutAttributeTop
+                                                    multiplier:1
+                                                      constant:8]];
+    [cell addConstraint:[NSLayoutConstraint constraintWithItem:titleTextField
+                                                     attribute:NSLayoutAttributeBottom
+                                                     relatedBy:NSLayoutRelationEqual
+                                                        toItem:cell.contentView
+                                                     attribute:NSLayoutAttributeBottom
+                                                    multiplier:1
+                                                      constant:-8]];
+    [cell addConstraint:[NSLayoutConstraint constraintWithItem:titleTextField
+                                                     attribute:NSLayoutAttributeTrailing
+                                                     relatedBy:NSLayoutRelationEqual
+                                                        toItem:cell.detailTextLabel
+                                                     attribute:NSLayoutAttributeTrailing
+                                                    multiplier:1
+                                                      constant:0]];
     titleTextField.textAlignment = NSTextAlignmentRight;
     titleTextField.delegate = self;
     
@@ -209,12 +234,31 @@
     ((ForgetmenotsUITableView *)self.view).titleTextField = titleTextField;
 }
 
+-(void)setupDateCell
+{
+    self.selectedDate.textColor = [UIColor whiteColor];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     [self setupTitleCell];
     
+    [self setupDateCell];
+    
     self.tableView.backgroundColor = [UIColor clearColor];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    self.flowers = self.flowers;
+    
+    self.name = self.name;
+    
+    [self updateDateLabel];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -251,6 +295,7 @@
     else if([segue.identifier isEqualToString:@"Choose date"])
     {
         FmnChooseDateTVC *tvc = (FmnChooseDateTVC *)segue.destinationViewController;
+        tvc.delegate = self;
         
         tvc.date = self.date;
         if (self.nTimes > 0){
@@ -261,8 +306,6 @@
         }
         tvc.timeUnit = self.timeUnit;
         tvc.start = self.start;
-        
-        tvc.delegate = self;
     }
 }
 
