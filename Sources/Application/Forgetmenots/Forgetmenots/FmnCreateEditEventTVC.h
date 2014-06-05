@@ -13,9 +13,13 @@
 #import "FmnChooseDateTVC.h"
 #import "FmnFlowersV.h"
 
-@interface FmnCreateEventTVC : UITableViewController <UITextFieldDelegate, PickFlowersDelegate, PickDateDelegate>
+@interface FmnCreateEditEventTVC : UITableViewController <UITextFieldDelegate, PickFlowersDelegate, PickDateDelegate>
 
 @property (nonatomic, weak) ForgetmenotsAppDelegate *appDelegate;
+
+// Whether is is a new event or we are editing an existing event
+@property (nonatomic) BOOL editEvent;
+@property (nonatomic, strong) ForgetmenotsEvent * event;
 
 @property (weak, nonatomic) IBOutlet FmnFlowersV *chosenFlowers;
 @property (weak, nonatomic) IBOutlet UILabel *selectedDate;

@@ -57,7 +57,14 @@ static NSMutableArray* theAllEvents;
     }
     else
     {
-        [ScheduledEvent planEventsWithForgetmenotsEvent:fmnEvent];
+        if ([fmnEvent.random boolValue])
+        {
+            [ScheduledEvent planAheadEventsWithForgetmenotsEvent:fmnEvent fromDate:fmnEvent.start];
+        }
+        else
+        {
+            [ScheduledEvent planAheadEventsWithForgetmenotsEvent:fmnEvent fromDate:fmnEvent.date];
+        }
     }
 }
 
@@ -93,7 +100,7 @@ static NSMutableArray* theAllEvents;
     return event;
 }
 
-+(NSArray*)upcomingInManagedContext:(NSManagedObjectContext *)context
++(NSArray*)allInManagedContext:(NSManagedObjectContext *)context
 {
     NSArray *result = nil;
     

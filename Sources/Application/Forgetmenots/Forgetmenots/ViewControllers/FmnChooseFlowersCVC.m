@@ -9,7 +9,7 @@
 #import "FmnChooseFlowersCVC.h"
 #import "FmnFlowerCVCell.h"
 #import "Flower+Defaults.h"
-#import "FmnCreateEventTVC.h"
+#import "FmnCreateEditEventTVC.h"
 
 @interface FmnChooseFlowersCVC ()
 

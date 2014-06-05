@@ -9,8 +9,7 @@
 #import "FmnEventsTVC.h"
 #import "ForgetmenotsEvent+Boilerplate.h"
 #import "DatabaseAvailability.h"
-#import <objc/runtime.h>
-#import "FmnCreateEventTVC.h"
+#import "FmnCreateEditEventTVC.h"
 
 @interface FmnEventsTVC ()
 
@@ -50,50 +49,6 @@
                                                                                    cacheName:nil];
 }
 
-#pragma mark - Delete Functionality
-
-// Override to support conditional editing of the table view.
-// This only needs to be implemented if you are going to be returning NO
-// for some items. By default, all items are editable.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return YES if you want the specified item to be editable.
-    return YES;
-}
-
-const char ALERT_FORGETMENOT_EVENT;
-
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        ForgetmenotsEvent* event = [self.fetchedResultsController objectAtIndexPath:indexPath];
-        
-        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Delete"
-                                              message:[NSString stringWithFormat:@"Delete %@ event?", event.name]
-                                             delegate:self
-                                    cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
-        alertView.tag = 7;
-        objc_setAssociatedObject(alertView, &ALERT_FORGETMENOT_EVENT, event, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        [alertView show];
-    }
-}
-
--(void)alertView: (UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    if ([alertView tag] == 7) // this is delete confirmation
-    {
-        if (buttonIndex == 1) { // they clicked Ok
-            ForgetmenotsEvent *event = objc_getAssociatedObject(alertView, &ALERT_FORGETMENOT_EVENT);
-
-            [self.appDelegate.managedObjectContext deleteObject:event];
-            [self.appDelegate.managedObjectContext save:nil];
-        }
-        else
-        {
-            self.tableView.editing = false;
-        }
-    }
-}
-
 #pragma mark - UITableViewDataSource
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -106,10 +61,9 @@ const char ALERT_FORGETMENOT_EVENT;
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Forgetmenots Event Cell"];
     
-    ForgetmenotsEvent* e = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
-//    NSString *name = e.name;
-//    NSSet * flowers = e.flowers;
+    ForgetmenotsEvent* e = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     cell.textLabel.text = e.name;
     cell.textLabel.textColor = [UIColor whiteColor];
@@ -153,16 +107,18 @@ const char ALERT_FORGETMENOT_EVENT;
 {
     if  ([segue.identifier isEqualToString:@"newEventSegue"])
     {
-        FmnCreateEventTVC *createEventTvc = [segue destinationViewController];
+        FmnCreateEditEventTVC *createEventTvc = [segue destinationViewController];
         
-//        createEventTvc.new = YES;
-        NSLog(@"new event");
+        createEventTvc.editEvent = NO;
     }
     else if ([segue.identifier isEqualToString:@"editEventSegue"])
     {
-        FmnCreateEventTVC *createEventTvc = [segue destinationViewController];
+        FmnCreateEditEventTVC *createEventTvc = [segue destinationViewController];
         
         ForgetmenotsEvent* e = [self.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForSelectedRow]];
+        
+        createEventTvc.editEvent = YES;
+        createEventTvc.event = e;
         
         createEventTvc.flowers = [e.flowers allObjects];
         

@@ -35,6 +35,6 @@ typedef NS_ENUM(NSUInteger, TimeUnit)
 
 +(NSString *)timeData:(NSDate *)date nTimes:(NSUInteger)nTimes inExact:(NSUInteger)inTimeUnits timeUnits:(TimeUnit)timeUnit;
 
-+(NSArray*)upcomingInManagedContext:(NSManagedObjectContext *)context;
++(NSArray*)allInManagedContext:(NSManagedObjectContext *)context;
 
 @end

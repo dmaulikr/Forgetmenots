@@ -33,6 +33,9 @@
             identifier = @"notificationsSegue";
             break;
         case 3:
+            identifier = @"aboutUsSegue";
+            break;
+        case 4:
             identifier = @"feedbackSegue";
             break;
         default:

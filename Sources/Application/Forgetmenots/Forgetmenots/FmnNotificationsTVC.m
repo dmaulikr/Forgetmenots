@@ -14,11 +14,14 @@
 
 @implementation FmnNotificationsTVC
 
+
+NSDateFormatter * df = nil;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+        // Custom init
     }
     return self;
 }
@@ -30,6 +33,16 @@
     // Background
     self.navigationController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
     self.tableView.backgroundColor = [UIColor clearColor];
+    
+    df = [NSDateFormatter new];
+    [df setDateFormat:@"dd MMMM yy"];
+    
+    self.notifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    
+    NSSortDescriptor *sortDescriptor;
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"fireDate" ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    self.notifications = [self.notifications sortedArrayUsingDescriptors:sortDescriptors];
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,17 +60,24 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[[UIApplication sharedApplication] scheduledLocalNotifications] count];
+    return [self.notifications count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ScheduledNotification" forIndexPath:indexPath];
         
-    UILocalNotification *n = [[[UIApplication sharedApplication] scheduledLocalNotifications] objectAtIndex:indexPath.row];
+    UILocalNotification *n = [self.notifications objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = n.alertBody;
-    cell.detailTextLabel.text = [n.fireDate description];
+    cell.textLabel.text = [df stringFromDate:n.fireDate];
+    cell.detailTextLabel.text = n.alertBody;
+    cell.detailTextLabel.textColor = [UIColor whiteColor];
+    
+    UIView * bgColorView = [[UIView alloc] init];
+    [bgColorView setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.26]];
+    
+    [cell setSelectedBackgroundView:bgColorView];
+
     
     return cell;
 }

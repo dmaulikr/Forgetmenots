@@ -6,17 +6,19 @@
 //  Copyright (c) 2014 Ilya Pimenov. All rights reserved.
 //
 
-#import "FmnCreateEventTVC.h"
+#import "FmnCreateEditEventTVC.h"
 #import "supl/ForgetmenotsUITableView.h"
+#import <objc/runtime.h>
 
-@interface FmnCreateEventTVC ()
+@interface FmnCreateEditEventTVC ()
 
 @property (weak, nonatomic) IBOutlet UITableViewCell *titleCell;
+@property (weak, nonatomic) IBOutlet UITableViewCell *deleteCell;
 @property (strong, nonatomic) UITextField *titleTextField;
 
 @end
 
-@implementation FmnCreateEventTVC
+@implementation FmnCreateEditEventTVC
 
 -(ForgetmenotsAppDelegate *)appDelegate
 {
@@ -93,6 +95,48 @@
     self.start = [NSDate date];
     [self updateDateLabel];
 }
+
+#pragma mark - Delete Functionality
+
+// Override to support conditional editing of the table view.
+// This only needs to be implemented if you are going to be returning NO
+// for some items. By default, all items are editable.
+//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+//    // Return YES if you want the specified item to be editable.
+//    return YES;
+//}
+
+const char ALERT_FORGETMENOT_EVENT;
+
+- (IBAction)deleteButtonClicked:(id)sender {
+    if (self.event){
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"Delete"
+                                                           message:[NSString stringWithFormat:@"Delete %@ event?", self.event.name]
+                                                          delegate:self
+                                                 cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+        alertView.tag = 7;
+        objc_setAssociatedObject(alertView, &ALERT_FORGETMENOT_EVENT, self.event, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        [alertView show];        
+    }
+}
+
+-(void)alertView: (UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if ([alertView tag] == 7) // this is delete confirmation
+    {
+        if (buttonIndex == 1) { // they clicked Ok
+            ForgetmenotsEvent *event = objc_getAssociatedObject(alertView, &ALERT_FORGETMENOT_EVENT);
+            
+            [self.appDelegate.managedObjectContext deleteObject:event];
+
+            [self.appDelegate.managedObjectContext save:nil];
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }
+}
+
+#pragma mark - Save functionality
 
 - (IBAction)saveButtonClicked:(id)sender {
     
@@ -239,6 +283,19 @@
     self.selectedDate.textColor = [UIColor whiteColor];
 }
 
+-(void)setupNewEventOrEdit
+{
+    if (self.editEvent)
+    {
+        self.navigationItem.title = @"Edit Event";
+    }
+    else
+    {
+        self.navigationItem.title = @"New Event";
+        [self.deleteCell setHidden:YES];
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -248,6 +305,8 @@
     [self setupDateCell];
     
     self.tableView.backgroundColor = [UIColor clearColor];
+    
+    [self setupNewEventOrEdit];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -283,6 +342,9 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    // Save name for future
+    self.name = self.titleTextField.text;
+    
     if([segue.identifier isEqualToString:@"Choose flowers"])
     {
         FmnChooseFlowersCVC *pickFlowersVC = (FmnChooseFlowersCVC *)segue.destinationViewController;

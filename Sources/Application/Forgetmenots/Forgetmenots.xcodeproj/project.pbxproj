@@ -24,17 +24,18 @@
 		09127D3518F891DA003EBA61 /* FmnFlowerV.m in Sources */ = {isa = PBXBuildFile; fileRef = 09127D3418F891DA003EBA61 /* FmnFlowerV.m */; };
 		0914B62A193A0D75005FE8ED /* FmnFlowersV.m in Sources */ = {isa = PBXBuildFile; fileRef = 0914B629193A0D75005FE8ED /* FmnFlowersV.m */; };
 		0914B62D193A74B8005FE8ED /* UILabel+WhiteUIDatePickerLabels.m in Sources */ = {isa = PBXBuildFile; fileRef = 0914B62C193A74B8005FE8ED /* UILabel+WhiteUIDatePickerLabels.m */; };
+		0914B630193AB740005FE8ED /* ForgetmenotsUITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0914B62F193AB740005FE8ED /* ForgetmenotsUITableView.m */; };
 		091C7E76192D4C64001BEC3C /* Forgetmenots.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 091C7E74192D4C64001BEC3C /* Forgetmenots.xcdatamodeld */; };
 		091C7E82192D50A2001BEC3C /* Flower+Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 091C7E81192D50A2001BEC3C /* Flower+Defaults.m */; };
 		091C7E85192D5B2C001BEC3C /* CoreDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 091C7E84192D5B2C001BEC3C /* CoreDataTableViewController.m */; };
 		091C7E88192D5CCC001BEC3C /* ForgetmenotsEvent+Boilerplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 091C7E87192D5CCC001BEC3C /* ForgetmenotsEvent+Boilerplate.m */; };
-		09435377191DA7890074621F /* ForgetmenotsUITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09435376191DA7890074621F /* ForgetmenotsUITableView.m */; };
+		091DDE70193E6E52000499AC /* FmnAboutUsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 091DDE6F193E6E52000499AC /* FmnAboutUsTVC.m */; };
+		091E8323193E76F700DAB241 /* FmnFeedbackTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 091E8322193E76F700DAB241 /* FmnFeedbackTVC.m */; };
+		091E8326193E884400DAB241 /* FmnTimelineV.m in Sources */ = {isa = PBXBuildFile; fileRef = 091E8325193E884400DAB241 /* FmnTimelineV.m */; };
 		094D8F3019105AF4002C96B2 /* FmnMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 094D8F2F19105AF4002C96B2 /* FmnMenuVC.m */; };
 		094D8F40191456AD002C96B2 /* FmnTimelineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 094D8F3F191456AC002C96B2 /* FmnTimelineVC.m */; };
-		094D8F47191974CA002C96B2 /* PlannedEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 094D8F46191974CA002C96B2 /* PlannedEvent.m */; };
 		094D8F4A191C3AB5002C96B2 /* FmnEventsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 094D8F49191C3AB5002C96B2 /* FmnEventsTVC.m */; };
-		094D8F4D191D4D72002C96B2 /* FmnCreateEventTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 094D8F4C191D4D72002C96B2 /* FmnCreateEventTVC.m */; };
-		094D8F53191D57B0002C96B2 /* ForgetmenotsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 094D8F52191D57B0002C96B2 /* ForgetmenotsTableViewCell.m */; };
+		094D8F4D191D4D72002C96B2 /* FmnCreateEditEventTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 094D8F4C191D4D72002C96B2 /* FmnCreateEditEventTVC.m */; };
 		09760FFC1933BBD00023E761 /* FmnNotificationsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 09760FFB1933BBD00023E761 /* FmnNotificationsTVC.m */; };
 		097610001933E3540023E761 /* background-i4.png in Resources */ = {isa = PBXBuildFile; fileRef = 09760FFD1933E3540023E761 /* background-i4.png */; };
 		097610011933E3540023E761 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 09760FFE1933E3540023E761 /* background.png */; };
@@ -92,6 +93,8 @@
 		0914B629193A0D75005FE8ED /* FmnFlowersV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FmnFlowersV.m; path = Views/FmnFlowersV.m; sourceTree = "<group>"; };
 		0914B62B193A74B8005FE8ED /* UILabel+WhiteUIDatePickerLabels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+WhiteUIDatePickerLabels.h"; path = "Views/UILabel+WhiteUIDatePickerLabels.h"; sourceTree = "<group>"; };
 		0914B62C193A74B8005FE8ED /* UILabel+WhiteUIDatePickerLabels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+WhiteUIDatePickerLabels.m"; path = "Views/UILabel+WhiteUIDatePickerLabels.m"; sourceTree = "<group>"; };
+		0914B62E193AB740005FE8ED /* ForgetmenotsUITableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ForgetmenotsUITableView.h; path = supl/ForgetmenotsUITableView.h; sourceTree = "<group>"; };
+		0914B62F193AB740005FE8ED /* ForgetmenotsUITableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ForgetmenotsUITableView.m; path = supl/ForgetmenotsUITableView.m; sourceTree = "<group>"; };
 		091C7E75192D4C64001BEC3C /* Forgetmenots.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Forgetmenots.xcdatamodel; sourceTree = "<group>"; };
 		091C7E80192D50A2001BEC3C /* Flower+Defaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Flower+Defaults.h"; path = "Model/Flower+Defaults.h"; sourceTree = "<group>"; };
 		091C7E81192D50A2001BEC3C /* Flower+Defaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Flower+Defaults.m"; path = "Model/Flower+Defaults.m"; sourceTree = "<group>"; };
@@ -100,20 +103,20 @@
 		091C7E86192D5CCC001BEC3C /* ForgetmenotsEvent+Boilerplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ForgetmenotsEvent+Boilerplate.h"; path = "Model/ForgetmenotsEvent+Boilerplate.h"; sourceTree = "<group>"; };
 		091C7E87192D5CCC001BEC3C /* ForgetmenotsEvent+Boilerplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ForgetmenotsEvent+Boilerplate.m"; path = "Model/ForgetmenotsEvent+Boilerplate.m"; sourceTree = "<group>"; };
 		091C7E89193145EC001BEC3C /* DatabaseAvailability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DatabaseAvailability.h; path = supl/DatabaseAvailability.h; sourceTree = "<group>"; };
-		09435375191DA7890074621F /* ForgetmenotsUITableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ForgetmenotsUITableView.h; path = supl/ForgetmenotsUITableView.h; sourceTree = "<group>"; };
-		09435376191DA7890074621F /* ForgetmenotsUITableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ForgetmenotsUITableView.m; path = supl/ForgetmenotsUITableView.m; sourceTree = "<group>"; };
+		091DDE6E193E6E52000499AC /* FmnAboutUsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FmnAboutUsTVC.h; sourceTree = "<group>"; };
+		091DDE6F193E6E52000499AC /* FmnAboutUsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FmnAboutUsTVC.m; sourceTree = "<group>"; };
+		091E8321193E76F700DAB241 /* FmnFeedbackTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FmnFeedbackTVC.h; sourceTree = "<group>"; };
+		091E8322193E76F700DAB241 /* FmnFeedbackTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FmnFeedbackTVC.m; sourceTree = "<group>"; };
+		091E8324193E884400DAB241 /* FmnTimelineV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FmnTimelineV.h; path = Views/FmnTimelineV.h; sourceTree = "<group>"; };
+		091E8325193E884400DAB241 /* FmnTimelineV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FmnTimelineV.m; path = Views/FmnTimelineV.m; sourceTree = "<group>"; };
 		094D8F2E19105AF4002C96B2 /* FmnMenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FmnMenuVC.h; sourceTree = "<group>"; };
 		094D8F2F19105AF4002C96B2 /* FmnMenuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FmnMenuVC.m; sourceTree = "<group>"; };
 		094D8F3E191456AC002C96B2 /* FmnTimelineVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FmnTimelineVC.h; sourceTree = "<group>"; };
 		094D8F3F191456AC002C96B2 /* FmnTimelineVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FmnTimelineVC.m; sourceTree = "<group>"; };
-		094D8F45191974CA002C96B2 /* PlannedEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlannedEvent.h; path = Model/PlannedEvent.h; sourceTree = "<group>"; };
-		094D8F46191974CA002C96B2 /* PlannedEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlannedEvent.m; path = Model/PlannedEvent.m; sourceTree = "<group>"; };
 		094D8F48191C3AB5002C96B2 /* FmnEventsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FmnEventsTVC.h; sourceTree = "<group>"; };
 		094D8F49191C3AB5002C96B2 /* FmnEventsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FmnEventsTVC.m; sourceTree = "<group>"; };
-		094D8F4B191D4D72002C96B2 /* FmnCreateEventTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FmnCreateEventTVC.h; sourceTree = "<group>"; };
-		094D8F4C191D4D72002C96B2 /* FmnCreateEventTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FmnCreateEventTVC.m; sourceTree = "<group>"; };
-		094D8F51191D57B0002C96B2 /* ForgetmenotsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ForgetmenotsTableViewCell.h; path = supl/ForgetmenotsTableViewCell.h; sourceTree = "<group>"; };
-		094D8F52191D57B0002C96B2 /* ForgetmenotsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ForgetmenotsTableViewCell.m; path = supl/ForgetmenotsTableViewCell.m; sourceTree = "<group>"; };
+		094D8F4B191D4D72002C96B2 /* FmnCreateEditEventTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FmnCreateEditEventTVC.h; sourceTree = "<group>"; };
+		094D8F4C191D4D72002C96B2 /* FmnCreateEditEventTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FmnCreateEditEventTVC.m; sourceTree = "<group>"; };
 		09760FFA1933BBD00023E761 /* FmnNotificationsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FmnNotificationsTVC.h; sourceTree = "<group>"; };
 		09760FFB1933BBD00023E761 /* FmnNotificationsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FmnNotificationsTVC.m; sourceTree = "<group>"; };
 		09760FFD1933E3540023E761 /* background-i4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-i4.png"; sourceTree = "<group>"; };
@@ -232,6 +235,10 @@
 				09AFCC8E1935175700C105E2 /* FmnMenuLeftTVC.m */,
 				099464A019364CDF00DB622A /* FmnMisc.h */,
 				099464A119364CDF00DB622A /* FmnMisc.m */,
+				091DDE6E193E6E52000499AC /* FmnAboutUsTVC.h */,
+				091DDE6F193E6E52000499AC /* FmnAboutUsTVC.m */,
+				091E8321193E76F700DAB241 /* FmnFeedbackTVC.h */,
+				091E8322193E76F700DAB241 /* FmnFeedbackTVC.m */,
 			);
 			path = Forgetmenots;
 			sourceTree = "<group>";
@@ -281,8 +288,6 @@
 				091C7E81192D50A2001BEC3C /* Flower+Defaults.m */,
 				091C7E86192D5CCC001BEC3C /* ForgetmenotsEvent+Boilerplate.h */,
 				091C7E87192D5CCC001BEC3C /* ForgetmenotsEvent+Boilerplate.m */,
-				094D8F45191974CA002C96B2 /* PlannedEvent.h */,
-				094D8F46191974CA002C96B2 /* PlannedEvent.m */,
 				099A98E219329F6B0030C3BC /* ScheduledEvent.h */,
 				099A98E319329F6B0030C3BC /* ScheduledEvent.m */,
 				099A98E81932A17A0030C3BC /* ScheduledEvent+Boilerplate.h */,
@@ -306,6 +311,8 @@
 				0914B629193A0D75005FE8ED /* FmnFlowersV.m */,
 				0914B62B193A74B8005FE8ED /* UILabel+WhiteUIDatePickerLabels.h */,
 				0914B62C193A74B8005FE8ED /* UILabel+WhiteUIDatePickerLabels.m */,
+				091E8324193E884400DAB241 /* FmnTimelineV.h */,
+				091E8325193E884400DAB241 /* FmnTimelineV.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -325,12 +332,10 @@
 		094D8F54191D57B8002C96B2 /* supl */ = {
 			isa = PBXGroup;
 			children = (
-				094D8F51191D57B0002C96B2 /* ForgetmenotsTableViewCell.h */,
-				094D8F52191D57B0002C96B2 /* ForgetmenotsTableViewCell.m */,
-				09435375191DA7890074621F /* ForgetmenotsUITableView.h */,
-				09435376191DA7890074621F /* ForgetmenotsUITableView.m */,
 				091C7E83192D5B2C001BEC3C /* CoreDataTableViewController.h */,
 				091C7E84192D5B2C001BEC3C /* CoreDataTableViewController.m */,
+				0914B62E193AB740005FE8ED /* ForgetmenotsUITableView.h */,
+				0914B62F193AB740005FE8ED /* ForgetmenotsUITableView.m */,
 			);
 			name = supl;
 			sourceTree = "<group>";
@@ -338,8 +343,8 @@
 		09BABD72191EF3D7003AE68D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				094D8F4B191D4D72002C96B2 /* FmnCreateEventTVC.h */,
-				094D8F4C191D4D72002C96B2 /* FmnCreateEventTVC.m */,
+				094D8F4B191D4D72002C96B2 /* FmnCreateEditEventTVC.h */,
+				094D8F4C191D4D72002C96B2 /* FmnCreateEditEventTVC.m */,
 				09BABD73191EF400003AE68D /* FmnChooseFlowersCVC.h */,
 				09BABD74191EF400003AE68D /* FmnChooseFlowersCVC.m */,
 				09BABD7C192130ED003AE68D /* FmnChooseDateTVC.h */,
@@ -490,25 +495,25 @@
 				099464A219364CDF00DB622A /* FmnMisc.m in Sources */,
 				099464A51936563B00DB622A /* Flower.m in Sources */,
 				091C7E85192D5B2C001BEC3C /* CoreDataTableViewController.m in Sources */,
+				0914B630193AB740005FE8ED /* ForgetmenotsUITableView.m in Sources */,
 				091C7E82192D50A2001BEC3C /* Flower+Defaults.m in Sources */,
 				0914B62A193A0D75005FE8ED /* FmnFlowersV.m in Sources */,
 				094D8F4A191C3AB5002C96B2 /* FmnEventsTVC.m in Sources */,
-				094D8F4D191D4D72002C96B2 /* FmnCreateEventTVC.m in Sources */,
-				094D8F47191974CA002C96B2 /* PlannedEvent.m in Sources */,
+				091E8323193E76F700DAB241 /* FmnFeedbackTVC.m in Sources */,
+				094D8F4D191D4D72002C96B2 /* FmnCreateEditEventTVC.m in Sources */,
 				094D8F3019105AF4002C96B2 /* FmnMenuVC.m in Sources */,
 				094D8F40191456AD002C96B2 /* FmnTimelineVC.m in Sources */,
 				09127D3518F891DA003EBA61 /* FmnFlowerV.m in Sources */,
-				09435377191DA7890074621F /* ForgetmenotsUITableView.m in Sources */,
 				091C7E88192D5CCC001BEC3C /* ForgetmenotsEvent+Boilerplate.m in Sources */,
 				09127D0B18F89067003EBA61 /* ForgetmenotsAppDelegate.m in Sources */,
 				099A98DE19329F6B0030C3BC /* PastEvent.m in Sources */,
 				09AFCC8F1935175700C105E2 /* FmnMenuLeftTVC.m in Sources */,
 				099A98E719329F6C0030C3BC /* ForgetmenotsEvent.m in Sources */,
 				099A98E419329F6B0030C3BC /* ScheduledEvent.m in Sources */,
-				094D8F53191D57B0002C96B2 /* ForgetmenotsTableViewCell.m in Sources */,
 				09BABD7E192130ED003AE68D /* FmnChooseDateTVC.m in Sources */,
 				0914B62D193A74B8005FE8ED /* UILabel+WhiteUIDatePickerLabels.m in Sources */,
 				09BABD78191EF975003AE68D /* FmnFlowerCVCell.m in Sources */,
+				091E8326193E884400DAB241 /* FmnTimelineV.m in Sources */,
 				09760FFC1933BBD00023E761 /* FmnNotificationsTVC.m in Sources */,
 				09AFCC951935DFA900C105E2 /* FmnSettings.m in Sources */,
 				099A98EA1932A17A0030C3BC /* ScheduledEvent+Boilerplate.m in Sources */,
@@ -516,6 +521,7 @@
 				091C7E76192D4C64001BEC3C /* Forgetmenots.xcdatamodeld in Sources */,
 				09127D1118F89067003EBA61 /* ForgetmenotsViewController.m in Sources */,
 				09BABD75191EF400003AE68D /* FmnChooseFlowersCVC.m in Sources */,
+				091DDE70193E6E52000499AC /* FmnAboutUsTVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

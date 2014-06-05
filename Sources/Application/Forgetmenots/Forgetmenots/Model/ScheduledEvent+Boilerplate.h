@@ -9,6 +9,9 @@
 #import "ScheduledEvent.h"
 #import "ForgetmenotsEvent+Boilerplate.h"
 
+#define PLANAHEAD_NUMBER 3
+#define NOTIFICATION_NAME @"name"
+
 @interface ScheduledEvent (Boilerplate)
 
 +(ScheduledEvent *) initWithFlowers:(NSSet *)flowers
@@ -16,7 +19,14 @@
                                date:(NSDate *)date
                    inManagedContext:(NSManagedObjectContext *)context;
 
-+(NSArray *) planEventsWithForgetmenotsEvent:(ForgetmenotsEvent *)fmnEvent;
+
++(NSArray *)notificationsByName:(NSString *)name withNotifications:(NSArray *)notifications;
+
++(NSArray *) planAheadEventsWithForgetmenotsEvent:(ForgetmenotsEvent *)event fromDate:(NSDate *)date;
+
++(NSArray *)allInManagedContext:(NSManagedObjectContext *)context;
+
++(void) deleteAllInManagedContext:(NSManagedObjectContext *)context;
 
 +(void) deleteAllWithName:(NSString *)name inManagedContext:(NSManagedObjectContext *)context;
 

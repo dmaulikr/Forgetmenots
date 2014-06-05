@@ -9,6 +9,7 @@
 #import "ForgetmenotsAppDelegate.h"
 #import "Flower+Defaults.h"
 #import "ForgetmenotsEvent+Boilerplate.h"
+#import "ScheduledEvent+Boilerplate.h"
 #import "DatabaseAvailability.h"
 #import "FmnSettings.h"
 #import "FmnMisc.h"
@@ -24,9 +25,48 @@ static NSManagedObjectContext* theObjectContext;
 #define YES_STRING @"YES"
 #define NO_STRING @"NO"
 
+-(void)cleanupOldNotifications
+{
+    NSString * loaded = [FmnSettings getSettingsStringWithKey:CLEANED_UP_OLD_NOTIFICATIONS];
+    //XXX to be removed on deploy to AppStore
+    loaded = NO_STRING;
+    if (loaded && [loaded isEqualToString:YES_STRING])
+    {
+        // do nothing, old notifications were cleaned out already
+    }
+    else
+    {
+        [FmnSettings saveSettingsString:CLEANED_UP_OLD_NOTIFICATIONS withKey:YES_STRING];
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
+        
+        [ScheduledEvent deleteAllInManagedContext:self.managedObjectContext];
+    }
+}
+
+-(void)scheduleLaggingBehind
+{
+    NSArray * forgetmenots = [ForgetmenotsEvent allInManagedContext:self.managedObjectContext];
+    NSArray * allNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    
+    for (ForgetmenotsEvent * event in forgetmenots)
+    {
+        NSArray * notifications = [ScheduledEvent notificationsByName:event.name withNotifications:allNotifications];
+        NSDate * from = ((UILocalNotification *)[notifications lastObject]).fireDate;
+        if (!from)
+        {
+            from = [NSDate date];
+        }
+        if ([notifications count] < PLANAHEAD_NUMBER)
+        {
+            [ScheduledEvent planAheadEventsWithForgetmenotsEvent:event fromDate:from];
+        }
+    }
+}
+
 -(void)loadInNecessaryDefaultFlowers
 {
     NSString * loaded = [FmnSettings getSettingsStringWithKey:LOADED_DEFAULT_FLOWERS];
+    //XXX to be removed on deploy to AppStore
     loaded = NO_STRING;
     if (loaded && [loaded isEqualToString:YES_STRING])
     {
@@ -102,17 +142,19 @@ static NSManagedObjectContext* theObjectContext;
 -(void)loadDefaultEvents
 {
     //load some defaults;
-    [ForgetmenotsEvent initWithFlowers:[NSSet setWithObjects:[Flower flowerWithName:@"Forgetmenot" inManagedContext:self.managedObjectContext], [Flower flowerWithName:@"Tulip" inManagedContext:self.managedObjectContext], nil]
-                                  name:@"Ally's birhtday"
-                                  date:[NSDate dateWithTimeIntervalSince1970:1400107843]
-                      inManagedContext:self.managedObjectContext]; // 14 may 2014
     
-    [ForgetmenotsEvent initWithFlowers:[NSSet setWithObjects:[Flower flowerWithName:@"Lilium" inManagedContext:self.managedObjectContext], [Flower flowerWithName:@"Amaryllis" inManagedContext:self.managedObjectContext], nil]
-                                  name:@"Ally Monthly"
-                                nTimes:2
-                           inTimeUnits:1
-                              timeUnit:MONTH
-                             withStart:[NSDate date] inManagedContext:self.managedObjectContext];
+    // XXX some weird shite with this one
+//    [ForgetmenotsEvent initWithFlowers:[NSSet setWithObjects:[Flower flowerWithName:@"Forgetmenot" inManagedContext:self.managedObjectContext], [Flower flowerWithName:@"Tulip" inManagedContext:self.managedObjectContext], nil]
+//                                  name:@"Ally's birhtday"
+//                                  date:[NSDate dateWithTimeIntervalSince1970:1400107843]
+//                      inManagedContext:self.managedObjectContext]; // 14 may 2014
+    
+//    [ForgetmenotsEvent initWithFlowers:[NSSet setWithObjects:[Flower flowerWithName:@"Lilium" inManagedContext:self.managedObjectContext], [Flower flowerWithName:@"Amaryllis" inManagedContext:self.managedObjectContext], nil]
+//                                  name:@"Ally Monthly"
+//                                nTimes:2
+//                           inTimeUnits:1
+//                              timeUnit:MONTH
+//                             withStart:[NSDate date] inManagedContext:self.managedObjectContext];
 }
 
 -(void) setUIAppearanceStyles
@@ -140,7 +182,15 @@ static NSManagedObjectContext* theObjectContext;
 {
     [self notifyWithManagedContext];
     [self loadInNecessaryDefaultFlowers];
+    
     [self loadDefaultEvents];
+    
+    //XXX in a different thread?
+    {
+        [self cleanupOldNotifications];
+        [self scheduleLaggingBehind];
+    }
+    
     [self setUIAppearanceStyles];
     
     // Override point for customization after application launch.

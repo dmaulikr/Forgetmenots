@@ -9,7 +9,7 @@
             <objects>
                 <tableViewController id="Chd-Z0-V03" customClass="FmnEventsTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Wcv-53-jbM">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -64,70 +64,71 @@
             <objects>
                 <viewController id="jda-zD-YZo" customClass="FmnTimelineVC" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Ixm-Cg-pQu"/>
-                        <viewControllerLayoutGuide type="bottom" id="T8y-NK-M15"/>
+                        <viewControllerLayoutGuide type="top" id="Cfj-bE-r9H"/>
+                        <viewControllerLayoutGuide type="bottom" id="daY-wo-fij"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="zdJ-MO-tXz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G4w-30-7yT" customClass="FmnFlowerV">
-                                <rect key="frame" x="35" y="159" width="250" height="250"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
-                            <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFz-Jz-RmD">
-                                <rect key="frame" x="40" y="420" width="240" height="128"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="yEA-pi-smN">
+                                <rect key="frame" x="40" y="335" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="7ta-38-te8"/>
-                                </constraints>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">Birthday Kim
-October 29th Gerbera</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+29-th of October
+Boquet
+</string>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b9d-BL-UxP">
+                                <rect key="frame" x="40" y="176" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </scrollView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="gFz-Jz-RmD" firstAttribute="top" secondItem="G4w-30-7yT" secondAttribute="bottom" constant="11" id="8aH-Sh-naT"/>
-                            <constraint firstItem="gFz-Jz-RmD" firstAttribute="centerX" secondItem="G4w-30-7yT" secondAttribute="centerX" id="S7Q-pg-seO"/>
-                            <constraint firstItem="gFz-Jz-RmD" firstAttribute="centerX" secondItem="zdJ-MO-tXz" secondAttribute="centerX" id="f5C-Eh-LxT"/>
-                            <constraint firstAttribute="bottom" secondItem="gFz-Jz-RmD" secondAttribute="bottom" constant="20" symbolic="YES" id="jre-v8-kCZ"/>
-                            <constraint firstItem="gFz-Jz-RmD" firstAttribute="leading" secondItem="zdJ-MO-tXz" secondAttribute="leading" constant="40" id="zX2-4N-Tjl"/>
+                            <constraint firstItem="b9d-BL-UxP" firstAttribute="leading" secondItem="zdJ-MO-tXz" secondAttribute="leading" constant="40" id="0oW-Uu-ovc"/>
+                            <constraint firstItem="yEA-pi-smN" firstAttribute="centerX" secondItem="zdJ-MO-tXz" secondAttribute="centerX" id="GKO-3k-ZSE"/>
+                            <constraint firstItem="b9d-BL-UxP" firstAttribute="trailing" secondItem="yEA-pi-smN" secondAttribute="trailing" id="OSl-wU-xJl"/>
+                            <constraint firstItem="yEA-pi-smN" firstAttribute="top" secondItem="b9d-BL-UxP" secondAttribute="bottom" constant="31" id="R8O-UI-hb9"/>
+                            <constraint firstItem="b9d-BL-UxP" firstAttribute="centerY" secondItem="zdJ-MO-tXz" secondAttribute="centerY" id="S7p-6c-pqi"/>
+                            <constraint firstItem="b9d-BL-UxP" firstAttribute="leading" secondItem="yEA-pi-smN" secondAttribute="leading" id="X3a-9H-Gww"/>
+                            <constraint firstItem="b9d-BL-UxP" firstAttribute="top" secondItem="Cfj-bE-r9H" secondAttribute="bottom" constant="112" id="ipP-MC-A9N"/>
+                            <constraint firstItem="daY-wo-fij" firstAttribute="top" secondItem="yEA-pi-smN" secondAttribute="bottom" constant="17" id="xx3-Ky-rkK"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Timeline" id="jBl-3D-4XP"/>
                     <connections>
-                        <outlet property="flowerView" destination="G4w-30-7yT" id="HLF-XL-AfL"/>
                         <outlet property="nav" destination="jBl-3D-4XP" id="QDc-hf-tqt"/>
-                        <outlet property="upcomingEventInfo" destination="gFz-Jz-RmD" id="2vm-Df-LSL"/>
+                        <outlet property="scrollview" destination="b9d-BL-UxP" id="Srw-QM-abQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="elq-pO-FO6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1315" y="-1206"/>
         </scene>
-        <!--Fmn Create EventTVC - New Event-->
+        <!--Fmn Create Edit EventTVC - New/Edit Event-->
         <scene sceneID="wXN-ay-z7h">
             <objects>
-                <tableViewController id="Ukz-77-wJ2" customClass="FmnCreateEventTVC" sceneMemberID="viewController">
+                <tableViewController id="Ukz-77-wJ2" customClass="FmnCreateEditEventTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ufB-xu-CWk" customClass="ForgetmenotsUITableView">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
                             <tableViewSection id="PUo-Ss-fq4">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Flowers" rowHeight="320" id="CGf-cT-b6Z">
-                                        <rect key="frame" x="0.0" y="64" width="320" height="320"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Flowers" rowHeight="280" id="CGf-cT-b6Z">
+                                        <rect key="frame" x="0.0" y="64" width="320" height="280"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CGf-cT-b6Z" id="2kH-OM-shn">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="320"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="280"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="95a-gv-VBb" customClass="FmnFlowersV">
-                                                    <rect key="frame" x="20" y="20" width="268" height="280"/>
+                                                    <rect key="frame" x="20" y="20" width="268" height="240"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                 </view>
@@ -140,7 +141,7 @@ October 29th Gerbera</string>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Title" textLabel="8tL-et-2YY" detailTextLabel="qMx-FV-MLe" style="IBUITableViewCellStyleValue1" id="wSx-XQ-Xum">
-                                        <rect key="frame" x="0.0" y="384" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="344" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wSx-XQ-Xum" id="gSv-3P-hAA">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -164,7 +165,7 @@ October 29th Gerbera</string>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Date" textLabel="ryU-HX-GG4" style="IBUITableViewCellStyleDefault" id="NyS-2G-BEL">
-                                        <rect key="frame" x="0.0" y="428" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="388" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NyS-2G-BEL" id="6ol-uq-JlQ">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="44"/>
@@ -183,6 +184,29 @@ October 29th Gerbera</string>
                                             <segue destination="Rqh-Jy-HaR" kind="push" identifier="Choose date" id="AQ5-Ce-KzZ"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="lbf-7l-7Jh">
+                                        <rect key="frame" x="0.0" y="432" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lbf-7l-7Jh" id="BC4-3Y-mLX">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RwQ-qh-4r2">
+                                                    <rect key="frame" x="20" y="7" width="280" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <state key="normal" title="Delete">
+                                                        <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="deleteButtonClicked:" destination="Ukz-77-wJ2" eventType="touchUpInside" id="RIj-Q4-BJc"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -191,7 +215,7 @@ October 29th Gerbera</string>
                             <outlet property="delegate" destination="Ukz-77-wJ2" id="nQU-US-5v5"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="New Event" id="SpQ-Km-deX" colorLabel="IBBuiltInLabel-Gray">
+                    <navigationItem key="navigationItem" title="New/Edit Event" id="SpQ-Km-deX" colorLabel="IBBuiltInLabel-Gray">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="0uS-Bz-KmH">
                             <connections>
                                 <action selector="saveButtonClicked:" destination="Ukz-77-wJ2" id="3uy-Oo-GuH"/>
@@ -200,20 +224,21 @@ October 29th Gerbera</string>
                     </navigationItem>
                     <connections>
                         <outlet property="chosenFlowers" destination="95a-gv-VBb" id="Zof-U9-c69"/>
+                        <outlet property="deleteCell" destination="lbf-7l-7Jh" id="S36-B4-RW3"/>
                         <outlet property="selectedDate" destination="ryU-HX-GG4" id="HVQ-p2-tzT"/>
                         <outlet property="titleCell" destination="wSx-XQ-Xum" id="Ac7-Sb-qK6"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CC0-Fg-lHh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1885" y="-491"/>
+            <point key="canvasLocation" x="1835" y="-491"/>
         </scene>
         <!--Fmn Choose FlowersCVC - Flowers-->
         <scene sceneID="8d0-ZS-gZB">
             <objects>
                 <collectionViewController autoresizesArchivedViewToFullSize="NO" id="NIJ-8A-1QW" customClass="FmnChooseFlowersCVC" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="white" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="P0c-2m-6zp">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="OpY-9M-noh">
@@ -257,14 +282,14 @@ October 29th Gerbera</string>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vKS-SM-hoh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2605" y="-829"/>
+            <point key="canvasLocation" x="2478" y="-829"/>
         </scene>
         <!--Fmn Choose DateTVC - Date-->
         <scene sceneID="r3w-Iy-JDK">
             <objects>
                 <tableViewController id="Rqh-Jy-HaR" customClass="FmnChooseDateTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="lsp-YI-NZ4">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
@@ -321,18 +346,18 @@ October 29th Gerbera</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ua5-T6-Jts" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2611" y="-154"/>
+            <point key="canvasLocation" x="2484" y="-154"/>
         </scene>
         <!--Fmn MenuVC-->
         <scene sceneID="cuk-lE-E5j">
             <objects>
                 <viewController id="bBd-RX-aGP" customClass="FmnMenuVC" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="7wI-Xb-1kj"/>
-                        <viewControllerLayoutGuide type="bottom" id="r7F-CI-vmf"/>
+                        <viewControllerLayoutGuide type="top" id="g5X-bH-HkJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="VjL-8y-n47"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="I12-9a-Efo">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -343,14 +368,14 @@ October 29th Gerbera</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2PI-Xx-s4d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-448" y="-124"/>
+            <point key="canvasLocation" x="-209" y="-1206"/>
         </scene>
         <!--Fmn Menu LeftTVC-->
         <scene sceneID="znm-Eh-tKU">
             <objects>
                 <tableViewController id="hbq-tp-grQ" customClass="FmnMenuLeftTVC" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" indicatorStyle="black" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="XBp-EZ-0p7">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" indicatorStyle="black" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="XBp-EZ-0p7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -362,7 +387,7 @@ October 29th Gerbera</string>
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fla-xJ-hWF" id="BPn-fb-Nax">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Timeline" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lm1-ay-rO5">
@@ -380,7 +405,7 @@ October 29th Gerbera</string>
                                         <rect key="frame" x="0.0" y="44" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sZa-DN-gJb" id="hRs-cZ-dUN">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Events" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qrp-4J-3ds">
@@ -398,7 +423,7 @@ October 29th Gerbera</string>
                                         <rect key="frame" x="0.0" y="88" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3Li-Ef-hRg" id="T8x-Lu-3It">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Notifications" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A69-tg-pWG">
@@ -416,7 +441,7 @@ October 29th Gerbera</string>
                                         <rect key="frame" x="0.0" y="132" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Uxf-cl-aod" id="S7E-8S-jrO">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="About Us" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKN-GG-YIm">
@@ -430,11 +455,11 @@ October 29th Gerbera</string>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="3IH-fc-L8t">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="3IH-fc-L8t">
                                         <rect key="frame" x="0.0" y="176" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3IH-fc-L8t" id="7kI-j1-N0G">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Feedback" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbs-R7-NUQ">
@@ -460,12 +485,13 @@ October 29th Gerbera</string>
                         <segue destination="GO7-cZ-AIO" kind="custom" identifier="myEventsSegue" customClass="AMSlideMenuContentSegue" id="05h-sj-3eI"/>
                         <segue destination="t4H-cn-JUc" kind="custom" identifier="timelineSegue" customClass="AMSlideMenuContentSegue" id="bfq-u8-KB7"/>
                         <segue destination="cVe-ch-SYp" kind="custom" identifier="notificationsSegue" customClass="AMSlideMenuContentSegue" id="IEG-I7-1sV"/>
-                        <segue destination="RWR-ha-dJJ" kind="custom" identifier="feedbackSegue" customClass="AMSlideMenuContentSegue" id="0Py-OV-dvP"/>
+                        <segue destination="RWR-ha-dJJ" kind="custom" identifier="aboutUsSegue" customClass="AMSlideMenuContentSegue" id="chU-gn-qwV"/>
+                        <segue destination="NlC-wb-Cpb" kind="custom" identifier="feedbackSegue" customClass="AMSlideMenuContentSegue" id="PO4-Yv-BeD"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I0i-T2-Lze" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="27" y="-124"/>
+            <point key="canvasLocation" x="249" y="-1206"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="E31-5l-oGj">
@@ -483,7 +509,7 @@ October 29th Gerbera</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y3m-A5-Zb6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-934" y="-124"/>
+            <point key="canvasLocation" x="-656" y="-1206"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="HQz-Nm-BMJ">
@@ -530,7 +556,7 @@ October 29th Gerbera</string>
             <objects>
                 <tableViewController id="1yM-jZ-rat" customClass="FmnNotificationsTVC" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="KUD-Fa-vtx">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -590,51 +616,69 @@ October 29th Gerbera</string>
             </objects>
             <point key="canvasLocation" x="789" y="237"/>
         </scene>
-        <!--Table View Controller - Feedback-->
+        <!--Fmn About UsTVC - About Us-->
         <scene sceneID="R66-wY-s7g">
             <objects>
-                <tableViewController id="GGo-Mi-eAH" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Gj1-pt-obA">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                <tableViewController id="GGo-Mi-eAH" customClass="FmnAboutUsTVC" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Gj1-pt-obA">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
                             <tableViewSection id="5wc-GX-HHC">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="28K-JU-2rx">
-                                        <rect key="frame" x="0.0" y="64" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="28K-JU-2rx" id="Zh9-tc-Ojy">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="220" id="1zg-Yk-iSM">
-                                        <rect key="frame" x="0.0" y="108" width="320" height="220"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="176" id="Mxf-0b-0Tx">
+                                        <rect key="frame" x="0.0" y="64" width="320" height="176"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1zg-Yk-iSM" id="KZc-Aj-CCg">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="219"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mxf-0b-0Tx" id="tJl-ED-vmP">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="176"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="xYl-ZK-LIr">
-                                                    <rect key="frame" x="113" y="170" width="94" height="29"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                </stepper>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="asdsadsad" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IxT-O6-DnI">
-                                                    <rect key="frame" x="110" y="95" width="97" height="30"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Team" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubz-Qf-MYv">
+                                                    <rect key="frame" x="20" y="20" width="41" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xve-GX-xz0">
-                                                    <rect key="frame" x="248" y="170" width="46" height="30"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s1d-nX-Rbe">
+                                                    <rect key="frame" x="20" y="49" width="286" height="126"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Button">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <string key="text">Ilya A. Pimenov – idea and hacking
+Kay Van 't Hof  – superb design
+Seffie Treistman – brainpower
+</string>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="176" id="erJ-f8-zdE">
+                                        <rect key="frame" x="0.0" y="240" width="320" height="176"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="erJ-f8-zdE" id="ZBG-0A-vG6">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="176"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Why" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MOV-7l-frA">
+                                                    <rect key="frame" x="20" y="20" width="34" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Because at current pace of life young people forget about those close to them, being lost in their daily routine" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KUe-TP-CMQ">
+                                                    <rect key="frame" x="20" y="49" width="280" height="106"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -644,11 +688,17 @@ October 29th Gerbera</string>
                             <outlet property="delegate" destination="GGo-Mi-eAH" id="qpd-C1-NP9"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Feedback" id="mwB-Bt-PeB"/>
+                    <navigationItem key="navigationItem" title="About Us" id="mwB-Bt-PeB"/>
+                    <connections>
+                        <outlet property="teamBody" destination="s1d-nX-Rbe" id="aVw-xr-sYM"/>
+                        <outlet property="teamHeadline" destination="ubz-Qf-MYv" id="ki3-of-3i1"/>
+                        <outlet property="whyBody" destination="KUe-TP-CMQ" id="XLQ-V2-uOJ"/>
+                        <outlet property="whyHeadline" destination="MOV-7l-frA" id="br5-Jc-uFk"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kv8-fF-IOZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1315" y="965"/>
+            <point key="canvasLocation" x="1315" y="901"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="TV3-NT-Lgb">
@@ -666,13 +716,66 @@ October 29th Gerbera</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UgA-Au-FXN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="789" y="965"/>
+            <point key="canvasLocation" x="789" y="901"/>
+        </scene>
+        <!--Fmn FeedbackTVC - Feedback-->
+        <scene sceneID="cbK-JV-BkR">
+            <objects>
+                <tableViewController id="Eqb-Aw-W3S" customClass="FmnFeedbackTVC" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="HjG-SQ-d9Z">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection id="MJR-Fx-8wX">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="IkN-qZ-NDw">
+                                        <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IkN-qZ-NDw" id="vIb-O3-eP3">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="Eqb-Aw-W3S" id="pb5-4v-SQP"/>
+                            <outlet property="delegate" destination="Eqb-Aw-W3S" id="pnV-jQ-PPX"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Feedback" id="7xg-Br-eVd"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LGB-rQ-yFd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1315" y="1559"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="4hb-fv-xm2">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NlC-wb-Cpb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="jsg-8Q-U5v"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7TA-lm-26i">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Eqb-Aw-W3S" kind="relationship" relationship="rootViewController" id="rn9-d0-4vG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XMQ-pd-mNU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="789" y="1559"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="4YF-BP-Bul"/>

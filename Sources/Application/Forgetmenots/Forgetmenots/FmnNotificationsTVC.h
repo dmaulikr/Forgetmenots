@@ -10,4 +10,6 @@
 
 @interface FmnNotificationsTVC : UITableViewController
 
+@property (nonatomic, strong) NSArray * notifications;
+
 @end

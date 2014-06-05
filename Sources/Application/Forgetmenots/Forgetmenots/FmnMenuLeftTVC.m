@@ -30,6 +30,20 @@
     // left and top margin
     UIEdgeInsets inset = UIEdgeInsetsMake(20, 20, 0, 0);
     self.tableView.contentInset = inset;
+    
+    for (int i = 0; i < [self.tableView numberOfSections]; i++)
+    {
+        NSInteger rows =  [self.tableView numberOfRowsInSection:i];
+        for (int row = 0; row < rows; row++) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:i];
+            UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+
+            UIView * bgColorView = [[UIView alloc] init];
+            [bgColorView setBackgroundColor:[UIColor blackColor]];
+            
+            [cell setSelectedBackgroundView:bgColorView];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning

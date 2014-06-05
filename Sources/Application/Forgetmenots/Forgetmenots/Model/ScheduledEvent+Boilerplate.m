@@ -7,6 +7,7 @@
 //
 
 #import "ScheduledEvent+Boilerplate.h"
+#import "Flower+Defaults.h"
 
 @implementation ScheduledEvent (Boilerplate)
 
@@ -14,36 +15,39 @@
 
 -(void)scheduleLocalNotification
 {
-    //XXX create notification here
-    NSLog(@"semi Created local push notification");
-    
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     notification.fireDate = self.date;
     notification.alertBody = self.name;
+    notification.userInfo = @{ NOTIFICATION_NAME: self.name };
+    notification.soundName = UILocalNotificationDefaultSoundName;
+    notification.applicationIconBadgeNumber = 1;
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+}
+
++(NSArray *)notificationsByName:(NSString *)name withNotifications:(NSArray *)notifications
+{
+    NSMutableArray * result = [[NSMutableArray alloc]init];
+    
+    for (UILocalNotification * n in notifications)
+    {
+        if ([[n.userInfo valueForKey:NOTIFICATION_NAME] isEqualToString:name])
+        {
+            [result addObject:n];
+        }
+    }
+    
+    return [result copy];
 }
 
 -(void)prepareForDeletion
 {
-    //XXX todo
+    NSArray * allRelevant = [ScheduledEvent notificationsByName:self.name
+                                              withNotifications:[[UIApplication sharedApplication] scheduledLocalNotifications]];
     
-    
-//    UIApplication *app = [UIApplication sharedApplication];
-//    NSArray *eventArray = [app scheduledLocalNotifications];
-//    for (int i=0; i < [eventArray count]; i++)
-//    {
-//        UILocalNotification* oneEvent = [eventArray objectAtIndex:i];
-//        NSDictionary *userInfoCurrent = oneEvent.userInfo;
-//        NSString *name = [NSString stringWithFormat:@"%@",[userInfoCurrent valueForKey:@"uid"]];
-//        if ([uid isEqualToString:uidtodelete])
-//        {
-//            //Cancelling local notification
-//            [app cancelLocalNotification:oneEvent];
-//            break;
-//        }
-//    }
-//    //XXX remove notification standing for this event
-//    NSLog(@"semi Removed local push notification");
+    for (UILocalNotification * n in allRelevant)
+    {
+        [[UIApplication sharedApplication] cancelLocalNotification:n];
+    }
 }
 
 #pragma mark - Database handling routine
@@ -106,31 +110,94 @@
     }
 }
 
-//XXX currently plans only for a single year ahead
-//XXX no random factor at all
-#define SECONDS_IN_A_YEAR 31556900
++(void)deleteAllInManagedContext:(NSManagedObjectContext *)context
+{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ScheduledEvent"];
+    request.predicate = [NSPredicate predicateWithFormat:@"name != nil"];
+    
+    NSError *error;
+    NSArray *matches = [context executeFetchRequest:request error:&error];
+    
+    if (!matches || error){
+        // handle error
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+    }
+    else if ([matches count])
+    {
+        for (ScheduledEvent* event in matches)
+        {
+            [context deleteObject:event];
+        }
+        [context save:nil];
+    }
+}
 
-+(NSArray *) planEventsWithForgetmenotsEvent:(ForgetmenotsEvent *)fmnEvent
++(NSDate *)date:(NSDate *)date AtHour:(int)hour
+{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSMinuteCalendarUnit|NSSecondCalendarUnit fromDate:date];
+    [components setHour:hour];
+    return [calendar dateFromComponents:components];
+}
+
++(NSDate *)yearLaterDate:(NSDate *)date
+{
+    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+    [dateComponents setYear:1];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    return [calendar dateByAddingComponents:dateComponents toDate:date options:0];
+}
+
++(NSArray *) planAheadEventsWithForgetmenotsEvent:(ForgetmenotsEvent *)event fromDate:(NSDate *)date
 {
     NSMutableArray *result = [[NSMutableArray alloc] init];
     
-    if (fmnEvent.random)
+    if (event)
     {
-        NSTimeInterval startFromEpoch = [fmnEvent.start timeIntervalSince1970];
-        for (int i = 0; i < SECONDS_IN_A_YEAR / [fmnEvent.timeUnit intValue]; i++)
-        {
-            //xxx add actual randomness here, like +- 2 days
-            NSDate* randomDate = [[NSDate alloc] initWithTimeIntervalSince1970:startFromEpoch + i * [fmnEvent.timeUnit intValue]];
-            [result addObject:[ScheduledEvent initWithFlowers:fmnEvent.flowers
-                                                         name:fmnEvent.name
-                                                         date:randomDate
-                                             inManagedContext:fmnEvent.managedObjectContext]];
+        NSTimeInterval start = [date timeIntervalSince1970];
+        if ([event.random boolValue]) {
+            long step = [event.timeUnit longValue] * [event.inTimeUnits longValue] / [event.nTimes longValue];
+            if (step < DAY)
+            {
+                step = DAY;
+            }
+            
+            // Schedule at 5 pm PLANAHEAD_NUMBER times
+            for (int i = 0; i < PLANAHEAD_NUMBER; i++)
+            {
+                // XXX todo add random factor, like +-2 days if TIME_UNIT > week
+                NSDate* eventDate = [[NSDate alloc] initWithTimeIntervalSince1970:start + (i + 1) * step];
+                eventDate = [ScheduledEvent date:eventDate AtHour:17];
+                
+                [result addObject:[ScheduledEvent initWithFlowers:event.flowers
+                                                             name:event.name
+                                                             date:eventDate
+                                                 inManagedContext:event.managedObjectContext]];
+            }
         }
-    }else {
-        [result addObject:[ScheduledEvent initWithFlowers:fmnEvent.flowers
-                                                     name:fmnEvent.name
-                                                     date:fmnEvent.date
-                                         inManagedContext:fmnEvent.managedObjectContext]];
+        else
+        {
+            NSDate* eventDate = [[NSDate alloc] initWithTimeIntervalSince1970:start];
+            eventDate = [ScheduledEvent date:eventDate AtHour:9];
+            // Schedule PLANAHEAD_NUMBER consequent notifications each year at 9 am
+            if ([[NSDate date] compare:eventDate] == NSOrderedAscending)
+            {
+                // We are cool
+            }
+            else
+            {
+                // Starting next year
+                eventDate = [ScheduledEvent yearLaterDate:date];
+            }
+            for (int i = 0; i < PLANAHEAD_NUMBER; i++)
+            {
+                [result addObject:[ScheduledEvent initWithFlowers:event.flowers
+                                                             name:event.name
+                                                             date:eventDate
+                                                 inManagedContext:event.managedObjectContext]];
+                eventDate = [ScheduledEvent yearLaterDate:eventDate];
+            }
+        }
     }
     
     return [result sortedArrayUsingSelector:@selector(compare:)];
@@ -140,5 +207,42 @@
 {
     return [self.date compare:anotherEvent.date];
 }
+
++(NSArray *)allInManagedContext:(NSManagedObjectContext *)context
+{
+    NSArray *result = nil;
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ScheduledEvent"];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"name != nil"]];
+    
+    NSError *error;
+    NSArray *matches = [context executeFetchRequest:request error:&error];
+    
+    if (!matches || error){
+        // handle error
+    }
+    else if ([matches count])
+    {
+        result = matches;
+    }
+    else
+    {
+        //nothing here
+    }
+    
+    return result;
+}
+
+- (NSString *)description
+{
+    NSMutableArray *chosenFlowers = [[NSMutableArray alloc] init];
+    for (Flower *f in self.flowers)
+    {
+        [chosenFlowers addObject:f.name];
+    }
+    NSString * flowersString = [chosenFlowers componentsJoinedByString:@", "];
+    return [NSString stringWithFormat: @"%@\n%@\n%@", self.name, self.date, flowersString];
+}
+
 
 @end
