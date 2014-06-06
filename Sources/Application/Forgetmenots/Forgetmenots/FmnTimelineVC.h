@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "ForgetmenotsAppDelegate.h"
+#import "FmnTimelineV.h"
 
 @interface FmnTimelineVC : UIViewController
 
 @property (nonatomic, weak) ForgetmenotsAppDelegate *appDelegate;
+
+@property (nonatomic, strong) FmnTimelineV * timelineView;
 
 @property (nonatomic) int upcomingEventIndex;
 

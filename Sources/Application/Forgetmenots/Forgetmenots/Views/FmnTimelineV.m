@@ -55,21 +55,18 @@
 -(void)resize
 {
     CGFloat width = [self.scheduledEvents count] * self.step;
-    CGRect newFrame = CGRectMake(self.frame.origin.x,
-                                 self.frame.origin.y,
-                                 width,
-                                 self.frame.size.height);
     
+    UIView * _view = self;
     UIView * superview = self.superview;
-    
+
     if ([superview isKindOfClass:[UIScrollView class]])
     {
-        UIScrollView * scrollview =(UIScrollView *)self.superview;
-        
-        [scrollview setContentSize:newFrame.size];
+        NSString * widthConstraint = [NSString stringWithFormat:@"H:|[_view(%f)]|", width];
+        [superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:widthConstraint
+                                                                          options:0
+                                                                          metrics:nil
+                                                                            views:NSDictionaryOfVariableBindings(_view)]];
     }
-    
-    [self setFrame:newFrame];
 }
 
 -(void)setScheduledEvents:(NSArray *)scheduledEvents

@@ -64,14 +64,14 @@
             <objects>
                 <viewController id="jda-zD-YZo" customClass="FmnTimelineVC" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="7b1-XW-RJs"/>
-                        <viewControllerLayoutGuide type="bottom" id="sL4-qQ-8ZJ"/>
+                        <viewControllerLayoutGuide type="top" id="NqK-Ht-bgP"/>
+                        <viewControllerLayoutGuide type="bottom" id="exI-fO-oLd"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="zdJ-MO-tXz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b9d-BL-UxP">
+                            <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b9d-BL-UxP">
                                 <rect key="frame" x="20" y="150" width="280" height="180"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -85,14 +85,14 @@
                             </label>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="oc1-oq-L2f" firstAttribute="top" secondItem="b9d-BL-UxP" secondAttribute="bottom" constant="8" symbolic="YES" id="PsY-81-ogD"/>
-                            <constraint firstItem="b9d-BL-UxP" firstAttribute="top" secondItem="7b1-XW-RJs" secondAttribute="bottom" constant="86" id="VdC-Pb-TPP"/>
-                            <constraint firstItem="b9d-BL-UxP" firstAttribute="trailing" secondItem="oc1-oq-L2f" secondAttribute="trailing" id="det-Eu-C9D"/>
-                            <constraint firstAttribute="trailing" secondItem="b9d-BL-UxP" secondAttribute="trailing" constant="20" symbolic="YES" id="gXI-1q-cg1"/>
-                            <constraint firstItem="b9d-BL-UxP" firstAttribute="leading" secondItem="zdJ-MO-tXz" secondAttribute="leading" constant="20" symbolic="YES" id="kkM-wP-Py5"/>
-                            <constraint firstItem="b9d-BL-UxP" firstAttribute="centerY" secondItem="zdJ-MO-tXz" secondAttribute="centerY" id="lI4-Op-Rka"/>
-                            <constraint firstAttribute="bottom" secondItem="oc1-oq-L2f" secondAttribute="bottom" constant="20" symbolic="YES" id="qn6-bW-iA7"/>
-                            <constraint firstItem="oc1-oq-L2f" firstAttribute="leading" secondItem="b9d-BL-UxP" secondAttribute="leading" id="t5r-7C-54o"/>
+                            <constraint firstItem="oc1-oq-L2f" firstAttribute="top" secondItem="b9d-BL-UxP" secondAttribute="bottom" constant="8" symbolic="YES" id="8gv-FC-T0F"/>
+                            <constraint firstAttribute="trailing" secondItem="b9d-BL-UxP" secondAttribute="trailing" constant="20" symbolic="YES" id="FhY-dJ-vKl"/>
+                            <constraint firstItem="b9d-BL-UxP" firstAttribute="top" secondItem="NqK-Ht-bgP" secondAttribute="bottom" constant="86" id="Hfg-rO-DDH"/>
+                            <constraint firstItem="b9d-BL-UxP" firstAttribute="leading" secondItem="zdJ-MO-tXz" secondAttribute="leading" constant="20" symbolic="YES" id="LvE-01-qJn"/>
+                            <constraint firstItem="oc1-oq-L2f" firstAttribute="leading" secondItem="b9d-BL-UxP" secondAttribute="leading" id="TlD-Uq-Tud"/>
+                            <constraint firstItem="b9d-BL-UxP" firstAttribute="centerY" secondItem="zdJ-MO-tXz" secondAttribute="centerY" id="Y5V-b3-elP"/>
+                            <constraint firstItem="b9d-BL-UxP" firstAttribute="trailing" secondItem="oc1-oq-L2f" secondAttribute="trailing" id="kW1-P4-rsu"/>
+                            <constraint firstAttribute="bottom" secondItem="oc1-oq-L2f" secondAttribute="bottom" constant="20" symbolic="YES" id="zvv-Lt-QQT"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Timeline" id="jBl-3D-4XP"/>
@@ -350,8 +350,8 @@
             <objects>
                 <viewController id="bBd-RX-aGP" customClass="FmnMenuVC" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="zll-OT-aUc"/>
-                        <viewControllerLayoutGuide type="bottom" id="DBO-HN-q4h"/>
+                        <viewControllerLayoutGuide type="top" id="xs1-9a-wWw"/>
+                        <viewControllerLayoutGuide type="bottom" id="YlC-vJ-pNJ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="I12-9a-Efo">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>

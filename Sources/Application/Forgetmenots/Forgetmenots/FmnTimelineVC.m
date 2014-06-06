@@ -94,6 +94,8 @@
     [self.currentDescription setAdjustsFontSizeToFitWidth:NO];
     [self.currentDescription setNumberOfLines:0];
     
+    [self.currentDescription setTextColor:[UIColor whiteColor]];
+    
     [self.currentDescription setText:event.description];
 }
 
@@ -105,51 +107,49 @@
     self.navigationController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
     self.view.backgroundColor = [UIColor clearColor];
     
-    FmnTimelineV * v = [[FmnTimelineV alloc]initWithFrame:CGRectMake(0, 0, 0, self.scrollview.frame.size.height)];
-//    [v setBackgroundColor:[UIColor clearColor]];
-    [v setBackgroundColor:[UIColor yellowColor]];
-    [v setOpaque:NO];
+    _timelineView = [[FmnTimelineV alloc]initWithFrame:CGRectMake(0, 0, 0, self.scrollview.frame.size.height)];
+    [self.scrollview addSubview:_timelineView];
     
-    [v setScheduledEvents:self.scheduledEvents];
-    [v setFocusedEvent:self.upcomingEventIndex];
-//    v.translatesAutoresizingMaskIntoConstraints = NO;
+    _timelineView.translatesAutoresizingMaskIntoConstraints = NO;
+    [_timelineView setBackgroundColor:[UIColor clearColor]];
+    [_timelineView setOpaque:NO];
     
-//    [v setFocusedEvent:self.upcomingEventIndex];
+    [_timelineView setScheduledEvents:self.scheduledEvents];
+    [_timelineView setFocusedEvent:self.upcomingEventIndex];
     
+    self.navigationController.automaticallyAdjustsScrollViewInsets = NO;
     
-//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[_imageView(700)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_imageView)]];
-//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_imageView(1500)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_imageView)]];
+    // Fix only horizontal scroll with the same height
+    [_scrollview addConstraint:[NSLayoutConstraint constraintWithItem:_timelineView
+                                                            attribute:NSLayoutAttributeHeight
+                                                            relatedBy:NSLayoutRelationEqual
+                                                               toItem:_scrollview
+                                                            attribute:NSLayoutAttributeHeight
+                                                           multiplier:1.0
+                                                             constant:0]];
 
-    
-    [self.scrollview addSubview:v];
-    
-//    [v addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[_scrollview]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_scrollview)]];
-//    
-//    [v addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_scrollview]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_scrollview)]];
-    
-    
-//    [self.scrollview setContentSize:v.frame.size];
-    
-//    [self.scrollview setBackgroundColor:[UIColor clearColor]];
+    [self.scrollview setBackgroundColor:[UIColor clearColor]];
     [self.scrollview setShowsHorizontalScrollIndicator:NO];
     [self.scrollview setShowsVerticalScrollIndicator:NO];
-
-    self.scrollview.contentSize = CGSizeMake(self.scrollview.contentSize.width, self.scrollview.frame.size.height);
-//    [self.scrollview setContentOffset:CGPointMake(0, 0)];
     
-//    CGFloat h = self.scrollview.contentSize.height;
-//    NSLog(@"%f vs %f", self.scrollview.contentSize.height, v.frame.size.height);
+    [self.scrollview setContentInset: UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)];
     
-//    [self putUpDescription];
+    [self putUpDescription];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [v addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[_scrollview]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_scrollview)]];
     
-    [v addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_scrollview]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_scrollview)]];
+    [self.scrollview setContentInset:UIEdgeInsetsZero];
+}
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    // XXX dirty hack, contentInset is automatically adjusted for some reason
+    [self.scrollview setContentInset: UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)];
 }
 
 - (void)didReceiveMemoryWarning

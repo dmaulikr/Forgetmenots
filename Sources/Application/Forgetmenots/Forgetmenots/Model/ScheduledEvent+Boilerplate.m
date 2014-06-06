@@ -240,9 +240,13 @@
     {
         [chosenFlowers addObject:f.name];
     }
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:[NSDateFormatter dateFormatFromTemplate:@"dd MMMM yy" options:0 locale:[NSLocale currentLocale]]];
+    NSString * dateString = [dateFormatter stringFromDate:self.date];
+    
     NSString * flowersString = [chosenFlowers componentsJoinedByString:@", "];
-    return [NSString stringWithFormat: @"%@\n%@\n%@", self.name, self.date, flowersString];
+    return [NSString stringWithFormat: @"%@\n%@\n%@", self.name, dateString, flowersString];
 }
-
 
 @end
