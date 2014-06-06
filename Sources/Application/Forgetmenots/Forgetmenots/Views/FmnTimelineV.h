@@ -11,6 +11,12 @@
 
 @interface FmnTimelineV : UIView
 
+@property (nonatomic, strong) NSDateFormatter * dateFormatter;
+
 @property (nonatomic, strong) NSArray * scheduledEvents;
+
+@property (nonatomic) int focusedEvent;
+
+@property (nonatomic) CGFloat step;
 
 @end

@@ -14,36 +14,6 @@
 
 #define CIRCLE_STEP 5
 
-//+ (void) drawRect:(CGRect)rect
-//{
-//    // Create a gradient from white to red
-//    CGFloat colors [] = {
-//        1.0, 1.0, 1.0, 1.0,
-//        1.0, 0.0, 0.0, 1.0
-//    };
-//    
-//    CGColorSpaceRef baseSpace = CGColorSpaceCreateDeviceRGB();
-//    CGGradientRef gradient = CGGradientCreateWithColorComponents(baseSpace, colors, NULL, 2);
-//    CGColorSpaceRelease(baseSpace), baseSpace = NULL;
-//    
-//    CGContextRef context = UIGraphicsGetCurrentContext();
-//    
-//    CGContextSaveGState(context);
-//    CGContextAddEllipseInRect(context, rect);
-//    CGContextClip(context);
-//    
-//    CGPoint startPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
-//    CGPoint endPoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMaxY(rect));
-//    
-//    CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, 0);
-//    CGGradientRelease(gradient), gradient = NULL;
-//    
-//    CGContextRestoreGState(context);
-//    
-//    CGContextAddEllipseInRect(context, rect);
-//    CGContextDrawPath(context, kCGPathStroke);
-//}
-
 + (void)drawGradientFilledPath:(UIBezierPath *)path withTopColor:(UIColor *)topColor andBottomColor:(UIColor *)bottomColor
 {
     CGContextRef gc = UIGraphicsGetCurrentContext();
@@ -69,8 +39,10 @@
 
 #define CENTRAL_CIRCLE_BIGGER_COEFF 0.9
 
-+ (void)drawBullseyeFlowerInRect:(CGRect)rect withColors:(NSDictionary *)colors
++ (void)drawBullseyeFlowerInRect:(CGRect)rect withFlower:(Flower *)flower
 {
+    NSDictionary * colors = flower.colors;
+    
     CGFloat flowerSize = fmin(rect.size.width, rect.size.height);
     CGRect flowerRect = CGRectMake(rect.origin.x + (rect.size.width - flowerSize) / 2,
                                    rect.origin.y + (rect.size.height - flowerSize) / 2,
@@ -142,7 +114,6 @@
     
     NSString * plusSign = @"+";
 
-//    UIFont *titleFont = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.alignment = NSTextAlignmentCenter;
     NSDictionary *textAttrs = @{NSFontAttributeName : [UIFont fontWithName:@"Didot" size:57.0],
@@ -158,10 +129,30 @@
                                   textSize.width, textSize.height);
     [plusSignText drawInRect:textFrame];
     
-//    NSDictionary *attr = [NSDictionary dictionaryWithObject:style forKey:NSParagraphStyleAttributeName];
-//    [@"+" drawInRect:rect withAttributes:attr];
-    
     CGContextRestoreGState(context);
+}
+
++(void)drawBullseyeFlowersInRect:(CGRect)rect withFlowers:(NSArray *)flowers
+{
+    if ([flowers count] == 1)
+    {
+        [FmnFlowers drawBullseyeFlowerInRect:rect withFlower:[flowers firstObject]];
+    }
+    else if ([flowers count] > 1)
+    {
+        CGFloat stackHeight = rect.size.height / 4;
+        
+        CGFloat flowerHeight = rect.size.height - stackHeight;
+        
+        CGFloat stackStep = stackHeight / ([flowers count] - 1);
+        CGFloat currentHeight = rect.origin.y; // starting from the top working the way down
+        for (Flower* flower in flowers)
+        {
+            CGRect flowerRect = CGRectMake(rect.origin.x, currentHeight, rect.size.width, flowerHeight);
+            [FmnFlowers drawBullseyeFlowerInRect:flowerRect withFlower:flower];
+            currentHeight += stackStep; // going down
+        }
+    }
 }
 
 @end

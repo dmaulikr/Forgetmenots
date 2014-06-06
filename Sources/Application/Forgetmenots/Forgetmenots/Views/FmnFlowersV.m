@@ -53,23 +53,13 @@
     self.backgroundColor = [UIColor clearColor];
     CGRect bouquetRect = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height - CAPTION_LINE_HEIGHT);
     
-    CGFloat stackHeight = bouquetRect.size.height / 4;
     if ([self.flowers count] > 1)
     {
-        CGFloat flowerHeight = bouquetRect.size.height - stackHeight;
-        CGFloat stackStep = stackHeight / ([self.flowers count] - 1);
-        
-        CGFloat currentHeight = bouquetRect.origin.y; // starting from the top working the way down
-        for (Flower* flower in self.flowers)
-        {
-            CGRect flowerRect = CGRectMake(bouquetRect.origin.x, currentHeight, bouquetRect.size.width, flowerHeight);
-            [FmnFlowers drawBullseyeFlowerInRect:flowerRect withColors:flower.colors];
-            currentHeight += stackStep; // going down
-        }
+        [FmnFlowers drawBullseyeFlowersInRect:bouquetRect withFlowers:self.flowers];
     }
     else if ([self.flowers count] == 1)
     {
-        [FmnFlowers drawBullseyeFlowerInRect:bouquetRect withColors:((Flower *)[self.flowers firstObject]).colors];
+        [FmnFlowers drawBullseyeFlowerInRect:bouquetRect withFlower:[self.flowers firstObject]];
     }
     else
     {

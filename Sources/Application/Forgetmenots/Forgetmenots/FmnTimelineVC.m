@@ -15,11 +15,10 @@
 @interface FmnTimelineVC ()
 
 @property (weak, nonatomic) IBOutlet UINavigationItem *nav;
-@property (weak, nonatomic) IBOutlet UITextView *upcomingEventInfo;
 
 @property (strong, nonatomic) NSArray *scheduledEvents;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollview;
-//@property (weak, nonatomic) IBOutlet FmnTimelineV *timeline;
+@property (weak, nonatomic) IBOutlet UILabel *currentDescription;
 
 @end
 
@@ -66,20 +65,36 @@
     return _scheduledEvents;
 }
 
-- (void)prepTimeline
+-(int)upcomingEventIndex
 {
-//    self.scrollView.si
-//    CGRect rect = CGRectMake(0,
-//                             0,
-//                             1300, //XXX should be dependent on the scheduledEvents arrays size
-//                             200); //self.scrollView.frame.size.height
-//    
-//    // XXX call init with scheduledEvents instead?
-//    FmnTimelineV * timelineV = [[FmnTimelineV alloc] initWithFrame:rect];
-//    timelineV.backgroundColor = [UIColor purpleColor];
-//    [self.scrollView addSubview:timelineV];
-//    self.scrollView.contentSize = timelineV.frame.size;
+    if (_upcomingEventIndex)
+    {
+        return _upcomingEventIndex;
+    }
+    else
+    {
+        NSDate * now = [NSDate date];
+        for (int i = 0; i < [self.scheduledEvents count]; i++)
+        {
+            ScheduledEvent * e = [self.scheduledEvents objectAtIndex:i];
+            if ([now compare:e.date] == NSOrderedAscending)
+            {
+                _upcomingEventIndex = i;
+                break;
+            }
+        }
+    }
+    return _upcomingEventIndex;
+}
 
+-(void)putUpDescription
+{
+    ScheduledEvent * event = [self.scheduledEvents objectAtIndex:self.upcomingEventIndex];
+    
+    [self.currentDescription setAdjustsFontSizeToFitWidth:NO];
+    [self.currentDescription setNumberOfLines:0];
+    
+    [self.currentDescription setText:event.description];
 }
 
 - (void)viewDidLoad
@@ -90,43 +105,51 @@
     self.navigationController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
     self.view.backgroundColor = [UIColor clearColor];
     
-//    [self.timeline setScheduledEvents:self.scheduledEvents];
-    
     FmnTimelineV * v = [[FmnTimelineV alloc]initWithFrame:CGRectMake(0, 0, 0, self.scrollview.frame.size.height)];
-    [v setBackgroundColor:[UIColor clearColor]];
+//    [v setBackgroundColor:[UIColor clearColor]];
+    [v setBackgroundColor:[UIColor yellowColor]];
     [v setOpaque:NO];
     
     [v setScheduledEvents:self.scheduledEvents];
-    [self.scrollview addSubview:v];
-    [self.scrollview setContentSize:v.frame.size];
+    [v setFocusedEvent:self.upcomingEventIndex];
+//    v.translatesAutoresizingMaskIntoConstraints = NO;
     
-    [self.scrollview setBackgroundColor:[UIColor clearColor]];
+//    [v setFocusedEvent:self.upcomingEventIndex];
+    
+    
+//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[_imageView(700)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_imageView)]];
+//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_imageView(1500)]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_imageView)]];
+
+    
+    [self.scrollview addSubview:v];
+    
+//    [v addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[_scrollview]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_scrollview)]];
+//    
+//    [v addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_scrollview]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_scrollview)]];
+    
+    
+//    [self.scrollview setContentSize:v.frame.size];
+    
+//    [self.scrollview setBackgroundColor:[UIColor clearColor]];
     [self.scrollview setShowsHorizontalScrollIndicator:NO];
     [self.scrollview setShowsVerticalScrollIndicator:NO];
+
+    self.scrollview.contentSize = CGSizeMake(self.scrollview.contentSize.width, self.scrollview.frame.size.height);
+//    [self.scrollview setContentOffset:CGPointMake(0, 0)];
     
+//    CGFloat h = self.scrollview.contentSize.height;
+//    NSLog(@"%f vs %f", self.scrollview.contentSize.height, v.frame.size.height);
     
-//    UIScrollView *scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, container.frame.size.width/2, container.frame.size.height/2)];
-//    scroll.pagingEnabled = YES;
-//    scroll.scrollEnabled = YES;
-//    [scroll setBackgroundColor:[UIColor redColor]];
-//    NSInteger numberOfViews = 3;
-//    for (int i = 0; i < numberOfViews; i++)
-//    {
-//        CGFloat xOrigin = i * container.frame.size.width/2;
-//        UIView *awesomeView = [[UIView alloc] initWithFrame:CGRectMake(xOrigin, 0, container.frame.size.width, container.frame.size.height)];
-//        awesomeView.backgroundColor = [UIColor colorWithRed:0.5/i green:0.5 blue:0.5 alpha:1];
-//        [scroll addSubview:awesomeView];
-//        [awesomeView release];
-//    }
-//    scroll.contentSize = CGSizeMake(container.frame.size.width/2 * numberOfViews, container.frame.size.height);
-//    [container addSubview:scroll];
+//    [self putUpDescription];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [v addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"|[_scrollview]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_scrollview)]];
     
-//    [self prepTimeline];
-//    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
-    
-//    PlannedEvent* upcoming = [self.plannedEvents firstObject];
-//    self.flowerView.flower = [Flower flowerWithName:@"Forgetmenot" inManagedContext:self.appDelegate.managedObjectContext];
-//    self.upcomingEventInfo.text = [upcoming description];
+    [v addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_scrollview]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_scrollview)]];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -134,16 +157,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

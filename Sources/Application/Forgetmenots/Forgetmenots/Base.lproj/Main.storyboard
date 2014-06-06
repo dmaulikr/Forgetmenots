@@ -64,43 +64,40 @@
             <objects>
                 <viewController id="jda-zD-YZo" customClass="FmnTimelineVC" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Cfj-bE-r9H"/>
-                        <viewControllerLayoutGuide type="bottom" id="daY-wo-fij"/>
+                        <viewControllerLayoutGuide type="top" id="7b1-XW-RJs"/>
+                        <viewControllerLayoutGuide type="bottom" id="sL4-qQ-8ZJ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="zdJ-MO-tXz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="yEA-pi-smN">
-                                <rect key="frame" x="40" y="335" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">Birthday Kim
-29-th of October
-Boquet
-</string>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b9d-BL-UxP">
-                                <rect key="frame" x="40" y="176" width="240" height="128"/>
+                                <rect key="frame" x="20" y="150" width="280" height="180"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                             </scrollView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oc1-oq-L2f">
+                                <rect key="frame" x="20" y="338" width="280" height="122"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="b9d-BL-UxP" firstAttribute="leading" secondItem="zdJ-MO-tXz" secondAttribute="leading" constant="40" id="0oW-Uu-ovc"/>
-                            <constraint firstItem="yEA-pi-smN" firstAttribute="centerX" secondItem="zdJ-MO-tXz" secondAttribute="centerX" id="GKO-3k-ZSE"/>
-                            <constraint firstItem="b9d-BL-UxP" firstAttribute="trailing" secondItem="yEA-pi-smN" secondAttribute="trailing" id="OSl-wU-xJl"/>
-                            <constraint firstItem="yEA-pi-smN" firstAttribute="top" secondItem="b9d-BL-UxP" secondAttribute="bottom" constant="31" id="R8O-UI-hb9"/>
-                            <constraint firstItem="b9d-BL-UxP" firstAttribute="centerY" secondItem="zdJ-MO-tXz" secondAttribute="centerY" id="S7p-6c-pqi"/>
-                            <constraint firstItem="b9d-BL-UxP" firstAttribute="leading" secondItem="yEA-pi-smN" secondAttribute="leading" id="X3a-9H-Gww"/>
-                            <constraint firstItem="b9d-BL-UxP" firstAttribute="top" secondItem="Cfj-bE-r9H" secondAttribute="bottom" constant="112" id="ipP-MC-A9N"/>
-                            <constraint firstItem="daY-wo-fij" firstAttribute="top" secondItem="yEA-pi-smN" secondAttribute="bottom" constant="17" id="xx3-Ky-rkK"/>
+                            <constraint firstItem="oc1-oq-L2f" firstAttribute="top" secondItem="b9d-BL-UxP" secondAttribute="bottom" constant="8" symbolic="YES" id="PsY-81-ogD"/>
+                            <constraint firstItem="b9d-BL-UxP" firstAttribute="top" secondItem="7b1-XW-RJs" secondAttribute="bottom" constant="86" id="VdC-Pb-TPP"/>
+                            <constraint firstItem="b9d-BL-UxP" firstAttribute="trailing" secondItem="oc1-oq-L2f" secondAttribute="trailing" id="det-Eu-C9D"/>
+                            <constraint firstAttribute="trailing" secondItem="b9d-BL-UxP" secondAttribute="trailing" constant="20" symbolic="YES" id="gXI-1q-cg1"/>
+                            <constraint firstItem="b9d-BL-UxP" firstAttribute="leading" secondItem="zdJ-MO-tXz" secondAttribute="leading" constant="20" symbolic="YES" id="kkM-wP-Py5"/>
+                            <constraint firstItem="b9d-BL-UxP" firstAttribute="centerY" secondItem="zdJ-MO-tXz" secondAttribute="centerY" id="lI4-Op-Rka"/>
+                            <constraint firstAttribute="bottom" secondItem="oc1-oq-L2f" secondAttribute="bottom" constant="20" symbolic="YES" id="qn6-bW-iA7"/>
+                            <constraint firstItem="oc1-oq-L2f" firstAttribute="leading" secondItem="b9d-BL-UxP" secondAttribute="leading" id="t5r-7C-54o"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Timeline" id="jBl-3D-4XP"/>
                     <connections>
+                        <outlet property="currentDescription" destination="oc1-oq-L2f" id="GhC-0G-tFe"/>
                         <outlet property="nav" destination="jBl-3D-4XP" id="QDc-hf-tqt"/>
                         <outlet property="scrollview" destination="b9d-BL-UxP" id="Srw-QM-abQ"/>
                     </connections>
@@ -353,8 +350,8 @@ Boquet
             <objects>
                 <viewController id="bBd-RX-aGP" customClass="FmnMenuVC" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="g5X-bH-HkJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="VjL-8y-n47"/>
+                        <viewControllerLayoutGuide type="top" id="zll-OT-aUc"/>
+                        <viewControllerLayoutGuide type="bottom" id="DBO-HN-q4h"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="I12-9a-Efo">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>

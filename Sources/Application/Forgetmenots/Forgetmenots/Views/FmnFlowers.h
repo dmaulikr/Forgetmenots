@@ -7,11 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Flower+Defaults.h"
 
 @interface FmnFlowers : NSObject
 
-+ (void)drawBullseyeFlowerInRect:(CGRect)rect withColors:(NSDictionary *)colors;
-
 + (void)drawBullseyeChooseFlowerInRect:(CGRect)rect;
+
++ (void)drawBullseyeFlowerInRect:(CGRect)rect withFlower:(Flower *)flower;
+
++ (void)drawBullseyeFlowersInRect:(CGRect)rest withFlowers:(NSArray *)flowers;
 
 @end

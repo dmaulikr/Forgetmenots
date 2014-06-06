@@ -13,4 +13,6 @@
 
 @property (nonatomic, weak) ForgetmenotsAppDelegate *appDelegate;
 
+@property (nonatomic) int upcomingEventIndex;
+
 @end

@@ -52,7 +52,7 @@
 - (void)drawRect:(CGRect)rect
 {
     CGRect flowerRect = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height - CAPTION_LINE_HEIGHT);
-    [FmnFlowers drawBullseyeFlowerInRect:flowerRect withColors:self.flower.colors];
+    [FmnFlowers drawBullseyeFlowerInRect:flowerRect withFlower:self.flower];
 
     CGRect captionRect = CGRectMake(rect.origin.x, rect.origin.y + rect.size.height - CAPTION_SIZE, rect.size.width, CAPTION_SIZE);
     [self drawNameInRect:captionRect];
