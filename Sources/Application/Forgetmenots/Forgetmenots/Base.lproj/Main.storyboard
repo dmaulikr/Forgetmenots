@@ -95,7 +95,13 @@
                             <constraint firstAttribute="bottom" secondItem="oc1-oq-L2f" secondAttribute="bottom" constant="20" symbolic="YES" id="zvv-Lt-QQT"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Timeline" id="jBl-3D-4XP"/>
+                    <navigationItem key="navigationItem" title="Timeline" id="jBl-3D-4XP">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="mIV-o7-qKw">
+                            <connections>
+                                <segue destination="Ukz-77-wJ2" kind="push" identifier="newEventSegue" id="A7Y-6J-cFN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="currentDescription" destination="oc1-oq-L2f" id="GhC-0G-tFe"/>
                         <outlet property="nav" destination="jBl-3D-4XP" id="QDc-hf-tqt"/>
@@ -775,6 +781,6 @@ Seffie Treistman – brainpower
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="4YF-BP-Bul"/>
+        <segue reference="A7Y-6J-cFN"/>
     </inferredMetricsTieBreakers>
 </document>

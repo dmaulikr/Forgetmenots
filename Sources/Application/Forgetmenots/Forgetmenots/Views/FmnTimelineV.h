@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "Flower+Defaults.h"
 
+#define FMN_TIMELINE_MARGIN 44
+#define FMN_TIMELINE_STEP 99
+
 @interface FmnTimelineV : UIView
 
 @property (nonatomic, strong) NSDateFormatter * dateFormatter;

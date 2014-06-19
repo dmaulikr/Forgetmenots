@@ -1,4 +1,4 @@
-//
+    //
 //  ForgetmenotsAppDelegate.m
 //  Forgetmenots
 //
@@ -28,15 +28,13 @@ static NSManagedObjectContext* theObjectContext;
 -(void)cleanupOldNotifications
 {
     NSString * loaded = [FmnSettings getSettingsStringWithKey:CLEANED_UP_OLD_NOTIFICATIONS];
-    //XXX to be removed on deploy to AppStore
-    loaded = NO_STRING;
     if (loaded && [loaded isEqualToString:YES_STRING])
     {
         // do nothing, old notifications were cleaned out already
     }
     else
     {
-        [FmnSettings saveSettingsString:CLEANED_UP_OLD_NOTIFICATIONS withKey:YES_STRING];
+        [FmnSettings saveSettingsString:YES_STRING withKey:CLEANED_UP_OLD_NOTIFICATIONS];
         [[UIApplication sharedApplication] cancelAllLocalNotifications];
         
         [ScheduledEvent deleteAllInManagedContext:self.managedObjectContext];
@@ -67,14 +65,14 @@ static NSManagedObjectContext* theObjectContext;
 {
     NSString * loaded = [FmnSettings getSettingsStringWithKey:LOADED_DEFAULT_FLOWERS];
     //XXX to be removed on deploy to AppStore
-    loaded = NO_STRING;
+//    loaded = NO_STRING;
     if (loaded && [loaded isEqualToString:YES_STRING])
     {
         // do nothing, flowers are loaded
     }
     else
     {
-        [FmnSettings saveSettingsString:LOADED_DEFAULT_FLOWERS withKey:YES_STRING];
+        [FmnSettings saveSettingsString:YES_STRING withKey:LOADED_DEFAULT_FLOWERS];
         
         UIColor * white26 = [UIColor colorWithWhite:1.0 alpha:0.26];
         
@@ -134,7 +132,7 @@ static NSManagedObjectContext* theObjectContext;
         NSError *error;
         [self.managedObjectContext save:&error];
         if (![self.managedObjectContext save:&error]){
-            [FmnSettings saveSettingsString:LOADED_DEFAULT_FLOWERS withKey:NO_STRING];
+            [FmnSettings saveSettingsString:NO_STRING withKey:LOADED_DEFAULT_FLOWERS];
         }
     }
 }

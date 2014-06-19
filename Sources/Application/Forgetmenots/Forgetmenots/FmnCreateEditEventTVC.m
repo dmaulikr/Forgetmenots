@@ -200,23 +200,46 @@ const char ALERT_FORGETMENOT_EVENT;
 
 -(void)saveEvent
 {
-    if (self.random) {
-        [ForgetmenotsEvent initWithFlowers:[NSSet setWithArray:self.flowers]
-                                      name:self.name
-                                    nTimes:self.nTimes
-                               inTimeUnits:self.inTimeUnits
-                                  timeUnit:self.timeUnit
-                                 withStart:self.start
-                          inManagedContext:self.appDelegate.managedObjectContext];
-
-    }
-    else
+    if (self.editEvent) // Update existing event
     {
-        [ForgetmenotsEvent initWithFlowers:[NSSet setWithArray:self.flowers]
-                                      name:self.name
-                                      date:self.date
-                          inManagedContext:self.appDelegate.managedObjectContext];
+        // For now just delete it and recreate with new name
+        [self.appDelegate.managedObjectContext deleteObject:self.event];
+        
+//        self.event.flowers = [NSSet setWithArray:self.flowers];
+//        self.event.date = self.date;
+//        self.event.name = self.name;
+//        self.event.nTimes = [NSNumber numberWithInteger:self.nTimes];
+//        self.event.inTimeUnits = [NSNumber numberWithInteger:self.inTimeUnits];
+//        self.event.timeUnit = [NSNumber numberWithInteger:self.timeUnit];
+//        self.event.start = self.start;
+//        self.event.random = [NSNumber numberWithBool:self.random];
+        
+        NSError *error = nil;
+        if (! [self.event.managedObjectContext save:&error]) {
+            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+            // Take some action!
+        }
     }
+//    else // Create new event
+//    {
+        if (self.random) {
+            [ForgetmenotsEvent initWithFlowers:[NSSet setWithArray:self.flowers]
+                                          name:self.name
+                                        nTimes:self.nTimes
+                                   inTimeUnits:self.inTimeUnits
+                                      timeUnit:self.timeUnit
+                                     withStart:self.start
+                              inManagedContext:self.appDelegate.managedObjectContext];
+            
+        }
+        else
+        {
+            [ForgetmenotsEvent initWithFlowers:[NSSet setWithArray:self.flowers]
+                                          name:self.name
+                                          date:self.date
+                              inManagedContext:self.appDelegate.managedObjectContext];
+        }
+//    }
 }
 
 
@@ -232,6 +255,8 @@ const char ALERT_FORGETMENOT_EVENT;
     
     cell.detailTextLabel.hidden = YES;
     
+    cell.textLabel.hidden = YES;
+    
     [[cell viewWithTag:3] removeFromSuperview];
     
     cell.textLabel.textColor = [UIColor whiteColor];
@@ -242,13 +267,21 @@ const char ALERT_FORGETMENOT_EVENT;
     titleTextField.textColor = [UIColor whiteColor];
     titleTextField.translatesAutoresizingMaskIntoConstraints = NO;
     [cell.contentView addSubview:titleTextField];
-    [cell addConstraint:[NSLayoutConstraint constraintWithItem:titleTextField
-                                                     attribute:NSLayoutAttributeLeading
-                                                     relatedBy:NSLayoutRelationEqual
-                                                        toItem:cell.textLabel
-                                                     attribute:NSLayoutAttributeTrailing
-                                                    multiplier:1
-                                                      constant:8]];
+//    [cell addConstraint:[NSLayoutConstraint constraintWithItem:titleTextField
+//                                                     attribute:NSLayoutAttributeLeading
+//                                                     relatedBy:NSLayoutRelationEqual
+//                                                        toItem:cell.contentView
+//                                                     attribute:NSLayoutAttributeLeft
+//                                                    multiplier:0
+//                                                      constant:8]];
+//    [cell addConstraint:[NSLayoutConstraint constraintWithItem:titleTextField
+//                                                     attribute:NSLayoutAttributeTrailing
+//                                                     relatedBy:NSLayoutRelationEqual
+//                                                        toItem:cell.contentView
+//                                                     attribute:NSLayoutAttributeTrailing
+//                                                    multiplier:0
+//                                                      constant:-8]];
+//    
     [cell addConstraint:[NSLayoutConstraint constraintWithItem:titleTextField
                                                      attribute:NSLayoutAttributeTop
                                                      relatedBy:NSLayoutRelationEqual
@@ -263,16 +296,34 @@ const char ALERT_FORGETMENOT_EVENT;
                                                      attribute:NSLayoutAttributeBottom
                                                     multiplier:1
                                                       constant:-8]];
+
+    [cell addConstraint:[NSLayoutConstraint constraintWithItem:titleTextField
+                                                     attribute:NSLayoutAttributeLeading
+                                                     relatedBy:NSLayoutRelationEqual
+                                                        toItem:cell.contentView
+                                                     attribute:NSLayoutAttributeLeading
+                                                    multiplier:0.01
+                                                      constant:8]];
     [cell addConstraint:[NSLayoutConstraint constraintWithItem:titleTextField
                                                      attribute:NSLayoutAttributeTrailing
                                                      relatedBy:NSLayoutRelationEqual
-                                                        toItem:cell.detailTextLabel
+                                                        toItem:cell.contentView
                                                      attribute:NSLayoutAttributeTrailing
-                                                    multiplier:1
-                                                      constant:0]];
-    titleTextField.textAlignment = NSTextAlignmentRight;
-    titleTextField.delegate = self;
+                                                    multiplier:-0.01
+                                                      constant:-8]];
+
     
+    [cell addConstraint:[NSLayoutConstraint constraintWithItem:titleTextField
+                                                     attribute:NSLayoutAttributeTrailing
+                                                     relatedBy:NSLayoutRelationEqual
+                                                        toItem:cell.contentView
+                                                     attribute:NSLayoutAttributeTrailing
+                                                    multiplier:0.98
+                                                      constant:0]];
+    titleTextField.textAlignment = NSTextAlignmentCenter;
+    titleTextField.delegate = self;
+    titleTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Title" attributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+
     self.titleTextField = titleTextField;
     
     ((ForgetmenotsUITableView *)self.view).titleTextField = titleTextField;

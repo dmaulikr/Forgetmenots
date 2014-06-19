@@ -16,6 +16,10 @@
 
 @property (nonatomic, strong) FmnTimelineV * timelineView;
 
+@property (nonatomic, strong) NSMutableArray * timelineViews;
+
+@property (nonatomic) int currentlyLookingAt;
+
 @property (nonatomic) int upcomingEventIndex;
 
 @end

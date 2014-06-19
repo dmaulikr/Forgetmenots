@@ -36,8 +36,6 @@
     return _dateFormatter;
 }
 
-#define STEP 88
-
 -(CGFloat)step
 {
     if (_step)
@@ -47,26 +45,32 @@
     else
     {
 //        _step = self.superview.frame.size.width / 2.1f;
-        _step = STEP;
+        _step = FMN_TIMELINE_STEP;
     }
     return _step;
 }
 
 -(void)resize
 {
-    CGFloat width = [self.scheduledEvents count] * self.step;
+    CGFloat width = [self.scheduledEvents count] * self.step + 2 * FMN_TIMELINE_MARGIN;
     
     UIView * _view = self;
     UIView * superview = self.superview;
 
     if ([superview isKindOfClass:[UIScrollView class]])
-    {
+    {        
         NSString * widthConstraint = [NSString stringWithFormat:@"H:|[_view(%f)]|", width];
         [superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:widthConstraint
                                                                           options:0
                                                                           metrics:nil
                                                                             views:NSDictionaryOfVariableBindings(_view)]];
     }
+}
+
+-(void)setFocusedEvent:(int)focusedEvent
+{
+    _focusedEvent = focusedEvent;
+    [self setNeedsDisplay];
 }
 
 -(void)setScheduledEvents:(NSArray *)scheduledEvents
@@ -77,7 +81,9 @@
     
     if (shouldResize)
     {
-        [self resize];
+        // Simply was not able to figure out thingy with
+        // autoLayout, fuck it for now, dont resize
+//        [self resize];
     }
     
     [self setNeedsDisplay];
@@ -89,6 +95,9 @@
 {
     // Drawing code
     NSLog(@"Origin is at %f %f", rect.origin.x, rect.origin.y);
+//    int startFromEvent = 0;
+//    int endWithEvent = [self.scheduledEvents count] - 1;
+    
     int startFromEvent = rect.origin.x / self.step;
     int endWithEvent = (rect.origin.x + rect.size.width) / self.step + 1;
     
@@ -112,6 +121,8 @@
     {
         ScheduledEvent * e = [self.scheduledEvents objectAtIndex:i];
         
+        // Calculate proper margins
+//        CGFloat x = FMN_TIMELINE_MARGIN + i * self.step + self.step / 2;
         CGFloat x = i * self.step + self.step / 2;
         
         CGFloat stalkWidth;
@@ -161,11 +172,8 @@
         [FmnFlowers drawBullseyeFlowersInRect:flowerRect withFlowers:[e.flowers allObjects]];
         
         // Drawing date
-        CGRect dateRect = CGRectMake(x - r, timelineHeight + unit / 4, 2 * r, timelineHeight + unit / 4 + unit);
+        CGRect dateRect = CGRectMake(x - self.step / 2, timelineHeight + unit / 4, self.step, timelineHeight + unit / 4 + unit);
         [self drawDate:e.date inRect:dateRect];
-        
-        NSLog(@"%d", i);
-        NSLog(@"event name %@", e.name);
     }
     
     // Drawing time line
@@ -185,7 +193,7 @@
     paragraphStyle.alignment = NSTextAlignmentCenter;
     
     UIFont *titleFont = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
-    titleFont = [titleFont fontWithSize:9.0f];
+    titleFont = [titleFont fontWithSize:14.0f];
     
     // XXX nice date
     NSString* title = [self.dateFormatter stringFromDate:date];
