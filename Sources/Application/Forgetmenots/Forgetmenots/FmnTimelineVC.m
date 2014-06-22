@@ -10,7 +10,9 @@
 
 #import "Model/ForgetmenotsEvent+Boilerplate.h"
 #import "ScheduledEvent+Boilerplate.h"
+#import "ForgetmenotsEvent+Boilerplate.h"
 #import "FmnTimelineV.h"
+#import "FmnCreateEditEventTVC.h"
 
 @interface FmnTimelineVC ()
 
@@ -96,12 +98,12 @@
 
 -(int)upcomingEventIndex
 {
-    if (_upcomingEventIndex)
-    {
-        return _upcomingEventIndex;
-    }
-    else
-    {
+//    if (_upcomingEventIndex)
+//    {
+//        return _upcomingEventIndex;
+//    }
+//    else
+//    {
         NSDate * now = [NSDate date];
         for (int i = 0; i < [self.scheduledEvents count]; i++)
         {
@@ -112,7 +114,7 @@
                 break;
             }
         }
-    }
+//    }
     return _upcomingEventIndex;
 }
 
@@ -134,12 +136,18 @@
     [self scrollToTheUpcomingEvent];
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)sender{
     // sender.isDragging - to differentiate drag from scroll
     
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     //ensure that the end of scroll is fired.
-    [self performSelector:@selector(scrollViewDidEndScrollingAnimation:) withObject:nil afterDelay:1.5];
+    [self performSelector:@selector(scrollViewDidEndScrollingAnimation:) withObject:self.scrollview afterDelay:1.5];
     
     int currentlyLookingAt;
     
@@ -198,6 +206,7 @@
     // and do nice autoLayout animation: https://developer.apple.com/library/ios/documentation/userexperience/conceptual/AutolayoutPG/AutoLayoutbyExample/AutoLayoutbyExample.html
     
     [self.scrollview.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self.timelineViews removeAllObjects];
     
     for (ScheduledEvent * e in self.scheduledEvents)
     {
@@ -210,11 +219,20 @@
         
         [self.scrollview addSubview:v];
         
+        
         v.translatesAutoresizingMaskIntoConstraints = NO;
         [v setBackgroundColor:[UIColor clearColor]];
         [v setOpaque:NO];
         
         [v setScheduledEvents:@[e]];
+        
+//        [v animate];
+        
+        //The setup code (in viewDidLoad in your view controller)
+        UITapGestureRecognizer *singleFingerTap =
+        [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                action:@selector(tappedEventToEdit:)];
+        [v addGestureRecognizer:singleFingerTap];
         
         if (self.upcomingEventIndex == i)
         {
@@ -228,6 +246,15 @@
     
     _scrollview.contentSize = CGSizeMake(FMN_TIMELINE_STEP * [self.scheduledEvents count], self.scrollview.frame.size.height);
     _scrollview.delegate = self;
+}
+
+- (void)tappedEventToEdit:(UITapGestureRecognizer *)recognizer {
+    FmnTimelineV * v = (FmnTimelineV *)recognizer.view;
+    ScheduledEvent * e = [v.scheduledEvents firstObject];
+    
+    self.tappedEventName = e.name;
+    
+    [self performSegueWithIdentifier:@"editEventSegue" sender:self];
 }
 
 - (void)viewDidLoad
@@ -259,15 +286,58 @@
 //                                                           multiplier:1.0
 //                                                             constant:0]];
     
-    [self populateScrollView];
-    [self scrollToTheUpcomingEvent];
+//    [self populateScrollView];
+//    [self scrollToTheUpcomingEvent];
 
     [self.scrollview setBackgroundColor:[UIColor clearColor]];
-//    [self.scrollview setShowsHorizontalScrollIndicator:NO];
+    [self.scrollview setShowsHorizontalScrollIndicator:NO];
     [self.scrollview setShowsVerticalScrollIndicator:NO];
     
     
     [self putUpDescription];
+}
+
+
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    
+    _scheduledEvents = nil;
+    
+    [self populateScrollView];
+    [self scrollToTheUpcomingEvent];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if  ([segue.identifier isEqualToString:@"newEventSegue"])
+    {
+        FmnCreateEditEventTVC *createEventTvc = [segue destinationViewController];
+        
+        createEventTvc.editEvent = NO;
+    }
+    else if ([segue.identifier isEqualToString:@"editEventSegue"])
+    {
+        FmnCreateEditEventTVC *createEventTvc = [segue destinationViewController];
+        
+        ForgetmenotsEvent* e = [ForgetmenotsEvent existsWithName:self.tappedEventName inManagedContext:self.appDelegate.managedObjectContext];
+        
+        createEventTvc.editEvent = YES;
+        createEventTvc.event = e;
+        
+        createEventTvc.flowers = [e.flowers allObjects];
+        
+        createEventTvc.name = e.name;
+        
+        createEventTvc.random = [e.random boolValue];
+        
+        createEventTvc.date = e.date;
+        createEventTvc.nTimes = [e.nTimes intValue];
+        createEventTvc.inTimeUnits = [e.inTimeUnits intValue];
+        createEventTvc.timeUnit = [e.timeUnit intValue];
+        createEventTvc.start = e.start;
+    }
+
 }
 
 - (void)didReceiveMemoryWarning

@@ -29,7 +29,7 @@
         CGPoint start = CGPointMake(path.bounds.origin.x + path.bounds.size.width / 2, path.bounds.origin.y);
         CGPoint end = CGPointMake(path.bounds.origin.x + path.bounds.size.width / 2, path.bounds.origin.y + path.bounds.size.height);
         
-        CGContextClip(gc);
+//        CGContextClip(gc);
         
         CGContextDrawLinearGradient(gc, gradient, start, end, 0);
         

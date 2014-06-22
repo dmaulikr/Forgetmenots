@@ -14,6 +14,8 @@
 
 @interface FmnTimelineV : UIView
 
+-(void)animate;
+
 @property (nonatomic, strong) NSDateFormatter * dateFormatter;
 
 @property (nonatomic, strong) NSArray * scheduledEvents;

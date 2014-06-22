@@ -89,12 +89,34 @@
     [self setNeedsDisplay];
 }
 
+-(void)animate
+{
+    if (self.focusedEvent >= 0){
+        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+        
+        // Set the initial and the final values
+        [animation setFromValue:[NSNumber numberWithFloat:1.5f]];
+        [animation setToValue:[NSNumber numberWithFloat:1.f]];
+        
+        // Set duration
+        [animation setDuration:0.5f];
+        
+        // Set animation to be consistent on completion
+        [animation setRemovedOnCompletion:NO];
+        [animation setFillMode:kCAFillModeForwards];
+        
+        animation.autoreverses = YES;
+        
+        // Add animation to the view's layer
+        [[self layer] addAnimation:animation forKey:@"scale"];
+    }
+}
+
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
     // Drawing code
-    NSLog(@"Origin is at %f %f", rect.origin.x, rect.origin.y);
 //    int startFromEvent = 0;
 //    int endWithEvent = [self.scheduledEvents count] - 1;
     
@@ -111,7 +133,7 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSaveGState(context);
     
-    [viewRect addClip];
+//    [viewRect addClip];
     
     CGFloat unit = rect.size.height * 0.1;
     
@@ -151,6 +173,10 @@
             
             stalkWidth = 3.0f;
             dotR = 2.0f;
+        }
+        
+        if (r > FMN_TIMELINE_STEP / 2) {
+            r = FMN_TIMELINE_STEP / 2;
         }
         
         // Drawing stalk

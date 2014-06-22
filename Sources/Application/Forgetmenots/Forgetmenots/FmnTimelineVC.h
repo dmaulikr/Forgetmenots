@@ -18,6 +18,8 @@
 
 @property (nonatomic, strong) NSMutableArray * timelineViews;
 
+@property (nonatomic, strong) NSString * tappedEventName;
+
 @property (nonatomic) int currentlyLookingAt;
 
 @property (nonatomic) int upcomingEventIndex;

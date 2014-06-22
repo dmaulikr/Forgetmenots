@@ -106,6 +106,7 @@
                         <outlet property="currentDescription" destination="oc1-oq-L2f" id="GhC-0G-tFe"/>
                         <outlet property="nav" destination="jBl-3D-4XP" id="QDc-hf-tqt"/>
                         <outlet property="scrollview" destination="b9d-BL-UxP" id="Srw-QM-abQ"/>
+                        <segue destination="Ukz-77-wJ2" kind="push" identifier="editEventSegue" id="fKf-CX-JTh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="elq-pO-FO6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -781,6 +782,6 @@ Seffie Treistman – brainpower
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="A7Y-6J-cFN"/>
+        <segue reference="fKf-CX-JTh"/>
     </inferredMetricsTieBreakers>
 </document>

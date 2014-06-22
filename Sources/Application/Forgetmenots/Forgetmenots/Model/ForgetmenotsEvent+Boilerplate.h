@@ -18,6 +18,9 @@ typedef NS_ENUM(NSUInteger, TimeUnit)
 
 @interface ForgetmenotsEvent (Boilerplate)
 
++(ForgetmenotsEvent*)existsWithName:(NSString *)name
+                   inManagedContext:(NSManagedObjectContext *)context;
+
 +(ForgetmenotsEvent *)initWithFlowers:(NSSet *)flowers
                                  name:(NSString *)name
                                  date:(NSDate *)date
