@@ -36,6 +36,7 @@
 		094D8F40191456AD002C96B2 /* FmnTimelineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 094D8F3F191456AC002C96B2 /* FmnTimelineVC.m */; };
 		094D8F4A191C3AB5002C96B2 /* FmnEventsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 094D8F49191C3AB5002C96B2 /* FmnEventsTVC.m */; };
 		094D8F4D191D4D72002C96B2 /* FmnCreateEditEventTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 094D8F4C191D4D72002C96B2 /* FmnCreateEditEventTVC.m */; };
+		0954FCC6195B3AF3008C345C /* FmnTodaysEventsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0954FCC5195B3AF3008C345C /* FmnTodaysEventsVC.m */; };
 		09760FFC1933BBD00023E761 /* FmnNotificationsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 09760FFB1933BBD00023E761 /* FmnNotificationsTVC.m */; };
 		097610001933E3540023E761 /* background-i4.png in Resources */ = {isa = PBXBuildFile; fileRef = 09760FFD1933E3540023E761 /* background-i4.png */; };
 		097610011933E3540023E761 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 09760FFE1933E3540023E761 /* background.png */; };
@@ -117,6 +118,8 @@
 		094D8F49191C3AB5002C96B2 /* FmnEventsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FmnEventsTVC.m; sourceTree = "<group>"; };
 		094D8F4B191D4D72002C96B2 /* FmnCreateEditEventTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FmnCreateEditEventTVC.h; sourceTree = "<group>"; };
 		094D8F4C191D4D72002C96B2 /* FmnCreateEditEventTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FmnCreateEditEventTVC.m; sourceTree = "<group>"; };
+		0954FCC4195B3AF3008C345C /* FmnTodaysEventsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FmnTodaysEventsVC.h; sourceTree = "<group>"; };
+		0954FCC5195B3AF3008C345C /* FmnTodaysEventsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FmnTodaysEventsVC.m; sourceTree = "<group>"; };
 		09760FFA1933BBD00023E761 /* FmnNotificationsTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FmnNotificationsTVC.h; sourceTree = "<group>"; };
 		09760FFB1933BBD00023E761 /* FmnNotificationsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FmnNotificationsTVC.m; sourceTree = "<group>"; };
 		09760FFD1933E3540023E761 /* background-i4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background-i4.png"; sourceTree = "<group>"; };
@@ -239,6 +242,8 @@
 				091DDE6F193E6E52000499AC /* FmnAboutUsTVC.m */,
 				091E8321193E76F700DAB241 /* FmnFeedbackTVC.h */,
 				091E8322193E76F700DAB241 /* FmnFeedbackTVC.m */,
+				0954FCC4195B3AF3008C345C /* FmnTodaysEventsVC.h */,
+				0954FCC5195B3AF3008C345C /* FmnTodaysEventsVC.m */,
 			);
 			path = Forgetmenots;
 			sourceTree = "<group>";
@@ -520,6 +525,7 @@
 				09AFCC921935448200C105E2 /* FmnFlowers.m in Sources */,
 				091C7E76192D4C64001BEC3C /* Forgetmenots.xcdatamodeld in Sources */,
 				09127D1118F89067003EBA61 /* ForgetmenotsViewController.m in Sources */,
+				0954FCC6195B3AF3008C345C /* FmnTodaysEventsVC.m in Sources */,
 				09BABD75191EF400003AE68D /* FmnChooseFlowersCVC.m in Sources */,
 				091DDE70193E6E52000499AC /* FmnAboutUsTVC.m in Sources */,
 			);

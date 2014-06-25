@@ -13,6 +13,7 @@
 #import "DatabaseAvailability.h"
 #import "FmnSettings.h"
 #import "FmnMisc.h"
+#import "FmnTodaysEventsVC.h"
 
 @interface ForgetmenotsAppDelegate()
 
@@ -174,6 +175,32 @@ static NSManagedObjectContext* theObjectContext;
     [[NSNotificationCenter defaultCenter] postNotificationName:FmnDatabaseAvailabilityNotification
                                                         object:self
                                                       userInfo:userInfo];
+}
+
++ (void)presentTodaysEvents:(NSArray *)events
+{
+    //todo XXX check that there is a todays event and retreive it, set it to instantiated vc
+    
+    ScheduledEvent * e = [events firstObject];
+    NSString * name = e.name;
+    NSDate * date = e.date;
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    FmnTodaysEventsVC * vc = [storyboard instantiateViewControllerWithIdentifier:@"FmnTodaysEventVC"];
+    
+    [vc setEvents:events];
+    
+    [[ForgetmenotsAppDelegate topMostController] presentViewController:vc animated:YES completion:nil];
+}
+
++ (UIViewController*) topMostController
+{
+    UIViewController *topController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    while (topController.presentedViewController)
+    {
+        topController = topController.presentedViewController;
+    }
+    return topController;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

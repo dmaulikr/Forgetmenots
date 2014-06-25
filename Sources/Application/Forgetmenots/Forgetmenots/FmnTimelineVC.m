@@ -132,22 +132,22 @@
 
 -(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
 {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
-    [self scrollToTheUpcomingEvent];
+//    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+//    [self scrollToTheUpcomingEvent];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+//    [NSObject cancelPreviousPerformRequestsWithTarget:self];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)sender{
     // sender.isDragging - to differentiate drag from scroll
     
-    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+//    [NSObject cancelPreviousPerformRequestsWithTarget:self];
     //ensure that the end of scroll is fired.
-    [self performSelector:@selector(scrollViewDidEndScrollingAnimation:) withObject:self.scrollview afterDelay:1.5];
+//    [self performSelector:@selector(scrollViewDidEndScrollingAnimation:) withObject:self.scrollview afterDelay:1.5];
     
     int currentlyLookingAt;
     
@@ -228,11 +228,12 @@
                 
 //        [v animate];
         
-        //The setup code (in viewDidLoad in your view controller)
-        UITapGestureRecognizer *singleFingerTap =
-        [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                action:@selector(tappedEventToEdit:)];
-        [v addGestureRecognizer:singleFingerTap];
+        if (self.upcomingEventIndex <= i) // Show Edit ForgetmenotsEvent screen
+        {
+            UITapGestureRecognizer *singleFingerTap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                              action:@selector(tappedEventToEdit:)];
+            [v addGestureRecognizer:singleFingerTap];
+        }
         
         [v setFocused:(self.upcomingEventIndex == i)];
         [v setInactive:(self.upcomingEventIndex > i)];
@@ -288,6 +289,10 @@
     
     
     [self putUpDescription];
+    
+    if (self.upcomingEventIndex >= 0){
+        [ForgetmenotsAppDelegate presentTodaysEvents:@[[self.scheduledEvents objectAtIndex:self.upcomingEventIndex]]];
+    }
 }
 
 

@@ -84,8 +84,9 @@
     CGContextRef wrapperContext = UIGraphicsGetCurrentContext();
     UIGraphicsPushContext(wrapperContext);
     
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSaveGState(context);
+    //XXX What the heck was I doing this for? - begin
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+//    CGContextSaveGState(context);
     
     CGFloat unit = rect.size.height * 0.1;
     
@@ -163,7 +164,8 @@
     [[UIColor whiteColor] setStroke];
     [timeLine stroke];
     
-    CGContextRestoreGState(context);
+    //XXX What the heck was I doing this for? - end    
+//    CGContextRestoreGState(context);
 }
 
 - (void)drawDate:(NSDate *)date inRect:(CGRect)rect
