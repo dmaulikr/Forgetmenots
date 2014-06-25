@@ -31,7 +31,7 @@
 		091C7E88192D5CCC001BEC3C /* ForgetmenotsEvent+Boilerplate.m in Sources */ = {isa = PBXBuildFile; fileRef = 091C7E87192D5CCC001BEC3C /* ForgetmenotsEvent+Boilerplate.m */; };
 		091DDE70193E6E52000499AC /* FmnAboutUsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 091DDE6F193E6E52000499AC /* FmnAboutUsTVC.m */; };
 		091E8323193E76F700DAB241 /* FmnFeedbackTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 091E8322193E76F700DAB241 /* FmnFeedbackTVC.m */; };
-		091E8326193E884400DAB241 /* FmnTimelineV.m in Sources */ = {isa = PBXBuildFile; fileRef = 091E8325193E884400DAB241 /* FmnTimelineV.m */; };
+		091E8326193E884400DAB241 /* FmnTimelineElementV.m in Sources */ = {isa = PBXBuildFile; fileRef = 091E8325193E884400DAB241 /* FmnTimelineElementV.m */; };
 		094D8F3019105AF4002C96B2 /* FmnMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 094D8F2F19105AF4002C96B2 /* FmnMenuVC.m */; };
 		094D8F40191456AD002C96B2 /* FmnTimelineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 094D8F3F191456AC002C96B2 /* FmnTimelineVC.m */; };
 		094D8F4A191C3AB5002C96B2 /* FmnEventsTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 094D8F49191C3AB5002C96B2 /* FmnEventsTVC.m */; };
@@ -107,8 +107,8 @@
 		091DDE6F193E6E52000499AC /* FmnAboutUsTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FmnAboutUsTVC.m; sourceTree = "<group>"; };
 		091E8321193E76F700DAB241 /* FmnFeedbackTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FmnFeedbackTVC.h; sourceTree = "<group>"; };
 		091E8322193E76F700DAB241 /* FmnFeedbackTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FmnFeedbackTVC.m; sourceTree = "<group>"; };
-		091E8324193E884400DAB241 /* FmnTimelineV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FmnTimelineV.h; path = Views/FmnTimelineV.h; sourceTree = "<group>"; };
-		091E8325193E884400DAB241 /* FmnTimelineV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FmnTimelineV.m; path = Views/FmnTimelineV.m; sourceTree = "<group>"; };
+		091E8324193E884400DAB241 /* FmnTimelineElementV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FmnTimelineElementV.h; path = Views/FmnTimelineElementV.h; sourceTree = "<group>"; };
+		091E8325193E884400DAB241 /* FmnTimelineElementV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FmnTimelineElementV.m; path = Views/FmnTimelineElementV.m; sourceTree = "<group>"; };
 		094D8F2E19105AF4002C96B2 /* FmnMenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FmnMenuVC.h; sourceTree = "<group>"; };
 		094D8F2F19105AF4002C96B2 /* FmnMenuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FmnMenuVC.m; sourceTree = "<group>"; };
 		094D8F3E191456AC002C96B2 /* FmnTimelineVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FmnTimelineVC.h; sourceTree = "<group>"; };
@@ -311,8 +311,8 @@
 				0914B629193A0D75005FE8ED /* FmnFlowersV.m */,
 				0914B62B193A74B8005FE8ED /* UILabel+WhiteUIDatePickerLabels.h */,
 				0914B62C193A74B8005FE8ED /* UILabel+WhiteUIDatePickerLabels.m */,
-				091E8324193E884400DAB241 /* FmnTimelineV.h */,
-				091E8325193E884400DAB241 /* FmnTimelineV.m */,
+				091E8324193E884400DAB241 /* FmnTimelineElementV.h */,
+				091E8325193E884400DAB241 /* FmnTimelineElementV.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -513,7 +513,7 @@
 				09BABD7E192130ED003AE68D /* FmnChooseDateTVC.m in Sources */,
 				0914B62D193A74B8005FE8ED /* UILabel+WhiteUIDatePickerLabels.m in Sources */,
 				09BABD78191EF975003AE68D /* FmnFlowerCVCell.m in Sources */,
-				091E8326193E884400DAB241 /* FmnTimelineV.m in Sources */,
+				091E8326193E884400DAB241 /* FmnTimelineElementV.m in Sources */,
 				09760FFC1933BBD00023E761 /* FmnNotificationsTVC.m in Sources */,
 				09AFCC951935DFA900C105E2 /* FmnSettings.m in Sources */,
 				099A98EA1932A17A0030C3BC /* ScheduledEvent+Boilerplate.m in Sources */,

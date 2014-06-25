@@ -8,20 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "Flower+Defaults.h"
+#import "ScheduledEvent+Boilerplate.h"
 
 #define FMN_TIMELINE_MARGIN 44
 #define FMN_TIMELINE_STEP 99
 
-@interface FmnTimelineV : UIView
-
--(void)animate;
+@interface FmnTimelineElementV : UIView
 
 @property (nonatomic, strong) NSDateFormatter * dateFormatter;
 
-@property (nonatomic, strong) NSArray * scheduledEvents;
+@property (nonatomic, strong) ScheduledEvent * event;
 
-@property (nonatomic) int focusedEvent;
+@property (nonatomic) BOOL focused;
 
-@property (nonatomic) CGFloat step;
+@property (nonatomic) BOOL inactive;
 
 @end

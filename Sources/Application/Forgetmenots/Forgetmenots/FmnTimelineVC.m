@@ -11,7 +11,7 @@
 #import "Model/ForgetmenotsEvent+Boilerplate.h"
 #import "ScheduledEvent+Boilerplate.h"
 #import "ForgetmenotsEvent+Boilerplate.h"
-#import "FmnTimelineV.h"
+#import "FmnTimelineElementV.h"
 #import "FmnCreateEditEventTVC.h"
 
 @interface FmnTimelineVC ()
@@ -91,8 +91,8 @@
 
         [self defocusTimelineViews];
         
-        FmnTimelineV * v = [self.timelineViews objectAtIndex:currentlyLookingAt];
-        v.focusedEvent = 0;
+        FmnTimelineElementV * v = [self.timelineViews objectAtIndex:currentlyLookingAt];
+        v.focused = YES;
     }
 }
 
@@ -172,11 +172,11 @@
 
 -(void)defocusTimelineViews
 {
-    for (FmnTimelineV * v in self.timelineViews)
+    for (FmnTimelineElementV * v in self.timelineViews)
     {
-        if (v.focusedEvent >= 0)
+        if (v.focused)
         {
-            v.focusedEvent = -1;
+            v.focused = NO;
         }
     }
 }
@@ -194,7 +194,7 @@
         }
         else
         {
-            x = FMN_TIMELINE_STEP / 4 + 2; // filthy assumption that there can be now third extra case
+            x = FMN_TIMELINE_STEP / 4 + 2; // filthy assumption that there can be no third extra case
         }
     }
     [_scrollview setContentOffset:CGPointMake(x, y) animated:true];
@@ -213,7 +213,7 @@
         NSUInteger i = [self.scheduledEvents indexOfObject:e];
         
         CGRect frame = CGRectMake(FMN_TIMELINE_STEP * i, 0, FMN_TIMELINE_STEP, self.scrollview.frame.size.height);
-        FmnTimelineV * v = [[FmnTimelineV alloc]initWithFrame:frame];
+        FmnTimelineElementV * v = [[FmnTimelineElementV alloc]initWithFrame:frame];
         
         [self.timelineViews addObject:v];
         
@@ -224,8 +224,8 @@
         [v setBackgroundColor:[UIColor clearColor]];
         [v setOpaque:NO];
         
-        [v setScheduledEvents:@[e]];
-        
+        [v setEvent:e];
+                
 //        [v animate];
         
         //The setup code (in viewDidLoad in your view controller)
@@ -234,14 +234,8 @@
                                                 action:@selector(tappedEventToEdit:)];
         [v addGestureRecognizer:singleFingerTap];
         
-        if (self.upcomingEventIndex == i)
-        {
-            [v setFocusedEvent:0];
-        }
-        else
-        {
-            [v setFocusedEvent:-1];
-        }
+        [v setFocused:(self.upcomingEventIndex == i)];
+        [v setInactive:(self.upcomingEventIndex > i)];
     }
     
     _scrollview.contentSize = CGSizeMake(FMN_TIMELINE_STEP * [self.scheduledEvents count], self.scrollview.frame.size.height);
@@ -249,10 +243,9 @@
 }
 
 - (void)tappedEventToEdit:(UITapGestureRecognizer *)recognizer {
-    FmnTimelineV * v = (FmnTimelineV *)recognizer.view;
-    ScheduledEvent * e = [v.scheduledEvents firstObject];
+    FmnTimelineElementV * v = (FmnTimelineElementV *)recognizer.view;
     
-    self.tappedEventName = e.name;
+    self.tappedEventName = v.event.name;
     
     [self performSegueWithIdentifier:@"editEventSegue" sender:self];
 }
