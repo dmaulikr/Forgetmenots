@@ -31,13 +31,6 @@
 -(void)setSelected:(BOOL)selected
 {
     _selected = selected;
-    if (selected){
-        self.alpha = 1.0;
-    }
-    else
-    {
-        self.alpha = 0.26;
-    }
     [self setNeedsDisplay];
 }
 
@@ -51,8 +44,24 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
+    //Drawing everything to memmory and then rendering it (to apply filters, night we want to)
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(rect.size.width, rect.size.height), NO, 0.0);
+    CGContextRef wrapperContext = UIGraphicsGetCurrentContext();
+    UIGraphicsPushContext(wrapperContext);
+
     CGRect flowerRect = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height - CAPTION_LINE_HEIGHT);
     [FmnFlowers drawBullseyeFlowerInRect:flowerRect withFlower:self.flower];
+    
+    // Drawing complete, grab the image now
+    UIGraphicsPopContext();
+    UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    if (! self.selected)
+    {
+        outputImage = [FmnMisc imageToGreyImage:outputImage];
+    }
+    [outputImage drawInRect:rect];
 
     CGRect captionRect = CGRectMake(rect.origin.x, rect.origin.y + rect.size.height - CAPTION_SIZE, rect.size.width, CAPTION_SIZE);
     [self drawNameInRect:captionRect];

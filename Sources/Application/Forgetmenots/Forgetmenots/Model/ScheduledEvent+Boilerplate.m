@@ -102,9 +102,13 @@
     }
     else if ([matches count])
     {
+        NSDate * now = [NSDate date];
         for (ScheduledEvent* event in matches)
         {
-            [context deleteObject:event];
+            if ([event.date compare:now] == NSOrderedAscending)
+            {
+                [context deleteObject:event];
+            }
         }
         [context save:nil];
     }
