@@ -6,9 +6,10 @@
 //  Copyright (c) 2014 Ilya Pimenov. All rights reserved.
 //
 
-#import "FmnAboutUsTVC.h"
+#import "FmnSettingsTVC.h"
+#import "FmnMisc.h"
 
-@interface FmnAboutUsTVC ()
+@interface FmnSettingsTVC ()
 
 @property (weak, nonatomic) IBOutlet UILabel *teamHeadline;
 @property (weak, nonatomic) IBOutlet UITextView *teamBody;
@@ -17,7 +18,7 @@
 
 @end
 
-@implementation FmnAboutUsTVC
+@implementation FmnSettingsTVC
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -28,13 +29,19 @@
     return self;
 }
 
--(void)setCellStyles
-{
-    [self.teamHeadline setTextColor:[UIColor whiteColor]];
-    [self.teamBody setTextColor:[UIColor whiteColor]];
 
-    [self.whyHeadline setTextColor:[UIColor whiteColor]];
-    [self.whyBody setTextColor:[UIColor whiteColor]];
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    UITableViewHeaderFooterView *tableViewHeaderFooterView = (UITableViewHeaderFooterView *)view;
+    tableViewHeaderFooterView.textLabel.textColor = [UIColor whiteColor];
+    tableViewHeaderFooterView.backgroundView.backgroundColor = [UIColor clearColor];
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [cell.textLabel setTextColor:[UIColor whiteColor]];
+    cell.backgroundView.backgroundColor = [UIColor clearColor];
+    cell.backgroundColor = [UIColor clearColor];
 }
 
 - (void)viewDidLoad
@@ -44,8 +51,6 @@
     // Background
     self.navigationController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
     self.tableView.backgroundColor = [UIColor clearColor];
-    
-    [self setCellStyles];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

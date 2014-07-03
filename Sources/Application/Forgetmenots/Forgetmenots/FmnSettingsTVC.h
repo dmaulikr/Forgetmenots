@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FmnAboutUsTVC : UITableViewController
+@interface FmnSettingsTVC : UITableViewController
 
 @end

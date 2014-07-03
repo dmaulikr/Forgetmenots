@@ -12,6 +12,8 @@
 
 @interface FmnMisc : NSObject
 
++ (UIImage *)imageWithColor:(UIColor *)color;
+
 + (UIImage *)imageToGreyImage:(UIImage *)image;
 
 @end

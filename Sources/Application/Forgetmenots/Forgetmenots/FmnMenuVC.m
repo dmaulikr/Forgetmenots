@@ -30,13 +30,7 @@
             identifier = @"myEventsSegue";
             break;
         case 2:
-            identifier = @"notificationsSegue";
-            break;
-        case 3:
-            identifier = @"aboutUsSegue";
-            break;
-        case 4:
-            identifier = @"feedbackSegue";
+            identifier = @"settingsSegue";
             break;
         default:
             break;
