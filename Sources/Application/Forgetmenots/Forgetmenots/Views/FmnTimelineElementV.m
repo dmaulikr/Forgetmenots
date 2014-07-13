@@ -178,6 +178,11 @@
     
     NSString* title = [self.dateFormatter stringFromDate:date];
     
+    if (! title)
+    {
+        title = @"N/A";
+    }
+    
     NSAttributedString *titleText = [[NSAttributedString alloc]
                                      initWithString : title
                                      attributes : @{NSFontAttributeName : titleFont,

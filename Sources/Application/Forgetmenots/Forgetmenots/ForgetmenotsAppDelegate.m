@@ -26,6 +26,20 @@ static NSManagedObjectContext* theObjectContext;
 #define YES_STRING @"YES"
 #define NO_STRING @"NO"
 
++(BOOL)didShowMoreInfoToday
+{
+    NSString * loaded = [FmnSettings getSettingsStringWithKey:ALREADY_SHOWEN_MORE_INFO_TODAY];
+    if (loaded && [loaded isEqualToString:YES_STRING])
+    {
+        // do nothing, old notifications were cleaned out already
+    }
+    else
+    {
+        [FmnSettings saveSettingsString:YES_STRING withKey:ALREADY_SHOWEN_MORE_INFO_TODAY];
+    }
+    return (loaded && [loaded isEqualToString:YES_STRING]);
+}
+
 -(void)cleanupOldNotifications
 {
     NSString * loaded = [FmnSettings getSettingsStringWithKey:CLEANED_UP_OLD_NOTIFICATIONS];
@@ -143,10 +157,10 @@ static NSManagedObjectContext* theObjectContext;
     //load some defaults;
     
     // XXX some weird shite with this one
-//    [ForgetmenotsEvent initWithFlowers:[NSSet setWithObjects:[Flower flowerWithName:@"Forgetmenot" inManagedContext:self.managedObjectContext], [Flower flowerWithName:@"Tulip" inManagedContext:self.managedObjectContext], nil]
-//                                  name:@"Ally's birhtday"
-//                                  date:[NSDate dateWithTimeIntervalSince1970:1400107843]
-//                      inManagedContext:self.managedObjectContext]; // 14 may 2014
+    [ForgetmenotsEvent initWithFlowers:[NSSet setWithObjects:[Flower flowerWithName:@"Forgetmenot" inManagedContext:self.managedObjectContext], [Flower flowerWithName:@"Tulip" inManagedContext:self.managedObjectContext], nil]
+                                  name:@"Ally's birhtday"
+                                  date:[NSDate dateWithTimeIntervalSince1970:1400107843]
+                      inManagedContext:self.managedObjectContext]; // 14 may 2014
     
 //    [ForgetmenotsEvent initWithFlowers:[NSSet setWithObjects:[Flower flowerWithName:@"Lilium" inManagedContext:self.managedObjectContext], [Flower flowerWithName:@"Amaryllis" inManagedContext:self.managedObjectContext], nil]
 //                                  name:@"Ally Monthly"
@@ -179,18 +193,17 @@ static NSManagedObjectContext* theObjectContext;
 
 + (void)presentTodaysEvents:(NSArray *)events
 {
-    //todo XXX check that there is a todays event and retreive it, set it to instantiated vc
-    
-    ScheduledEvent * e = [events firstObject];
-    NSString * name = e.name;
-    NSDate * date = e.date;
-    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    
     FmnTodaysEventsVC * vc = [storyboard instantiateViewControllerWithIdentifier:@"FmnTodaysEventVC"];
-    
-    [vc setEvents:events];
-    
-    [[ForgetmenotsAppDelegate topMostController] presentViewController:vc animated:YES completion:nil];
+        
+    [vc setEvent:[events firstObject]];
+        
+    [[ForgetmenotsAppDelegate topMostController] presentViewController:vc animated:YES completion:^{
+        if ([events count] > 1){
+            [ForgetmenotsAppDelegate presentTodaysEvents:[events subarrayWithRange:NSMakeRange(1, [events count] - 1)]];
+        }
+    }];
 }
 
 + (UIViewController*) topMostController

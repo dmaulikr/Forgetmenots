@@ -8,6 +8,7 @@
 
 #import "FmnCreateEditEventTVC.h"
 #import "supl/ForgetmenotsUITableView.h"
+#import "ForgetmenotsEvent+Boilerplate.h"
 #import <objc/runtime.h>
 
 @interface FmnCreateEditEventTVC ()
@@ -70,7 +71,7 @@
 
 -(void)updateDateLabel
 {
-    self.selectedDate.text = [NSString stringWithFormat:@"Date: %@", [ForgetmenotsEvent timeData:self.date
+    self.selectedDate.text = [NSString stringWithFormat:@"%@", [ForgetmenotsEvent timeData:self.date
                                                                                           nTimes:self.nTimes
                                                                                          inExact:self.inTimeUnits
                                                                                        timeUnits:self.timeUnit]];
@@ -334,6 +335,15 @@ const char ALERT_FORGETMENOT_EVENT;
     self.selectedDate.textColor = [UIColor whiteColor];
 }
 
+-(void)setupDefaultDate
+{
+    self.random = YES;
+    self.nTimes = 1;
+    self.inTimeUnits = 1;
+    self.timeUnit = MONTH;
+    self.start = [NSDate date];
+}
+
 -(void)setupNewEventOrEdit
 {
     if (self.editEvent)
@@ -344,6 +354,8 @@ const char ALERT_FORGETMENOT_EVENT;
     {
         self.navigationItem.title = @"New Event";
         [self.deleteCell setHidden:YES];
+        
+        [self setupDefaultDate];
     }
 }
 
@@ -351,13 +363,12 @@ const char ALERT_FORGETMENOT_EVENT;
 {
     [super viewDidLoad];
     
-    [self setupTitleCell];
+    [self setupNewEventOrEdit];
     
+    [self setupTitleCell];
     [self setupDateCell];
     
     self.tableView.backgroundColor = [UIColor clearColor];
-    
-    [self setupNewEventOrEdit];
 }
 
 -(void)viewWillAppear:(BOOL)animated

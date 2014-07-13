@@ -24,4 +24,6 @@
 
 @property (nonatomic) int upcomingEventIndex;
 
+@property (weak, nonatomic) IBOutlet UIButton *detailsButton;
+
 @end

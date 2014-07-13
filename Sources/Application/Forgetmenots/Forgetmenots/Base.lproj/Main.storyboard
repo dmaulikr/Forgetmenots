@@ -83,16 +83,31 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wSd-ct-FbN">
+                                <rect key="frame" x="149" y="338" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showDetails:" destination="jda-zD-YZo" eventType="touchUpInside" id="5qR-fe-Zgr"/>
+                                </connections>
+                            </button>
                         </subviews>
+                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="oc1-oq-L2f" firstAttribute="top" secondItem="b9d-BL-UxP" secondAttribute="bottom" constant="8" symbolic="YES" id="8gv-FC-T0F"/>
-                            <constraint firstAttribute="trailing" secondItem="b9d-BL-UxP" secondAttribute="trailing" constant="20" symbolic="YES" id="FhY-dJ-vKl"/>
-                            <constraint firstItem="b9d-BL-UxP" firstAttribute="top" secondItem="NqK-Ht-bgP" secondAttribute="bottom" constant="86" id="Hfg-rO-DDH"/>
-                            <constraint firstItem="b9d-BL-UxP" firstAttribute="leading" secondItem="zdJ-MO-tXz" secondAttribute="leading" constant="20" symbolic="YES" id="LvE-01-qJn"/>
-                            <constraint firstItem="oc1-oq-L2f" firstAttribute="leading" secondItem="b9d-BL-UxP" secondAttribute="leading" id="TlD-Uq-Tud"/>
-                            <constraint firstItem="b9d-BL-UxP" firstAttribute="centerY" secondItem="zdJ-MO-tXz" secondAttribute="centerY" id="Y5V-b3-elP"/>
-                            <constraint firstItem="b9d-BL-UxP" firstAttribute="trailing" secondItem="oc1-oq-L2f" secondAttribute="trailing" id="kW1-P4-rsu"/>
-                            <constraint firstAttribute="bottom" secondItem="oc1-oq-L2f" secondAttribute="bottom" constant="20" symbolic="YES" id="zvv-Lt-QQT"/>
+                            <constraint firstItem="b9d-BL-UxP" firstAttribute="leading" secondItem="oc1-oq-L2f" secondAttribute="leading" id="1rI-Gl-w98"/>
+                            <constraint firstItem="b9d-BL-UxP" firstAttribute="centerY" secondItem="zdJ-MO-tXz" secondAttribute="centerY" id="4S1-5v-HNT"/>
+                            <constraint firstItem="oc1-oq-L2f" firstAttribute="top" secondItem="b9d-BL-UxP" secondAttribute="bottom" constant="8" symbolic="YES" id="7Gh-Ll-XjY"/>
+                            <constraint firstItem="b9d-BL-UxP" firstAttribute="leading" secondItem="zdJ-MO-tXz" secondAttribute="leading" constant="20" symbolic="YES" id="8zQ-hP-Fm3"/>
+                            <constraint firstItem="b9d-BL-UxP" firstAttribute="top" secondItem="NqK-Ht-bgP" secondAttribute="bottom" constant="86" id="AcP-Xw-0Ie"/>
+                            <constraint firstItem="b9d-BL-UxP" firstAttribute="trailing" secondItem="oc1-oq-L2f" secondAttribute="trailing" id="CpM-yR-uK7"/>
+                            <constraint firstItem="exI-fO-oLd" firstAttribute="top" secondItem="wSd-ct-FbN" secondAttribute="bottom" constant="112" id="HnH-wL-ngu"/>
+                            <constraint firstItem="wSd-ct-FbN" firstAttribute="centerX" secondItem="oc1-oq-L2f" secondAttribute="centerX" id="IkY-CQ-iQ7"/>
+                            <constraint firstAttribute="trailing" secondItem="b9d-BL-UxP" secondAttribute="trailing" constant="20" symbolic="YES" id="Qb2-oO-lAj"/>
+                            <constraint firstItem="wSd-ct-FbN" firstAttribute="top" secondItem="b9d-BL-UxP" secondAttribute="bottom" constant="8" symbolic="YES" id="cLH-nb-zwP"/>
+                            <constraint firstAttribute="bottom" secondItem="oc1-oq-L2f" secondAttribute="bottom" constant="20" symbolic="YES" id="cpv-rK-Iga"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Timeline" id="jBl-3D-4XP">
@@ -104,6 +119,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="currentDescription" destination="oc1-oq-L2f" id="GhC-0G-tFe"/>
+                        <outlet property="detailsButton" destination="wSd-ct-FbN" id="tIb-RJ-1uL"/>
                         <outlet property="nav" destination="jBl-3D-4XP" id="QDc-hf-tqt"/>
                         <outlet property="scrollview" destination="b9d-BL-UxP" id="Srw-QM-abQ"/>
                         <segue destination="Ukz-77-wJ2" kind="push" identifier="editEventSegue" id="fKf-CX-JTh"/>
@@ -125,57 +141,75 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="84f-1L-gVx" customClass="FmnTimelineElementV">
-                                <rect key="frame" x="51" y="109" width="219" height="262"/>
+                            <view multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="84f-1L-gVx" customClass="FmnTimelineElementV">
+                                <rect key="frame" x="20" y="56" width="280" height="130"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="thP-84-cni">
+                                        <rect key="frame" x="238" y="20" width="22" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="flowerInfo:" destination="5Ow-xt-R5r" eventType="touchUpInside" id="sKq-au-L90"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <button opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tv7-2T-sAh">
-                                <rect key="frame" x="254" y="20" width="40" height="30"/>
+                            <button opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tv7-2T-sAh">
+                                <rect key="frame" x="20" y="417" width="280" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Close">
-                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Sweet!">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="dismissClicked:" destination="5Ow-xt-R5r" eventType="touchUpInside" id="gxF-Um-bhS"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kvl-bq-Lrq">
-                                <rect key="frame" x="144" y="80" width="33" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You get some Gerbers!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kvl-bq-Lrq">
+                                <rect key="frame" x="20" y="20" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If the flower food solution becomes cloudy, replace it entirely with properly mixed flower food solution." lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="qds-ZI-bso">
-                                <rect key="frame" x="20" y="379" width="280" height="81"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="'A superior man is modes in his speech, but exceeds in his actions' - Confucious" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="278" translatesAutoresizingMaskIntoConstraints="NO" id="qds-ZI-bso">
+                                <rect key="frame" x="20" y="235" width="278" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="278" translatesAutoresizingMaskIntoConstraints="NO" id="M4e-n5-fmN">
+                                <rect key="frame" x="22" y="289" width="278" height="120"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">Show your modest side today: look for the most beautiful Gerbera in her favourite color! This flower convey modesty, innocence and purity. White gerbera's indicate innocence; yellow gerberas say 'I'll try harder' and orange gerberas say 'You are my sunshine'.</string>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Today: Kim's birthday!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="hOq-UD-7lK">
+                                <rect key="frame" x="20" y="194" width="280" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.29803922772407532" green="0.29803922772407532" blue="0.29803922772407532" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="84f-1L-gVx" firstAttribute="centerX" secondItem="kvl-bq-Lrq" secondAttribute="centerX" id="2te-eB-qqS"/>
-                            <constraint firstItem="qds-ZI-bso" firstAttribute="centerX" secondItem="84f-1L-gVx" secondAttribute="centerX" id="CQr-fA-M6H"/>
-                            <constraint firstItem="84f-1L-gVx" firstAttribute="top" secondItem="tv7-2T-sAh" secondAttribute="bottom" constant="59" id="JwC-JK-vrU"/>
-                            <constraint firstItem="84f-1L-gVx" firstAttribute="centerY" secondItem="qjz-kc-ewz" secondAttribute="centerY" id="NCm-eG-OHv"/>
-                            <constraint firstAttribute="bottom" secondItem="qds-ZI-bso" secondAttribute="bottom" constant="20" symbolic="YES" id="NOt-ZE-rcZ"/>
-                            <constraint firstItem="84f-1L-gVx" firstAttribute="leading" secondItem="qjz-kc-ewz" secondAttribute="leading" constant="51" id="Nag-gB-Mlx"/>
-                            <constraint firstItem="tv7-2T-sAh" firstAttribute="top" secondItem="qjz-kc-ewz" secondAttribute="top" constant="20" symbolic="YES" id="bkn-rL-DBf"/>
-                            <constraint firstItem="qds-ZI-bso" firstAttribute="top" secondItem="84f-1L-gVx" secondAttribute="bottom" constant="8" symbolic="YES" id="dvY-09-HsO"/>
-                            <constraint firstItem="qds-ZI-bso" firstAttribute="leading" secondItem="qjz-kc-ewz" secondAttribute="leading" constant="20" symbolic="YES" id="eNa-do-me3"/>
-                            <constraint firstAttribute="trailing" secondItem="tv7-2T-sAh" secondAttribute="trailing" constant="26" id="mtT-A1-vMv"/>
-                            <constraint firstAttribute="trailing" secondItem="qds-ZI-bso" secondAttribute="trailing" constant="20" symbolic="YES" id="s2y-YR-Mge"/>
-                            <constraint firstItem="84f-1L-gVx" firstAttribute="top" secondItem="kvl-bq-Lrq" secondAttribute="bottom" constant="8" symbolic="YES" id="xBR-gp-fs5"/>
-                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="adviceLabel" destination="N1p-ap-vlr" id="75z-AJ-Xxv"/>
+                        <outlet property="adviceLabel" destination="qds-ZI-bso" id="5rj-aW-M4s"/>
+                        <outlet property="descriptionLabel" destination="M4e-n5-fmN" id="m4o-PS-wXd"/>
+                        <outlet property="flowerSelectionLabel" destination="kvl-bq-Lrq" id="cCD-qH-qqE"/>
                         <outlet property="mainView" destination="84f-1L-gVx" id="ZWU-rq-1Bf"/>
-                        <outlet property="titleLabel" destination="kvl-bq-Lrq" id="gsy-Kg-XL1"/>
+                        <outlet property="sweetButtin" destination="tv7-2T-sAh" id="tJb-h0-2cc"/>
+                        <outlet property="titleLabel" destination="hOq-UD-7lK" id="rth-s6-5gN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zOC-vF-8ax" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -244,7 +278,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Date:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ryU-HX-GG4">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Date:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ryU-HX-GG4">
                                                     <rect key="frame" x="15" y="0.0" width="270" height="44"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -305,6 +339,57 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CC0-Fg-lHh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1835" y="-491"/>
+        </scene>
+        <!--Fmn Flower DetailsVC-->
+        <scene sceneID="UCF-Qk-I75">
+            <objects>
+                <viewController storyboardIdentifier="FmnFlowerDetailsVC" id="m1j-jz-DfN" customClass="FmnFlowerDetailsVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fhT-th-WKj"/>
+                        <viewControllerLayoutGuide type="bottom" id="xka-xg-F4H"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="q9W-Ab-qxI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uSc-mC-7J6" customClass="FmnTimelineElementV">
+                                <rect key="frame" x="20" y="67" width="280" height="130"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Gerberas" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zNF-20-bY1">
+                                <rect key="frame" x="20" y="38" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="278" translatesAutoresizingMaskIntoConstraints="NO" id="eQo-pr-FrW">
+                                <rect key="frame" x="21" y="205" width="278" height="255"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text">Show your modest side today: look for the most beautiful Gerbera in her favourite color! This flower convey modesty, innocence and purity. White gerbera's indicate innocence; yellow gerberas say 'I'll try harder' and orange gerberas say 'You are my sunshine'.</string>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FML-k3-rqr">
+                                <rect key="frame" x="277" y="20" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="&lt;-"/>
+                                <connections>
+                                    <action selector="back:" destination="m1j-jz-DfN" eventType="touchUpInside" id="NzY-jJ-hxw"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="flowerView" destination="uSc-mC-7J6" id="INF-wN-Qk1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Ji-TA-HNF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2385" y="-1459"/>
         </scene>
         <!--Fmn Choose FlowersCVC - Flowers-->
         <scene sceneID="8d0-ZS-gZB">
@@ -748,10 +833,10 @@
             </objects>
             <point key="canvasLocation" x="1318" y="257"/>
         </scene>
-        <!--View Controller - Reminder Time-->
+        <!--Fmn Setting TimeVC - Reminder Time-->
         <scene sceneID="86Q-Gl-7gx">
             <objects>
-                <viewController id="NW2-sh-6eV" sceneMemberID="viewController">
+                <viewController id="NW2-sh-6eV" customClass="FmnSettingTimeVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rXB-mV-803"/>
                         <viewControllerLayoutGuide type="bottom" id="71V-Sf-jst"/>
@@ -767,7 +852,7 @@
                                     <!--2014-07-02 23:32:00 +0000-->
                                 </date>
                                 <timeZone key="timeZone" name="America/Los_Angeles">
-                                    <mutableData key="data">
+                                    <data key="data">
 VFppZgAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAC5AAAABAAAABCepkign7sVkKCGKqChmveQ
 y4kaoNIj9HDSYSYQ1v50INiArZDa/tGg28CQENzes6DdqayQ3r6VoN+JjpDgnneg4WlwkOJ+WaDjSVKQ
 5F47oOUpNJDmR1gg5xJREOgnOiDo8jMQ6gccIOrSFRDr5v4g7LH3EO3G4CDukdkQ76/8oPBxuxDxj96g
@@ -785,17 +870,18 @@ f5gqkAABAAECAwEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
-</mutableData>
+</data>
                                 </timeZone>
                             </datePicker>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Choose a time at which you would love to be reminded to buy flowers. Normally, afterwork hours suit best most of the people." lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="aiV-tl-yMs">
                                 <rect key="frame" x="20" y="61" width="280" height="90"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Reminder Time" id="dL0-XW-YTR"/>
                 </viewController>
@@ -803,10 +889,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="1838" y="257"/>
         </scene>
-        <!--View Controller - Attribution-->
+        <!--Fmn Settings AttributionVC - Attribution-->
         <scene sceneID="w6a-5B-uq3">
             <objects>
-                <viewController id="bNr-Z4-wXu" sceneMemberID="viewController">
+                <viewController id="bNr-Z4-wXu" customClass="FmnSettingsAttributionVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7fX-6p-DVc"/>
                         <viewControllerLayoutGuide type="bottom" id="Pr3-hI-F9q"/>
@@ -814,9 +900,19 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <view key="view" contentMode="scaleToFill" id="xYT-5c-ZuX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aPJ-Ty-piH">
+                                <rect key="frame" x="0.0" y="74" width="320" height="406"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Attribution" id="303-el-0HR"/>
+                    <connections>
+                        <outlet property="webview" destination="aPJ-Ty-piH" id="Peh-JP-0ix"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TdR-Hh-PUo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

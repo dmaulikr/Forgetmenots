@@ -10,7 +10,19 @@
 
 @implementation FmnMisc
 
-+ (UIImage *)imageWithColor:(UIColor *)color {
++ (BOOL)isToday:(NSDate *)date
+{
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDateComponents *components = [cal components:(NSEraCalendarUnit|NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit) fromDate:[NSDate date]];
+    NSDate *today = [cal dateFromComponents:components];
+    components = [cal components:(NSEraCalendarUnit|NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit) fromDate:date];
+    NSDate *otherDate = [cal dateFromComponents:components];
+    
+    return [today isEqualToDate:otherDate];
+}
+
++ (UIImage *)imageWithColor:(UIColor *)color
+{
     CGRect rect = CGRectMake(0, 0, 1, 1);
     // Create a 1 by 1 pixel context
     UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0);
@@ -22,7 +34,8 @@
     return image;
 }
 
-+ (UIImage *)imageToGreyImage:(UIImage *)image {
++ (UIImage *)imageToGreyImage:(UIImage *)image
+{
     // Create image rectangle with current image width/height
     CGFloat actualWidth = image.size.width;
     CGFloat actualHeight = image.size.height;

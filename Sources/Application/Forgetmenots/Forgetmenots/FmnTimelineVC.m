@@ -13,6 +13,7 @@
 #import "ForgetmenotsEvent+Boilerplate.h"
 #import "FmnTimelineElementV.h"
 #import "FmnCreateEditEventTVC.h"
+#import "FmnMisc.h"
 
 @interface FmnTimelineVC ()
 
@@ -93,7 +94,21 @@
         
         FmnTimelineElementV * v = [self.timelineViews objectAtIndex:currentlyLookingAt];
         v.focused = YES;
+        
+        if ([FmnMisc isToday:event.date])
+        {
+            self.detailsButton.hidden = NO;
+        }
+        else
+        {
+            self.detailsButton.hidden = YES;
+        }
     }
+}
+
+- (IBAction)showDetails:(id)sender
+{
+    [ForgetmenotsAppDelegate presentTodaysEvents:@[[self.scheduledEvents objectAtIndex:self.currentlyLookingAt]]];
 }
 
 -(int)upcomingEventIndex
@@ -132,22 +147,22 @@
 
 -(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
 {
-//    [NSObject cancelPreviousPerformRequestsWithTarget:self];
-//    [self scrollToTheUpcomingEvent];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [self scrollToTheUpcomingEvent];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-//    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)sender{
     // sender.isDragging - to differentiate drag from scroll
     
-//    [NSObject cancelPreviousPerformRequestsWithTarget:self];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self];
     //ensure that the end of scroll is fired.
-//    [self performSelector:@selector(scrollViewDidEndScrollingAnimation:) withObject:self.scrollview afterDelay:1.5];
+    [self performSelector:@selector(scrollViewDidEndScrollingAnimation:) withObject:nil afterDelay:1.5];
     
     int currentlyLookingAt;
     
@@ -251,6 +266,28 @@
     [self performSegueWithIdentifier:@"editEventSegue" sender:self];
 }
 
+-(void)showMoreInfoNotifications
+{
+//    didShowMoreInfoToday
+    
+    if (![ForgetmenotsAppDelegate didShowMoreInfoToday]){
+        if (self.upcomingEventIndex >= 0){
+            NSDate * d = ((ScheduledEvent *)[self.scheduledEvents objectAtIndex:self.upcomingEventIndex]).date;
+            
+            if ([FmnMisc isToday:d])
+            {
+                NSMutableArray * todaysEvents = [[NSMutableArray alloc] init];
+                // Get all todays events
+                for (int k = self.upcomingEventIndex; [FmnMisc isToday:((ScheduledEvent *)[self.scheduledEvents objectAtIndex:k]).date]; k++)
+                {
+                    [todaysEvents addObject:[self.scheduledEvents objectAtIndex:k]];
+                }
+                [ForgetmenotsAppDelegate presentTodaysEvents:todaysEvents];
+            }
+        }
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -289,10 +326,7 @@
     
     
     [self putUpDescription];
-    
-    if (self.upcomingEventIndex >= 0){
-        [ForgetmenotsAppDelegate presentTodaysEvents:@[[self.scheduledEvents objectAtIndex:self.upcomingEventIndex]]];
-    }
+    [self showMoreInfoNotifications];
 }
 
 

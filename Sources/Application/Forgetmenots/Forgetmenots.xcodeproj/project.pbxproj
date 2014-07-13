@@ -55,6 +55,9 @@
 		09BABD75191EF400003AE68D /* FmnChooseFlowersCVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 09BABD74191EF400003AE68D /* FmnChooseFlowersCVC.m */; };
 		09BABD78191EF975003AE68D /* FmnFlowerCVCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 09BABD77191EF975003AE68D /* FmnFlowerCVCell.m */; };
 		09BABD7E192130ED003AE68D /* FmnChooseDateTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 09BABD7D192130ED003AE68D /* FmnChooseDateTVC.m */; };
+		09FABD4F1966098F00B2BCF2 /* FmnSettingTimeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 09FABD4E1966098F00B2BCF2 /* FmnSettingTimeVC.m */; };
+		09FABD52196617C300B2BCF2 /* FmnSettingsAttributionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 09FABD51196617C300B2BCF2 /* FmnSettingsAttributionVC.m */; };
+		09FABD55196CA45F00B2BCF2 /* FmnFlowerDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 09FABD54196CA45F00B2BCF2 /* FmnFlowerDetailsVC.m */; };
 		ECD0482DE9D347D887C641F8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7F1FA74C04B41EEA4D7FC9A /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -151,6 +154,12 @@
 		09BABD77191EF975003AE68D /* FmnFlowerCVCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FmnFlowerCVCell.m; path = Views/FmnFlowerCVCell.m; sourceTree = "<group>"; };
 		09BABD7C192130ED003AE68D /* FmnChooseDateTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FmnChooseDateTVC.h; path = ViewControllers/FmnChooseDateTVC.h; sourceTree = "<group>"; };
 		09BABD7D192130ED003AE68D /* FmnChooseDateTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FmnChooseDateTVC.m; path = ViewControllers/FmnChooseDateTVC.m; sourceTree = "<group>"; };
+		09FABD4D1966098F00B2BCF2 /* FmnSettingTimeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FmnSettingTimeVC.h; sourceTree = "<group>"; };
+		09FABD4E1966098F00B2BCF2 /* FmnSettingTimeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FmnSettingTimeVC.m; sourceTree = "<group>"; };
+		09FABD50196617C300B2BCF2 /* FmnSettingsAttributionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FmnSettingsAttributionVC.h; sourceTree = "<group>"; };
+		09FABD51196617C300B2BCF2 /* FmnSettingsAttributionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FmnSettingsAttributionVC.m; sourceTree = "<group>"; };
+		09FABD53196CA45F00B2BCF2 /* FmnFlowerDetailsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FmnFlowerDetailsVC.h; sourceTree = "<group>"; };
+		09FABD54196CA45F00B2BCF2 /* FmnFlowerDetailsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FmnFlowerDetailsVC.m; sourceTree = "<group>"; };
 		4B2D204AA0E04A1288212666 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		B7F1FA74C04B41EEA4D7FC9A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -244,6 +253,12 @@
 				091E8322193E76F700DAB241 /* FmnFeedbackTVC.m */,
 				0954FCC4195B3AF3008C345C /* FmnTodaysEventsVC.h */,
 				0954FCC5195B3AF3008C345C /* FmnTodaysEventsVC.m */,
+				09FABD4D1966098F00B2BCF2 /* FmnSettingTimeVC.h */,
+				09FABD4E1966098F00B2BCF2 /* FmnSettingTimeVC.m */,
+				09FABD50196617C300B2BCF2 /* FmnSettingsAttributionVC.h */,
+				09FABD51196617C300B2BCF2 /* FmnSettingsAttributionVC.m */,
+				09FABD53196CA45F00B2BCF2 /* FmnFlowerDetailsVC.h */,
+				09FABD54196CA45F00B2BCF2 /* FmnFlowerDetailsVC.m */,
 			);
 			path = Forgetmenots;
 			sourceTree = "<group>";
@@ -506,12 +521,14 @@
 				094D8F4A191C3AB5002C96B2 /* FmnEventsTVC.m in Sources */,
 				091E8323193E76F700DAB241 /* FmnFeedbackTVC.m in Sources */,
 				094D8F4D191D4D72002C96B2 /* FmnCreateEditEventTVC.m in Sources */,
+				09FABD4F1966098F00B2BCF2 /* FmnSettingTimeVC.m in Sources */,
 				094D8F3019105AF4002C96B2 /* FmnMenuVC.m in Sources */,
 				094D8F40191456AD002C96B2 /* FmnTimelineVC.m in Sources */,
 				09127D3518F891DA003EBA61 /* FmnFlowerV.m in Sources */,
 				091C7E88192D5CCC001BEC3C /* ForgetmenotsEvent+Boilerplate.m in Sources */,
 				09127D0B18F89067003EBA61 /* ForgetmenotsAppDelegate.m in Sources */,
 				099A98DE19329F6B0030C3BC /* PastEvent.m in Sources */,
+				09FABD55196CA45F00B2BCF2 /* FmnFlowerDetailsVC.m in Sources */,
 				09AFCC8F1935175700C105E2 /* FmnMenuLeftTVC.m in Sources */,
 				099A98E719329F6C0030C3BC /* ForgetmenotsEvent.m in Sources */,
 				099A98E419329F6B0030C3BC /* ScheduledEvent.m in Sources */,
@@ -524,6 +541,7 @@
 				099A98EA1932A17A0030C3BC /* ScheduledEvent+Boilerplate.m in Sources */,
 				09AFCC921935448200C105E2 /* FmnFlowers.m in Sources */,
 				091C7E76192D4C64001BEC3C /* Forgetmenots.xcdatamodeld in Sources */,
+				09FABD52196617C300B2BCF2 /* FmnSettingsAttributionVC.m in Sources */,
 				09127D1118F89067003EBA61 /* ForgetmenotsViewController.m in Sources */,
 				0954FCC6195B3AF3008C345C /* FmnTodaysEventsVC.m in Sources */,
 				09BABD75191EF400003AE68D /* FmnChooseFlowersCVC.m in Sources */,

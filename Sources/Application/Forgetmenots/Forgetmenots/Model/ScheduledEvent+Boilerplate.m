@@ -105,7 +105,7 @@
         NSDate * now = [NSDate date];
         for (ScheduledEvent* event in matches)
         {
-            if ([event.date compare:now] == NSOrderedAscending)
+            if ([event.date compare:now] == NSOrderedDescending)
             {
                 [context deleteObject:event];
             }

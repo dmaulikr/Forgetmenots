@@ -12,10 +12,16 @@
 
 @interface FmnTodaysEventsVC : UIViewController
 
-@property (nonatomic, strong) NSArray * events;
+@property (nonatomic, strong) ScheduledEvent * event;
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet FmnTimelineElementV *mainView;
+
+@property (weak, nonatomic) IBOutlet UILabel *flowerSelectionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *adviceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
+
+
+@property (weak, nonatomic) IBOutlet UIButton *sweetButtin;
 
 @end

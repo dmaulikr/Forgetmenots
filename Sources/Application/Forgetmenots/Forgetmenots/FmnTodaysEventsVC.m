@@ -7,6 +7,8 @@
 //
 
 #import "FmnTodaysEventsVC.h"
+#import "FmnFlowerDetailsVC.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface FmnTodaysEventsVC ()
 
@@ -27,31 +29,25 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-//-(void)setEvents:(NSArray *)events
-//{
-//    _events = events;
-//    [self updateViews];
-//}
-
 -(void)setupMainView
 {
-    ScheduledEvent * e = [_events firstObject];
-    
-    NSString * name = e.name;
-    NSDate * date = e.date;
-    
     self.mainView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.mainView setBackgroundColor:[UIColor clearColor]];
     [self.mainView setOpaque:NO];
-    [self.mainView setEvent:[_events firstObject]];
+    [self.mainView setEvent:self.event];
     [self.mainView setFocused:YES];
     [self.mainView setInactive:NO];
 }
 
-//- (void)updateViews
-//{
-//    [self setupMainView];
-//}
+- (IBAction)flowerInfo:(id)sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    FmnFlowerDetailsVC * vc = [storyboard instantiateViewControllerWithIdentifier:@"FmnFlowerDetailsVC"];
+    
+    [vc setEvent:self.event];
+    
+    vc.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:vc animated:YES completion:NULL];
+}
 
 - (void)viewDidLoad
 {
@@ -60,9 +56,16 @@
     
     [self setupMainView];
 
-    ScheduledEvent * firstEvent = [self.events firstObject];
-    self.titleLabel.text = firstEvent.name;
+    self.titleLabel.text = self.event.name;
 //    self.adviceLabel.text = @"If the flower food solution becomes cloudy, replace it entirely with properly mixed flower food solution.";
+    
+    CALayer * layer = [self.sweetButtin layer];
+    [layer setMasksToBounds:YES];
+    [layer setCornerRadius:7.5]; //when radius is 0, the border is a rectangle
+    [layer setBorderWidth:0.5];
+    [layer setBorderColor:[[UIColor whiteColor] CGColor]];
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
 }
 
 - (void)didReceiveMemoryWarning

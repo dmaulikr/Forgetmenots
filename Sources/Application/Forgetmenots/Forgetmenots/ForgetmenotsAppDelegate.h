@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
++ (BOOL)didShowMoreInfoToday;
 + (void)presentTodaysEvents:(NSArray *)events;
 
 // Properties for the Core Data stack.

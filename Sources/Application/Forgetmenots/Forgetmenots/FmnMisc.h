@@ -12,6 +12,8 @@
 
 @interface FmnMisc : NSObject
 
++ (BOOL)isToday:(NSDate *)date;
+
 + (UIImage *)imageWithColor:(UIColor *)color;
 
 + (UIImage *)imageToGreyImage:(UIImage *)image;
