@@ -23,21 +23,46 @@ static NSManagedObjectContext* theObjectContext;
 
 @implementation ForgetmenotsAppDelegate
 
+@synthesize notificationDate = _notificationDate;
+
 #define YES_STRING @"YES"
 #define NO_STRING @"NO"
 
+-(void)setNotificationDate:(NSDate *)notificationDate
+{
+    _notificationDate = notificationDate;
+    [[NSUserDefaults standardUserDefaults] setObject:_notificationDate forKey:NOTIFICATION_TIME];
+}
+
+-(NSDate *)notificationDate
+{
+    if (_notificationDate)
+    {
+        return _notificationDate;
+    }
+    else{
+        _notificationDate = [[NSUserDefaults standardUserDefaults] objectForKey:NOTIFICATION_TIME];
+    }
+    if (! _notificationDate)
+    {
+        _notificationDate = [NSDate dateWithTimeIntervalSince1970:544899600]; // 5:00 pm GWT 8 april 1987
+    }
+    return _notificationDate;
+}
+
 +(BOOL)didShowMoreInfoToday
 {
-    NSString * loaded = [FmnSettings getSettingsStringWithKey:ALREADY_SHOWEN_MORE_INFO_TODAY];
-    if (loaded && [loaded isEqualToString:YES_STRING])
+    NSDate * lastShown = [[NSUserDefaults standardUserDefaults] objectForKey:LAST_SHOWN_DETAILS_DATE];
+    if ([FmnMisc isToday:lastShown])
     {
-        // do nothing, old notifications were cleaned out already
+        //do nothing
     }
     else
     {
-        [FmnSettings saveSettingsString:YES_STRING withKey:ALREADY_SHOWEN_MORE_INFO_TODAY];
+        [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:LAST_SHOWN_DETAILS_DATE];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
-    return (loaded && [loaded isEqualToString:YES_STRING]);
+    return [FmnMisc isToday:lastShown];
 }
 
 -(void)cleanupOldNotifications

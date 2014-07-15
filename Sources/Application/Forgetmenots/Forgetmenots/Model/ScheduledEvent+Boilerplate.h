@@ -9,7 +9,7 @@
 #import "ScheduledEvent.h"
 #import "ForgetmenotsEvent+Boilerplate.h"
 
-#define PLANAHEAD_NUMBER 3
+#define PLANAHEAD_NUMBER 5
 #define NOTIFICATION_NAME @"name"
 
 @interface ScheduledEvent (Boilerplate)
@@ -24,6 +24,7 @@
 
 +(NSArray *) planAheadEventsWithForgetmenotsEvent:(ForgetmenotsEvent *)event fromDate:(NSDate *)date;
 
++(NSArray *)allRecentInManagedContext:(NSManagedObjectContext *)context;
 +(NSArray *)allInManagedContext:(NSManagedObjectContext *)context;
 
 +(void) deleteAllInManagedContext:(NSManagedObjectContext *)context;

@@ -71,7 +71,7 @@
     }
     else
     {
-        NSArray * loadedEvents = [ScheduledEvent allInManagedContext:self.appDelegate.managedObjectContext];
+        NSArray * loadedEvents = [ScheduledEvent allRecentInManagedContext:self.appDelegate.managedObjectContext];
         NSSortDescriptor *sortDescriptor;
         sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES];
         NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
@@ -123,7 +123,7 @@
         for (int i = 0; i < [self.scheduledEvents count]; i++)
         {
             ScheduledEvent * e = [self.scheduledEvents objectAtIndex:i];
-            if ([now compare:e.date] == NSOrderedAscending)
+            if ([FmnMisc isToday:e.date] || [now compare:e.date] == NSOrderedAscending)
             {
                 _upcomingEventIndex = i;
                 break;
@@ -268,8 +268,6 @@
 
 -(void)showMoreInfoNotifications
 {
-//    didShowMoreInfoToday
-    
     if (![ForgetmenotsAppDelegate didShowMoreInfoToday]){
         if (self.upcomingEventIndex >= 0){
             NSDate * d = ((ScheduledEvent *)[self.scheduledEvents objectAtIndex:self.upcomingEventIndex]).date;

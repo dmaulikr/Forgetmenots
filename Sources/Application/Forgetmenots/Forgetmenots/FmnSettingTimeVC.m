@@ -7,12 +7,26 @@
 //
 
 #import "FmnSettingTimeVC.h"
+#import "ForgetmenotsAppDelegate.h"
 
 @interface FmnSettingTimeVC ()
 
 @end
 
 @implementation FmnSettingTimeVC
+
+-(ForgetmenotsAppDelegate *)appDelegate
+{
+    if (_appDelegate)
+    {
+        return _appDelegate;
+    }
+    else
+    {
+        _appDelegate = (ForgetmenotsAppDelegate*)[[UIApplication sharedApplication] delegate];
+    }
+    return _appDelegate;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -23,6 +37,11 @@
     return self;
 }
 
+-(void)setTime:(id)sender
+{
+    [self.appDelegate setNotificationDate:[self.timePicker date]];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -31,6 +50,9 @@
     // Background
     self.navigationController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
     self.view.backgroundColor = [UIColor clearColor];
+    
+    [self.timePicker addTarget:self action:@selector(setTime:) forControlEvents:UIControlEventValueChanged];
+    [self.timePicker setDate:self.appDelegate.notificationDate];
 }
 
 - (void)didReceiveMemoryWarning

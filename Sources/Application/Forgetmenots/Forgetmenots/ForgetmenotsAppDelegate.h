@@ -15,6 +15,8 @@
 + (BOOL)didShowMoreInfoToday;
 + (void)presentTodaysEvents:(NSArray *)events;
 
+@property (readwrite, strong) NSDate *notificationDate;
+
 // Properties for the Core Data stack.
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;

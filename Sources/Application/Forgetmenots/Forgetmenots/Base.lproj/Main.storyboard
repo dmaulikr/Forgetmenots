@@ -884,6 +884,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Reminder Time" id="dL0-XW-YTR"/>
+                    <connections>
+                        <outlet property="timePicker" destination="A5k-vD-WW4" id="YgL-LR-F2C"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e8p-pB-sse" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

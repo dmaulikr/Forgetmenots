@@ -369,6 +369,19 @@ const char ALERT_FORGETMENOT_EVENT;
     [self setupDateCell];
     
     self.tableView.backgroundColor = [UIColor clearColor];
+    
+    UIBarButtonItem * nextBack = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+                                                                  style:UIBarButtonItemStyleBordered
+                                                                 target:self
+                                                                 action:@selector(cancelButtonClicked:)];
+    //set to red
+//    nextBack.f
+    self.navigationItem.leftBarButtonItem = nextBack;
+}
+
+- (void)cancelButtonClicked:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)viewWillAppear:(BOOL)animated

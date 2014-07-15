@@ -212,6 +212,54 @@
     return [self.date compare:anotherEvent.date];
 }
 
+#define RECENT_FETCH_LIMIT 13
+
++(NSArray *)_allRecentInManagedContext:(NSManagedObjectContext *)context ascending:(BOOL)ascending
+{
+    NSArray *result = nil;
+    NSDate * now = [NSDate date];
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ScheduledEvent"];
+    NSPredicate * predicate;
+    if (ascending)
+    {
+         predicate = [NSPredicate predicateWithFormat:@"(name != nil) AND (date > %@)", now];
+    }
+    else
+    {
+        predicate = [NSPredicate predicateWithFormat:@"(name != nil) AND (date < %@)", now];
+    }
+    [request setPredicate:predicate];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"date" ascending:ascending]; // ascending NO = start with the latest date
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    [request setSortDescriptors:sortDescriptors];
+    [request setFetchLimit:RECENT_FETCH_LIMIT];
+    
+    NSError *error;
+    NSArray *matches = [context executeFetchRequest:request error:&error];
+    
+    if (!matches || error){
+        // handle error
+    }
+    else if ([matches count])
+    {
+        result = matches;
+    }
+    else
+    {
+        //nothing here
+    }
+    
+    return result;
+}
+
+
++(NSArray *)allRecentInManagedContext:(NSManagedObjectContext *)context
+{
+    return [[ScheduledEvent _allRecentInManagedContext:context ascending:NO] arrayByAddingObjectsFromArray:[ScheduledEvent _allRecentInManagedContext:context ascending:YES]];
+}
+
+
 +(NSArray *)allInManagedContext:(NSManagedObjectContext *)context
 {
     NSArray *result = nil;
