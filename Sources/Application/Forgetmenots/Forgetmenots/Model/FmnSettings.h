@@ -16,6 +16,8 @@
 #define LAST_SHOWN_DETAILS_DATE @"LAST_SHOWN_DETAILS_DATE"
 #define NOTIFICATION_TIME @"NOTIFICATION_TIME"
 
+#define APPSTORE_LINK @"http://forgetmenots.co/app" //XXX change to a real existing url to an AppStore
+
 +(void)saveSettingsString:(NSString *)string withKey:(NSString *)key;
 
 +(NSString *)getSettingsStringWithKey:(NSString *)key;

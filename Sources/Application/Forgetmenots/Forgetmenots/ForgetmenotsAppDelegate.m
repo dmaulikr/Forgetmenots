@@ -197,7 +197,7 @@ static NSManagedObjectContext* theObjectContext;
 
 -(void) setUIAppearanceStyles
 {
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setTintColor:[UIColor lightGrayColor]];
     [[UINavigationBar appearance] setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [[UINavigationBar appearance] setBarStyle:UIBarStyleBlackTranslucent];
     [[UINavigationBar appearance] setShadowImage:[UIImage new]];

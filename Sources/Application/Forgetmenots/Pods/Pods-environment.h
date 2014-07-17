@@ -6,6 +6,12 @@
 // project.
 
 
+// ALToastView
+#define COCOAPODS_POD_AVAILABLE_ALToastView
+#define COCOAPODS_VERSION_MAJOR_ALToastView 0
+#define COCOAPODS_VERSION_MINOR_ALToastView 0
+#define COCOAPODS_VERSION_PATCH_ALToastView 1
+
 // AMSlideMenu
 #define COCOAPODS_POD_AVAILABLE_AMSlideMenu
 #define COCOAPODS_VERSION_MAJOR_AMSlideMenu 1

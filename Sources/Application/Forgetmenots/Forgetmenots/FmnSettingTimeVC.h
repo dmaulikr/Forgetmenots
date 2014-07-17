@@ -7,13 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ForgetmenotsAppDelegate.h"
+#import "FmnVC.h"
 
 @class FmnSettingTimeVC;
 
-@interface FmnSettingTimeVC : UIViewController
-
-@property (nonatomic, strong) ForgetmenotsAppDelegate * appDelegate;
+@interface FmnSettingTimeVC : FmnVC
 
 @property (weak, nonatomic) IBOutlet UIDatePicker *timePicker;
 

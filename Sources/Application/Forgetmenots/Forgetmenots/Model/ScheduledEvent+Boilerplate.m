@@ -7,6 +7,7 @@
 //
 
 #import "ScheduledEvent+Boilerplate.h"
+#import "ForgetmenotsAppDelegate.h"
 #import "Flower+Defaults.h"
 
 @implementation ScheduledEvent (Boilerplate)
@@ -140,9 +141,25 @@
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSMinuteCalendarUnit|NSSecondCalendarUnit fromDate:date];
+    
+    //NSDateComponents
+    
     [components setHour:hour];
     return [calendar dateFromComponents:components];
 }
+
++(NSDate *)date:(NSDate *)date asDate:(NSDate *)reference
+{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSMinuteCalendarUnit|NSSecondCalendarUnit fromDate:date];
+    
+    NSDateComponents *referenceComponents = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSHourCalendarUnit|NSMinuteCalendarUnit|NSSecondCalendarUnit fromDate:reference];
+    
+    [components setHour:referenceComponents.hour];
+    [components setMinute:referenceComponents.minute];
+    return [calendar dateFromComponents:components];
+}
+
 
 +(NSDate *)yearLaterDate:(NSDate *)date
 {
@@ -155,6 +172,8 @@
 +(NSArray *) planAheadEventsWithForgetmenotsEvent:(ForgetmenotsEvent *)event fromDate:(NSDate *)date
 {
     NSMutableArray *result = [[NSMutableArray alloc] init];
+    ForgetmenotsAppDelegate * appDelegate = (ForgetmenotsAppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSDate * notificationTime = appDelegate.notificationDate;
     
     if (event)
     {
@@ -171,7 +190,8 @@
             {
                 // XXX todo add random factor, like +-2 days if TIME_UNIT > week
                 NSDate* eventDate = [[NSDate alloc] initWithTimeIntervalSince1970:start + (i + 1) * step];
-                eventDate = [ScheduledEvent date:eventDate AtHour:17];
+                eventDate = [ScheduledEvent date:eventDate asDate:notificationTime];
+//                (ForgetmenotsAppDelegate*)[[UIApplication sharedApplication] delegate]
                 
                 [result addObject:[ScheduledEvent initWithFlowers:event.flowers
                                                              name:event.name
@@ -182,7 +202,7 @@
         else
         {
             NSDate* eventDate = [[NSDate alloc] initWithTimeIntervalSince1970:start];
-            eventDate = [ScheduledEvent date:eventDate AtHour:9];
+            eventDate = [ScheduledEvent date:eventDate asDate:notificationTime];
             // Schedule PLANAHEAD_NUMBER consequent notifications each year at 9 am
             if ([[NSDate date] compare:eventDate] == NSOrderedAscending)
             {

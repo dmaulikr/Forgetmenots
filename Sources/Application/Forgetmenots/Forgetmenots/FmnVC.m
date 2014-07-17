@@ -1,19 +1,31 @@
 //
-//  FmnSettingTimeVC.m
+//  FmnVC.m
 //  Forgetmenots
 //
-//  Created by Ilya Pimenov on 03.07.14.
+//  Created by Ilya Pimenov on 16.07.14.
 //  Copyright (c) 2014 Ilya Pimenov. All rights reserved.
 //
 
-#import "FmnSettingTimeVC.h"
-#import "ForgetmenotsAppDelegate.h"
+#import "FmnVC.h"
 
-@interface FmnSettingTimeVC ()
+@interface FmnVC ()
 
 @end
 
-@implementation FmnSettingTimeVC
+@implementation FmnVC
+
+-(ForgetmenotsAppDelegate *)appDelegate
+{
+    if (_appDelegate)
+    {
+        return _appDelegate;
+    }
+    else
+    {
+        _appDelegate = (ForgetmenotsAppDelegate*)[[UIApplication sharedApplication] delegate];
+    }
+    return _appDelegate;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -24,22 +36,10 @@
     return self;
 }
 
--(void)setTime:(id)sender
-{
-    [self.appDelegate setNotificationDate:[self.timePicker date]];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    // Background
-    self.navigationController.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]];
-    self.view.backgroundColor = [UIColor clearColor];
-    
-    [self.timePicker addTarget:self action:@selector(setTime:) forControlEvents:UIControlEventValueChanged];
-    [self.timePicker setDate:self.appDelegate.notificationDate];
 }
 
 - (void)didReceiveMemoryWarning

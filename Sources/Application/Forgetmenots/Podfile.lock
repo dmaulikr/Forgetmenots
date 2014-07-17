@@ -1,10 +1,13 @@
 PODS:
+  - ALToastView (0.0.1)
   - AMSlideMenu (1.5.3)
 
 DEPENDENCIES:
+  - ALToastView (~> 0.0.1)
   - AMSlideMenu (~> 1.5.3)
 
 SPEC CHECKSUMS:
-  AMSlideMenu: 92da33bbaa1141c7975ca00ad65d989f4df87a8b
+  ALToastView: 26f4f8c33ddbebd3aa4ab3fae09b878527da1f92
+  AMSlideMenu: ab0c9313c74eac61e360d2a714d2d8202f6de916
 
 COCOAPODS: 0.32.1
