@@ -36,8 +36,14 @@
     [self.webview setBackgroundColor:[UIColor clearColor]];
     [self.webview setOpaque:NO];
     
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL: [NSURL URLWithString: @"http://forgetmenots.co/attribution.html"] cachePolicy: NSURLRequestUseProtocolCachePolicy timeoutInterval: 5000];
-    [self.webview loadRequest: request];
+//    NSURLRequest *request = [[NSURLRequest alloc] initWithURL: [NSURL URLWithString: @"file:///Users/ilya/Projects/gh-pages/Forgetmenots/attribution.html"] cachePolicy: NSURLRequestUseProtocolCachePolicy timeoutInterval: 5000];
+    
+    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"attribution" ofType:@"html"];
+    NSString* htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
+    [self.webview loadHTMLString:htmlString baseURL:nil];
+    
+//    NSURLRequest *request = [[NSURLRequest alloc] initWithURL: [NSURL URLWithString: @"http://forgetmenots.co/attribution.html"] cachePolicy: NSURLRequestUseProtocolCachePolicy timeoutInterval: 5000];
+//    [self.webview loadRequest: request];
 }
 
 - (void)viewDidLayoutSubviews {

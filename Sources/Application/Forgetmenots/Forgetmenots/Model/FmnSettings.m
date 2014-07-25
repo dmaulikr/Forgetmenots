@@ -21,4 +21,9 @@
     return [[NSUserDefaults standardUserDefaults] stringForKey:key];
 }
 
++(NSString *)version
+{
+    return [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+}
+
 @end

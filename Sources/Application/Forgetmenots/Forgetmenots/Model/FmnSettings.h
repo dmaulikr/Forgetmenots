@@ -22,4 +22,6 @@
 
 +(NSString *)getSettingsStringWithKey:(NSString *)key;
 
++(NSString *)version;
+
 @end
